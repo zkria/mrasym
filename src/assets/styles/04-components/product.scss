@@ -107,15 +107,15 @@
 @media (max-width: 640px) {
   .is-sticky-product-bar{
     &.product-single{
-      @apply pb-28;
+      @apply pb-16;
     }
 
     .sticky-product-bar{
-      @apply flex flex-wrap flex-col gap-2.5 sm:gap-4 fixed z-[2] bottom-0 left-0 p-3 w-full justify-between items-center shadow-[-1px_-2px_9px_0_rgba(0,0,0,0.05)] transition duration-700 delay-500 translate-y-100 opacity-0 ease-elastic;
+      @apply flex flex-wrap gap-2.5 sm:gap-4 fixed z-[2] bottom-0 left-0 p-3 w-full justify-between items-center shadow-[-1px_-2px_9px_0_rgba(0,0,0,0.05)] transition duration-700 delay-500 translate-y-100 opacity-0 ease-elastic;
 
       &__quantity,
       salla-add-product-button{
-        @apply translate-y-5 opacity-0 transition duration-700 ease-elastic w-full;
+        @apply translate-y-5 opacity-0 transition duration-700 ease-elastic;
       }
 
       &__price,
@@ -124,15 +124,6 @@
       }
 
       &__quantity{
-        salla-quantity-input{
-          @apply w-full;
-          .s-quantity-input-container{
-            @apply w-full;
-          }
-          .s-quantity-input-input{
-            @apply w-[80%]
-          }
-        }
         @apply m-0 delay-[900ms];
       }
 
@@ -155,24 +146,11 @@
 .s-tabs-header * {
   pointer-events: auto !important;
 }
-.product__description {
-  ul,
-  li{
-    list-style: inherit !important;
-  }
-
-  ul,
-  ol {
-    @apply px-6;
-  }
-
-  ol{
-    list-style: auto !important;
-  }
-
-  a{
-    @apply text-blue-700;
-  }
+.product__description ul , .product__description li{
+  list-style: inherit !important;
+}
+.product__description ol{
+  list-style: auto !important;
 }
 
 
@@ -276,7 +254,7 @@
 }
 
 // image zooming
-.magnify-wrapper {
+#magnify-image {
 	.img-magnifier-glass {
 	  @apply hidden sm:block;
 	  position: absolute;
@@ -320,17 +298,13 @@
   }
 }
 
-.s-rating-stars-reviews {
-	@apply text-gray-500
-}
-
 .s-product-card-promotion-title{
-  @apply bg-red-800 text-white;
+  @apply bg-danger text-white;
 }
 
 .s-product-card-sale-price {
   h4{
-    @apply text-red-800 #{!important};
+    @apply text-danger #{!important};
   }
 
   span{
@@ -345,48 +319,5 @@
     > *{
       @apply px-5 #{!important};
     }
-  }
-}
-
-// bank offer corner badge
-#offer-corner-badge{
-  @apply float-left absolute bg-red-600 text-white transform rtl:-rotate-45 ltr:rotate-45 px-12 py-1 h-auto w-auto border-0 m-0 z-1 rtl:top-3 ltr:top-5 rtl:-left-12 ltr:-right-14;
-}
-
-// cart options
-.cart-options {
-  @apply bg-white border-dashed border border-gray-400 rounded-md;
-  salla-product-options {
-    @apply mb-0 pt-0;
-  
-    .s-product-options-option {
-      @apply block #{!important};
-
-      &-label {
-        @apply mb-3;
-      }
-
-      .s-form-control {
-        @apply rounded-md border-gray-200
-      }
-
-      .s-datetime-picker-input {
-        @apply rounded-md border-gray-200
-      }
-
-      .s-product-options-multiple-options-wrapper {
-        @apply block #{!important};
-      }
-    }
-  }
-}
-
-salla-quantity-input[max='1']{
-  input {
-    @apply pointer-events-none opacity-50;
-  }
-
-  .s-quantity-input-button {
-    @apply cursor-not-allowed
   }
 }

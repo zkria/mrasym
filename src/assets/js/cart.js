@@ -10,7 +10,6 @@ class Cart extends BasePage {
             couponBtn: '#coupon-btn',
             couponError: '#coupon-error',
             subTotal: '#sub-total',
-            orderOptionsTotal: '#cart-options-total',
             totalDiscount: '#total-discount',
             shippingCost: '#shipping-cost',
             freeShipping: '#free-shipping',
@@ -45,21 +44,10 @@ class Cart extends BasePage {
             if (isValid) {
                 /** @type HTMLSallaButtonElement */
                 let btn = event.currentTarget;
-                salla.config.get('user.type') == 'guest' ? salla.cart.submit() : btn.load().then(() => salla.cart.submit())
+                btn.load()
+                    .then(() => salla.cart.submit())
             }
         });
-    }
-
-    updateCartOptions(options) {
-      if (!options || !options.length) return;
-
-      const arrayTwoId = options.map((item) => (item.id));
-
-      document.querySelectorAll('.cart-options form')?.forEach((form) => {
-        if (!arrayTwoId.includes(parseInt(form.id.value))) {
-          form.remove();
-        }
-      })
     }
     
     /**
@@ -68,19 +56,13 @@ class Cart extends BasePage {
     updateCartPageInfo(cartData) {
         //if item deleted & there is no more items, just reload the page
         if (!cartData.count) {
-            // clear cart options from the dom before page reload
-            document.querySelector('.cart-options')?.remove();
             return window.location.reload();
         }
-
-        // update the dom for cart options
-        this.updateCartOptions(cartData?.options);
         // update each item data
         cartData.items?.forEach(item => this.updateItemInfo(item));
 
         app.subTotal.innerText = salla.money(cartData.sub_total);
-        if (app.orderOptionsTotal) app.orderOptionsTotal.innerText = salla.money(cartData.options_total);
-        
+
         app.toggleElementClassIf(app.totalDiscount, 'discounted', 'hidden', () => !!cartData.discount)
             .toggleElementClassIf(app.shippingCost, 'has_shipping', 'hidden', () => !!cartData.real_shipping_cost)
             .toggleElementClassIf(app.freeShipping, 'has_free', 'hidden', () => !!cartData.free_shipping_bar);

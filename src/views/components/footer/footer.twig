@@ -1,76 +1,77 @@
 <footer class="store-footer">
-  <div class="store-footer__inner" style="background-color:#645d58!important">
-    
+  <div class="store-footer__inner" style="background-color: #f8f6f4;">
+    <div class="container flex flex-col">
       
       <!-- العودة إلى أعلى -->
       <div class="to-top flex justify-center overflow-hidden animate__fadeInUp" data-wow-delay="0.5s">
-        <a class="flex-center pb-2 pt-4 gap-2 w-max h-full" href="#" aria-label="link">
+        <a class="flex-center pb-2 pt-4 gap-2 w-max h-full" href="#" aria-label="Back to Top">
           <p>العودة إلى أعلى</p>
           <i class="sicon-arrow-up icon"></i>
         </a>
       </div>
 
       <!-- القسم العلوي للفوتر -->
-      <div class="footer-top flex align-center flex-col md:flex-row justify-center">
+      <div class="footer-top flex flex-col md:flex-row justify-center align-center">
         <div class="footer-social flex flex-col">
-          <div class="flex social-links flex-col md:flex-row md:items-center md:gap-4">
-            <h3 class="text-center follow mb-1 text-lg md:mb-0">تابع {{ store.name }}</h3>
-            <div class="social-links flex justify-center gap-2">
-              {% component 'footer.social' %}
-            </div>
-          </div>
+          <!-- مكونات إضافية يمكن إضافتها لاحقًا -->
         </div>
       </div>
 
       <!-- القسم الأوسط للفوتر -->
-      <div class="footer-middle flex align-center flex-col md:flex-row gap-4">
-        <div class="flex flex-col md:max-w-xs">
-          <a class="flex items-center m-0 logo-footer" href="{{ link('/') }}" aria-label="link">
-            <img class="logo-light" src="{{ store.logo }}" alt="{{ store.name }}" style="height:2.5rem">
+      <div class="footer-middle flex flex-col md:flex-row gap-8 py-6">
+        <!-- الشعار والوصف -->
+        <div class="flex flex-col md:max-w-xs text-center md:text-left">
+          <a class="logo-footer mb-3" href="{{ link('/') }}" aria-label="Store Logo">
+            <img src="{{ store.logo }}" alt="{{ store.name }}" style="height: 2.5rem;">
           </a>
           {% if store.description %}
-            <p class="max-w-sm leading-6 mx-auto px-3">
+            <p class="leading-6 text-gray-700">
               {{ store.description|raw }}
             </p>
           {% endif %}
         </div>
 
-        <div class="flex flex-col">
-          <h3>روابط تهمك</h3>
+        <!-- الروابط الهامة -->
+        <div class="flex flex-col gap-4">
+          <h3 class="text-lg">روابط تهمك</h3>
           {% component 'footer.menu' %}
         </div>
 
-        <div class="flex flex-col">
-          <h3>خدمة العملاء</h3>
+        <!-- خدمة العملاء -->
+        <div class="flex flex-col gap-4">
+          <h3 class="text-lg">خدمة العملاء</h3>
           {% component 'footer.contacts' %}
         </div>
 
+        <!-- تطبيق المتجر -->
         <div class="flex flex-col gap-4">
-          <h3>تطبيق {{ store.name }}</h3>
+          <h3 class="text-lg">تطبيق {{ store.name }}</h3>
           {% component 'footer.mobile-apps' %}
         </div>
       </div>
 
       <!-- القسم السفلي للفوتر -->
-      <div class="footer-bottom flex flex-col lg:flex-row items-center justify-between py-4 gap-4">
-        <div class="sbc-certificate flex-center gap-2 text-gray-400">
-          <div class="sbc-link w-12 h-12 md:h-8 bg-white rounded flex-center">
-            <a target="_blank" href="https://eauthenticate.saudibusiness.gov.sa/certificate-details/{{ store.settings.certificate.id }}" alt="{{ store.settings.certificate.id }}">
-              <img class="lazy object-contain max-h-full p-2" src="{{ 'images/sbc.png' | cdn }}" alt="e-commerce certificate">
-            </a>
-          </div>
-          <p>موثّق في منصة الأعمال</p>
-        </div>
-
-        <ul class="flex justify-center items-center flex-wrap gap-2">
+      <div class="footer-bottom flex flex-col lg:flex-row items-center justify-between py-4 gap-6 border-t border-gray-200">
+        <!-- طرق الدفع -->
+        <ul class="flex justify-center items-center flex-wrap gap-4">
           {% component 'footer.payment-methods' %}
         </ul>
 
-        <span class="copyrights text-sm opacity-75">
-          <p class="text-gray-400 mb-2.5 md:mb-0">الحقوق محفوظة | 2024
-            <a href="{{ link('/') }}" class="hover:text-primary" target="_blank" rel="noreferrer">{{ store.name }}</a>
-          </p>
+        <!-- حقوق الملكية -->
+        <span class="text-sm text-gray-500 text-center">
+          © 2024 <a href="{{ link('/') }}" class="hover:text-primary" target="_blank" rel="noreferrer">{{ store.name }}</a>. جميع الحقوق محفوظة.
         </span>
+
+        <!-- شهادة موثوقية الأعمال -->
+        <div class="sbc-certificate flex items-center gap-4">
+          <div class="sbc-link w-12 h-12 bg-white rounded flex items-center justify-center">
+            <a href="https://eauthenticate.saudibusiness.gov.sa/certificate-details/{{ store.settings.certificate.id }}" target="_blank" rel="noopener">
+              <img class="object-contain max-h-full" src="{{ 'images/sbc.png' | cdn }}" alt="e-commerce certificate">
+            </a>
+          </div>
+          <p class="text-gray-400">موثّق في منصة الأعمال</p>
+        </div>
       </div>
     </div>
+  </div>
 </footer>

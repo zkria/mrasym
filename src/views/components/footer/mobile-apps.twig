@@ -1,18 +1,20 @@
 {#
 | Variable    | Type   | Description          |
 |-------------|--------|----------------------|
-| apps        | array  |                      |
-| apps[].name | string | appstore, googleplay |
-| apps[].url  | string |                      |
+| apps        | array  | قائمة التطبيقات      |
+| apps[].name | string | اسم التطبيق (appstore, googleplay) |
+| apps[].url  | string | رابط التطبيق         |
 #}
+
 {% if apps|length %}
+  <!-- قسم روابط التطبيقات المحمولة -->
   <div class="lg:col-span-2 rtl:lg:pr-20 ltr:lg:pl-20">
-    <h3>{{trans('blocks.footer.download_apps')}}</h3>
+    <h3>{{ trans('blocks.footer.download_apps') }}</h3>
     <div class="flex">
       {% for app in apps %}
-          <a href="{{ app.url }}" rel="noreferrer" target="_blank"  class="rtl:ml-4 ltr:mr-4 leading-none hover:text-primary">
-              <img alt="{{ app.name }}" width="135" height="40" src="{{ ('images/'~ app.name ~'.png') | cdn }}"/>
-          </a>
+        <a href="{{ app.url }}" rel="noreferrer" target="_blank" class="rtl:ml-4 ltr:mr-4 leading-none hover:text-primary">
+          <img alt="{{ app.name }}" width="135" height="40" src="{{ ('images/' ~ app.name ~ '.png') | cdn }}"/>
+        </a>
       {% endfor %}
     </div>
   </div>

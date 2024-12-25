@@ -1,6 +1,23 @@
+:root {
+  --primary-color: #641507;
+  --secondary-color: #f6f8f7;
+  --dark-color: #010e0d;
+  --light-gray: #eef1f1;
+  --text-color: #0f0101;
+  --header-height: 84px;
+  --btn-size: 40px;
+  --btn-hover-scale: 1.1;
+}
+
 /* شريط التنقل العلوي */
 .top-navbar {
-  @apply flex py-2 min-h-[48px] items-center; // تطبيق تنسيقات flex، padding، والارتفاع الأدنى
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  min-height: 48px;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
 
   @screen lg {
     @apply py-1.5; // تطبيق padding مختلف للشاشات الكبيرة
@@ -53,7 +70,12 @@
   .navbar-brand {
     @apply flex items-center; // تنسيق الشعار
     img {
-      @apply w-auto max-h-12; // تنسيق صورة الشعار
+      max-height: 50px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+    img:hover {
+      transform: scale(1.05);
     }
   }
 
@@ -84,7 +106,12 @@
 
 /* شريط التنقل الرئيسي */
 .main-nav-container {
-  @apply min-h-[68px] lg:min-h-[84px] shadow-default bg-white flex-1; // تطبيق الارتفاع الأدنى لشريط التنقل الرئيسي
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-height);
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 
   .has-bg &,
   .has-bg & .sub-menu {
@@ -101,6 +128,29 @@
 
   .container {
     @apply flex items-center justify-center; // تنسيق الحاوية
+  }
+
+  .main-menu {
+    display: flex;
+    gap: 15px;
+  }
+
+  .main-menu li {
+    list-style: none;
+  }
+
+  .main-menu a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .main-menu a:hover {
+    color: var(--primary-color);
+    background-color: var(--light-gray);
+    border-radius: 5px;
   }
 }
 
@@ -158,23 +208,25 @@
 
 /* أزرار حديثة للعربة والمستخدم */
 .header-btn {
-  background-color: #f6f8f7;
-  color: #0f0101;
+  width: var(--btn-size);
+  height: var(--btn-size);
+  background-color: var(--secondary-color);
+  border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px; // زيادة حجم الأزرار لجعلها أكثر وضوحًا
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease, transform 0.3s ease; // تطبيق تأثيرات الانتقال للأزرار
+  color: var(--text-color);
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 
   &__icon {
-    font-size: 22px;
+    font-size: 1.5rem;
   }
 
   &:hover {
-    background-color: #eef1f1;
-    transform: scale(1.1); // تطبيق تأثير التحويل عند التمرير
+    background-color: var(--light-gray);
+    transform: scale(var(--btn-hover-scale));
   }
 }
 
@@ -183,8 +235,8 @@
   position: relative;
 
   .header-btn__icon {
-    font-size: 20px;
-    color: #fff;
+    font-size: 30px;
+    color: #c01010; // اللون الافتراضي للأيقونة
     transition: color 0.3s ease; // تطبيق تأثير الانتقال للون الأيقونة
   }
 
@@ -194,19 +246,18 @@
 
   .badge {
     position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #ff6347;
+    top: -5px;
+    right: -5px;
+    background-color: var(--primary-color);
     color: #fff;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 0.8rem;
     border-radius: 50%;
-    width: 15px;
+    width: 20px;
     height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); // تطبيق تأثير الظل للشارة
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -236,6 +287,24 @@
   overflow: hidden;
 }
 
+.header-search {
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.header-search input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.header-search input:focus {
+  border-color: var(--primary-color);
+}
+
 /* شريط التنقل الموحد */
 .unified-navbar {
   @apply flex py-2 min-h-[68px] items-center bg-white shadow-default; // تطبيق تنسيقات flex، padding، والارتفاع الأدنى، ولون الخلفية والظل
@@ -252,12 +321,12 @@
   }
 
   .main-nav-container {
-    @apply flex-1 mx-4; // تنسيق شريط التنقل الرئيسي
+    @apply flex-1 flex justify-between items-center mx-4 w-full; // توسيع عرض الحاوية لتشمل عرض الشاشة بالكامل وتنسيق العناصر
     background-color: transparent; // إزالة الخلفية
   }
 
   .main-menu {
-    @apply flex items-center justify-center; // تنسيق قائمة القوائم الرئيسية
+    @apply flex items-center justify-center mx-4; // تنسيق قائمة القوائم الرئيسية
   }
 
   .header-search {
@@ -268,11 +337,62 @@
     @apply border-none outline-none transition-opacity hover:opacity-80; // تنسيق الأزرار
     &__icon {
       @apply text-xl w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700; // تنسيق أيقونات الأزرار
+      background-color: #f6f8f7; // لون خلفية الأيقونة
+      transition: background-color 0.3s ease, transform 0.3s ease; // تأثيرات الانتقال
+    }
+
+    &:hover .header-btn__icon {
+      background-color: #eef1f1; // لون خلفية الأيقونة عند التمرير
+      transform: scale(1.1); // تأثير التحويل عند التمرير
     }
   }
 
   .salla-cart-summary {
     @apply ml-4 rtl:ml-[unset] rtl:mr-4; // تنسيق ملخص العربة
+    position: relative;
+
+    .header-btn__icon {
+      font-size: 22px; // حجم الأيقونة
+      color: #0f0101; // لون الأيقونة
+      background-color: #ff6347; // لون خلفية الأيقونة
+      transition: background-color 0.3s ease, transform 0.3s ease; // تأثيرات الانتقال
+    }
+
+    &:hover .header-btn__icon {
+      background-color: #ff4500; // تغيير لون الخلفية عند التمرير
+      transform: scale(1.1); // تأثير التحويل عند التمرير
+    }
+
+    .badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #ff6347;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 15px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); // تطبيق تأثير الظل للشارة
+    }
+  }
+
+  .salla-user-menu {
+    @apply shrink-0; // منع التقلص لقائمة المستخدم
+
+    .header-btn__icon {
+      font-size: 22px; // حجم الأيقونة
+      color: #fff; // لون الأيقونة
+      background-color: #010e0d; // لون خلفية الأيقونة
+
+      &:hover {
+        background-color: #030f0f; // تغيير لون الخلفية عند التمرير
+      }
+    }
   }
 
   .space-x-4 > :not([hidden]) ~ :not([hidden]) {

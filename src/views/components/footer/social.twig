@@ -1,17 +1,19 @@
 {#
 | Variable     | Type   | Description                                                        |
 |--------------|--------|--------------------------------------------------------------------|
-| links        | array  | List of active social links                                        |
-| links[].name | string |                                                                    |
-| links[].type | string | instagram, twitter, snapchat, tiktok, youtube, facebook, pinterest |
-| links[].icon | string | Css class                                                          |
-| links[].url  | string |                                                                    |
+| links        | array  | قائمة روابط التواصل الاجتماعي النشطة                              |
+| links[].name | string | اسم الرابط                                                         |
+| links[].type | string | نوع الرابط (instagram, twitter, snapchat, tiktok, youtube, facebook, pinterest) |
+| links[].icon | string | فئة CSS للأيقونة                                                   |
+| links[].url  | string | رابط الوجهة                                                        |
 #}
+
+<!-- قائمة روابط التواصل الاجتماعي -->
 <ul class="flex mb-6">
   {% for link in links %}
     <li class="rtl:ml-2.5 ltr:mr-2.5">
       <a href="{{ link.url }}" rel="noopener" target="_blank" title="{{ link.name }}" aria-label="{{ link.name }}" class="social-link">
-          <i class="sicon-{{ link.type }}"></i>
+        <i class="sicon-{{ link.type }}"></i>
       </a>
     </li>
   {% endfor %}

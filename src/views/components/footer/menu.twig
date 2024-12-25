@@ -1,23 +1,26 @@
 {#
 | Variable        | Type    | Description      |
 |-----------------|---------|------------------|
-| items           | link[]  |                  |
-| items[].id      | int     |                  |
-| items[].title   | String  |                  |
-| items[].url     | String  |                  |
-| items[].target  | String  | '_blank','_self' |
+| items           | link[]  | قائمة الروابط    |
+| items[].id      | int     | معرف الرابط      |
+| items[].title   | String  | عنوان الرابط     |
+| items[].url     | String  | رابط الوجهة      |
+| items[].target  | String  | هدف الرابط ('_blank','_self') |
 #}
+
 {% if is_header %}
+    <!-- عرض الروابط في الهيدر -->
     {% if items|length %}
         <ul class="hidden lg:flex items-center rtl:pl-4 ltr:pr-4 whitespace-nowrap">
             {% for key, item in items|slice(0,3) %}
-			  <li class="topnav-link-item right-side">
-				<a href="{{ item.url }}">{{ item.title }}</a>
-			  </li>
+                <li class="topnav-link-item right-side">
+                    <a href="{{ item.url }}">{{ item.title }}</a>
+                </li>
             {% endfor %}
         </ul>
     {% endif %}
 {% else %}
+    <!-- عرض الروابط في الفوتر -->
     <div>
         <h3>{{ trans('blocks.footer.pages_links') }}</h3>
         <div class="footer-list {{ items|length > 4 ? 'store-links-items':'' }}">

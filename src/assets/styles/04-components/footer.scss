@@ -1,24 +1,29 @@
-
+// تنسيقات الفوتر الرئيسية
 .store-footer {
-  @apply relative bg-darker text-white mt-8 sm:mt-16;
+  @apply bg-gray-900 text-white py-8;
 
-  a{
-    @apply transition-opacity hover:opacity-75;
+  // تنسيقات الروابط
+  a {
+    @apply text-white hover:text-gray-400 transition-colors;
   }
 
-  &__inner{
-    @apply bg-dark py-8 lg:py-16 border-b border-dashed border-b-white/10;
-  }  
+  // تنسيقات القسم الداخلي للفوتر
+  &__inner {
+    @apply container mx-auto px-4 bg-dark py-8 lg:py-16 border-b border-dashed border-b-white/10;
+  }
 
-  h3{
+  // تنسيقات العناوين
+  h3 {
     @apply text-lg font-bold mb-3 lg:mb-5;
   }
 
+  // تنسيقات الروابط الاجتماعية
   .social-link {
-    @apply border rounded-full w-8 h-8 justify-center flex items-center hover:opacity-75 transition duration-300 text-sm
+    @apply border rounded-full w-8 h-8 justify-center flex items-center hover:opacity-75 transition duration-300 text-sm;
   }
 
-  .contact-social{
+  // تنسيقات قسم جهات الاتصال
+  .contact-social {
     @apply mt-5 pt-5 border-t border-white/10;
 
     ul {
@@ -26,6 +31,7 @@
     }
   }
 
+  // تنسيقات الفوتر في الوضع الفاتح
   .footer-is-light & {
     @apply bg-gray-50 text-gray-700;
 
@@ -37,13 +43,37 @@
       @apply border-gray-300;
     }
 
-    .contact-social{
+    .contact-social {
       @apply border-gray-100;
     }
   }
+
+  .footer-logo {
+    @apply w-32 h-auto mb-4;
+  }
+
+  .store-description {
+    @apply text-sm leading-6 mb-4;
+  }
+
+  .social-links {
+    @apply flex space-x-4 mb-4;
+  }
+
+  .footer-title {
+    @apply text-lg font-bold mb-4;
+  }
+
+  .footer-bottom {
+    @apply bg-gray-800 py-4 mt-8;
+  }
+
+  .payment-methods {
+    @apply flex space-x-4;
+  }
 }
 
-
-.copyright-text p{
+// تنسيقات حقوق الطبع والنشر
+.copyright-text p {
   @apply text-gray-700;
 }

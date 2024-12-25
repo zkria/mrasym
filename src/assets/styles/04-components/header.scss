@@ -405,3 +405,64 @@
     --tw-space-x-reverse: 1;
   }
 }
+
+.store-header {
+    background-color: #e0f7fa; // لون الخلفية
+    padding: 10px 20px; // padding للهيدر
+
+    .top-navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+
+            img {
+                max-height: 50px; // ارتفاع الشعار
+            }
+        }
+
+        .main-menu {
+            display: flex;
+            align-items: center;
+            list-style: none;
+
+            li {
+                margin: 0 15px; // مسافة بين العناصر
+                font-weight: bold; // جعل النص عريض
+                color: #00796b; // لون النص
+            }
+        }
+
+        .header-btn {
+            background-color: transparent; // خلفية شفافة
+            border: none; // إزالة الحدود
+            cursor: pointer; // تغيير المؤشر عند التحويم
+            color: #00796b; // لون الأيقونات
+            font-size: 1.5rem; // حجم الأيقونات
+
+            &:hover {
+                color: #004d40; // لون الأيقونات عند التحويم
+            }
+        }
+
+        .cart-summary {
+            .cart-btn {
+                position: relative;
+
+                .cart-count {
+                    position: absolute;
+                    top: -5px;
+                    right: -10px;
+                    background-color: #ff5252; // لون الخلفية لعدد العناصر
+                    color: white; // لون النص
+                    border-radius: 50%; // شكل دائري
+                    padding: 2px 6px; // padding لتحسين المظهر
+                    font-size: 0.8rem; // حجم الخط
+                }
+            }
+        }
+    }
+}

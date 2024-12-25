@@ -6,54 +6,70 @@
 | cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
 #}
 {% set important_links = theme.settings.get('important_links') %}
+
 <header class="store-header">
-  {# Top Nav #}
   <div class="top-navbar">
-    <div class="container flex justify-between">
-       
-         {# شعار المتجر #}
-         <a class="navbar-brand flex items-center" href="{{ store.url }}">
-            <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo }}" alt="{{ store.name }} logo" class="max-h-20">
-            {% if is_page('index') %}
-                <h1 class="sr-only">{{ store.name }}</h1>
-            {% else %}
-                <h2 class="sr-only">{{ store.name }}</h2>
-            {% endif %}
-          
-            {# القائمة الرئيسية #}
-                <ul class="main-menu flex items-center justify-center space-x-4 rtl:space-x-reverse mx-4 text-sm">
-                    {% component 'header.menu' %}
-                </ul>
+    <div class="container flex justify-between items-center">
+      
+      {# شعار المتجر #}
+      <a class="navbar-brand flex items-center" href="{{ store.url }}">
+        <img 
+          fetchpriority="high" 
+          width="100%" 
+          height="100%" 
+          loading="eager" 
+          src="{{ store.logo }}" 
+          alt="{{ store.name }} logo" 
+          class="max-h-20"
+        >
+        <h1 class="sr-only">{{ store.name }}</h1>
+      </a>
 
-            {# قائمة المستخدم والعربة والبحث #}
-            <div class="flex items-center space-x-4 rtl:space-x-reverse text-sm">
-                {# زر البحث #}
-                <button class="header-btn search-btn p-2" aria-label="search-icon" onclick="document.querySelector('.header-search').classList.toggle('hidden')">
-                    <i class="fas fa-search header-btn__icon"></i>
-                </button>
-                
-                {# مكون البحث #}
-                <div class="header-search hidden">
-                    <salla-search inline oval height="36"></salla-search>
-                </div>
+      {# قائمة التنقل الرئيسية #}
+      <ul class="main-menu flex items-center justify-center space-x-4 rtl:space-x-reverse mx-4 text-sm">
+        {% component 'header.menu' %}
+      </ul>
 
-                {# قائمة المستخدم #}
-                {% if user.type == 'user' %}
-                    <salla-user-menu avatar-only show-header>
-                        <i slot="icon" class="fas fa-user header-btn__icon"></i>
-                    </salla-user-menu>
-                {% else %}
-                    <button class="header-btn" aria-label="user-icon" onclick="salla.event.dispatch('login::open')">
-                        <i class="fas fa-user header-btn__icon"></i>
-                    </button>
-                {% endif %}
-
-                {# ملخص العربة #}
-                <salla-cart-summary class="ml-3 rtl:ml-[unset] rtl:mr-3">
-                    <i slot="icon" class="fas fa-shopping-bag header-btn__icon"></i>
-                </salla-cart-summary>
-            </div>
-            
+      {# عناصر المستخدم وزر البحث وزر سلة التسوق #}
+      <div class="flex items-center space-x-6 rtl:space-x-reverse text-sm">
         
+       {# زر سلة التسوق #}
+              <button class="header-btn cart-btn p-2" aria-label="cart-icon" onclick="openCart()">
+                   <i class="fas fa-shopping-bag header-btn__icon"></i>
+                   {% if cart.items_count > 0 %}
+                   <span class="cart-count">{{ cart.items_count }}</span>
+                   {% endif %}
+              </button>
+  
+        {# زر البحث #}
+        <div class="relative">
+          <button class="header-btn search-btn p-2" aria-label="search-icon" onclick="toggleSearch()">
+            <i class="fas fa-search header-btn__icon"></i>
+          </button>
+          <div class="header-search hidden absolute right-0 mt-2 bg-white shadow-lg rounded">
+            <salla-search inline oval height="36"></salla-search>
+          </div>
+        </div>
+
+        {# قائمة المستخدم #}
+        <button class="header-btn" aria-label="user-icon" onclick="salla.event.dispatch('login::open')">
+          <i class="fas fa-user header-btn__icon"></i>
+        </button>
+
+      </div>
     </div>
+  </div>
 </header>
+<script>
+function toggleSearch() {
+    const searchElement = document.querySelector('.header-search');
+    searchElement.classList.toggle('hidden');
+}
+
+function openCart() {
+    const cartElement = document.querySelector('.cart-summary');
+    cartElement.classList.toggle('hidden');
+    console.log('فتح سلة التسوق');
+}
+</script>
+

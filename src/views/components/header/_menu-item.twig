@@ -1,16 +1,20 @@
 {# MOBILE #}
+<!-- عنصر القائمة للأجهزة المحمولة -->
 <li class="lg:hidden text-sm font-bold" {{ menu.attrs }}>
+    <!-- إعداد صورة العنصر إذا كانت موجودة -->
     {% set item_image %}
       {% if menu.image %}
         <img src="{{ menu.image }}" class="rounded-full" width="48" height="48" alt="{{ menu.title }}"/>  
       {% endif %}
     {% endset %} 
 
+    <!-- إذا لم يكن للعنصر عناصر فرعية -->
     {% if not menu.has_children %}
       <a {{ menu.link_attrs|raw }} aria-label="{{menu.title ? menu.title : 'category'}}" href="{{ menu.url }}" class="text-gray-500 {{ menu.image ? '!py-3' : '' }}">
           {{ item_image }}
           <span>{{ menu.title }}</span>
       </a>
+    <!-- إذا كان للعنصر عناصر فرعية -->
     {% else %}
       <span class="{{ menu.image ? '!py-3' : '' }}">
         {{ item_image }}
@@ -18,14 +22,27 @@
       </span>
       <ul>
           <li class="text-sm font-bold"><a {{ menu.link_attrs|raw }} href="{{ menu.url }}" class="text-gray-500">{{ trans('blocks.home.display_all') }}</a></li>
+          <!-- تكرار عبر العناصر الفرعية -->
           {% for submenu in menu.children %}
               {% include _self with {menu:submenu} %}
           {% endfor %}
       </ul>
+      <!-- إذا كان هناك منتجات مرتبطة بالقائمة -->
+      {% if menu.products %}
+          <div class="grow p-8">
+              <div class="grid gap-4 grid-cols-4">
+                  <!-- تكرار عبر المنتجات وعرض أول 4 منتجات -->
+                  {% for product in menu.products|slice(0, 4) %}
+                      <custom-salla-product-card shadow-on-hover product="{{product}}"></custom-salla-product-card>
+                  {% endfor %}
+              </div>
+          </div>
+      {% endif %}
     {% endif %}
 </li>
 
 {# DESKTOP #}
+<!-- عنصر القائمة للأجهزة المكتبية -->
 <li class="!hidden lg:!block {{ is_root_menu?'root-level lg:!inline-block':'relative' }}
     {{ menu.products?' mega-menu': '' }}
     {{ menu.has_children?' has-children': '' }}"
@@ -33,16 +50,20 @@
     <a {{ menu.link_attrs|raw }} href="{{ menu.url }}" aria-label="{{menu.title ? menu.title : 'category'}}">
         <span>{{ menu.title }}</span>
     </a>
+    <!-- إذا كان للعنصر عناصر فرعية -->
     {% if menu.has_children %}
         <div class="sub-menu {{ menu.products?'w-full left-0 flex': 'w-56' }}">
             <ul class="{{ menu.products?'w-56 shrink-0 m-8 rtl:ml-0 ltr:mr-0': '' }}">
+                <!-- تكرار عبر العناصر الفرعية -->
                 {% for submenu in menu.children %}
                     {% include _self with {menu:submenu, is_root_menu:false} %}
                 {% endfor %}
             </ul>
+            <!-- إذا كان هناك منتجات مرتبطة بالقائمة -->
             {% if menu.products %}
                 <div class="grow p-8">
                     <div class="grid gap-4 grid-cols-4">
+                        <!-- تكرار عبر المنتجات وعرض أول 4 منتجات -->
                         {% for product in menu.products|slice(0, 4) %}
                             <custom-salla-product-card shadow-on-hover product="{{product}}"></custom-salla-product-card>
                         {% endfor %}

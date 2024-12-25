@@ -1,266 +1,287 @@
-/* Top Nav */
+/* شريط التنقل العلوي */
 .top-navbar {
-  @apply flex py-2 min-h-[48px];
+  @apply flex py-2 min-h-[48px] items-center; // تطبيق تنسيقات flex، padding، والارتفاع الأدنى
 
   @screen lg {
-    @apply py-1.5;
+    @apply py-1.5; // تطبيق padding مختلف للشاشات الكبيرة
   }
 
   .topnav-has-bg & {
-    @apply bg-[color:var(--topnav-bg)];
+    @apply bg-[color:var(--topnav-bg)]; // تطبيق لون الخلفية المحدد في المتغير
   }
 
   .topnav-has-gradient & {
-    @apply bg-gradient-to-r from-[color:var(--topnav-gradient-from)] to-[color:var(--topnav-gradient-to)];
+    @apply bg-gradient-to-r from-[color:var(--topnav-gradient-from)] to-[color:var(--topnav-gradient-to)]; // تطبيق تدرج الخلفية المحدد في المتغيرين
   }
 
   .topnav-has-text-color & {
-    @apply text-[color:var(--topnav-text-color)];
+    @apply text-[color:var(--topnav-text-color)]; // تطبيق لون النص المحدد في المتغير
   }
 
-  .s-search-input{
-    @apply bg-gray-200/50 hover:bg-gray-200/70 border-none;
+  .s-search-input {
+    @apply bg-gray-200/50 hover:bg-gray-200/70 border-none; // تطبيق تنسيقات حقل البحث، بما في ذلك لون الخلفية والتأثير عند التمرير
   }
 
   @media (max-width: 640px) {
-    .s-search-results{
-      @apply w-screen max-w-[100vw] rtl:-left-2.5 ltr:-right-2.5; 
+    .s-search-results {
+      @apply w-screen max-w-[100vw] rtl:-left-2.5 ltr:-right-2.5; // تطبيق تنسيقات نتائج البحث للشاشات الصغيرة
     }
-  } 
+  }
 
   .topnav-is-dark & {
-    @apply bg-dark text-gray-300;
+    @apply bg-dark text-gray-300; // تطبيق تنسيقات الوضع الداكن
 
     .btn--circle-gray,
     .btn--rounded-gray,
-    .s-search-input{
-      @apply bg-gray-100/10 hover:bg-gray-100/[0.15]
+    .s-search-input {
+      @apply bg-gray-100/10 hover:bg-gray-100/[0.15]; // تطبيق تنسيقات الأزرار وحقل البحث في الوضع الداكن
     }
 
-    .topnav-link-item{
-      @apply border-gray-300/10;
+    .topnav-link-item {
+      @apply border-gray-300/10; // تطبيق تنسيقات حدود عناصر الروابط في الوضع الداكن
     }
 
-    .s-search-input{
-      @apply text-white;
+    .s-search-input {
+      @apply text-white; // تطبيق لون النص لحقل البحث في الوضع الداكن
     }
   }
 
-  .search-btn{
-    @apply grow sm:grow-0 justify-start md:justify-center;
+  .search-btn {
+    @apply grow sm:grow-0 justify-start md:justify-center; // تطبيق تنسيقات زر البحث
+  }
+
+  .navbar-brand {
+    @apply flex items-center; // تنسيق الشعار
+    img {
+      @apply w-auto max-h-12; // تنسيق صورة الشعار
+    }
+  }
+
+  .header-search {
+    @apply flex-1 mx-4 hidden; // تنسيق شريط البحث وإخفاؤه افتراضيًا
+  }
+
+  .header-btn {
+    @apply border-none outline-none transition-opacity hover:opacity-80; // تنسيق الأزرار
+    &__icon {
+      @apply text-xl w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700; // تنسيق أيقونات الأزرار
+    }
+  }
+
+  .salla-cart-summary {
+    @apply ml-4 rtl:ml-[unset] rtl:mr-4; // تنسيق ملخص العربة
   }
 }
 
-// contacs menu items - pages menu items
-.topnav-link-item{
-  @apply inline-block transition duration-300 px-4 rtl:last:pl-0 ltr:last:pr-0 py-px text-sm leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80;
+/* عناصر قائمة الروابط */
+.topnav-link-item {
+  @apply inline-block transition duration-300 px-4 rtl:last:pl-0 ltr:last:pr-0 py-px text-sm leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80; // تطبيق تنسيقات عناصر قائمة الروابط
 
-  &.right-side{
-    @apply rtl:first:pr-0 ltr:first:pl-0
+  &.right-side {
+    @apply rtl:first:pr-0 ltr:first:pl-0; // تطبيق تنسيقات العناصر الموجودة في الجانب الأيمن من القائمة
   }
 }
 
-/* Main Nav */
+/* شريط التنقل الرئيسي */
 .main-nav-container {
-  @apply min-h-[68px] lg:min-h-[84px];
-  
-  // Custom background Color
+  @apply min-h-[68px] lg:min-h-[84px] shadow-default bg-white flex-1; // تطبيق الارتفاع الأدنى لشريط التنقل الرئيسي
+
   .has-bg &,
-  .has-bg & .sub-menu{
-    @apply bg-[color:var(--mainnav-bg)];
+  .has-bg & .sub-menu {
+    @apply bg-[color:var(--mainnav-bg)]; // تطبيق لون الخلفية المحدد في المتغير
   }
 
-  // Custom text color
   .has-text-color & {
-    @apply text-[color:var(--mainnav-text-color)];
+    @apply text-[color:var(--mainnav-text-color)]; // تطبيق لون النص المحدد في المتغير
+  }
+
+  .inner {
+    @apply bg-inherit; // تنسيق الخلفية الداخلية
+  }
+
+  .container {
+    @apply flex items-center justify-center; // تنسيق الحاوية
   }
 }
 
 .menu-item {
-  @apply flex items-center px-6 py-2.5 sm:text-sm text-gray-500 transition-colors duration-300 hover:bg-gray-200/30;
+  @apply flex items-center px-6 py-2.5 sm:text-sm text-gray-500 transition-colors duration-300 hover:bg-gray-200/30; // تطبيق تنسيقات عناصر القائمة
 
-  &.logout{
-    @apply text-red-400;
+  &.logout {
+    @apply text-red-400; // تطبيق لون النص لعناصر القائمة الخاصة بتسجيل الخروج
   }
 
-  &.is-active{
-    @apply text-primary bg-gray-200/20;
+  &.is-active {
+    @apply text-primary bg-gray-200/20; // تطبيق تنسيقات العناصر النشطة في القائمة
   }
 }
 
-/* Sticky Header */
+/* الهيدر الثابت */
 .main-nav-container {
-  &.animated {
-    .inner {
-      transition: top 0.5s, transform 0.5s, -webkit-transform 0.5s, opacity 0.4s;
+  &.animated .inner {
+    transition: top 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out; // تطبيق تأثيرات الانتقال عند تحريك شريط التنقل الرئيسي
+  }
+
+  &.fixed-pinned .inner {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    z-index: 29;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transform: translate3d(0, -100%, 0); // تطبيق تنسيقات شريط التنقل الرئيسي عندما يكون مثبتًا في الأعلى
+
+    @media (max-width: 1024px) {
+      transform: none;
+      top: -70px; // تطبيق تنسيقات مختلفة للشاشات الصغيرة
     }
   }
 
-  &.fixed-pinned {
-    .inner {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      width: 100%;
-      z-index: 29;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-      transform: translate3d(0, -100%, 0);
+  &.fixed-header .inner {
+    transform: translate3d(0, 0, 0); // تطبيق تنسيقات شريط التنقل الرئيسي عندما يكون مثبتًا في الأعلى بدون تحويل
 
-      @media (max-width: 1024px){
-        transform: none;
-        top: -70px;
-      }
-    }
-
-    .navbar-brand {
-      img {
-        max-height: 40px;
-      }
-
-      h4 {
-        line-height: 1;
-      }
-    }
-
-    .main-menu > li > a {
-      padding-top: 20px;
-      padding-bottom: 20px;
-    }
-  }
-
-  &.fixed-header {
-    .inner {
-      transform: translate3d(0, 0, 0);
-
-      @media (max-width: 1024px){
-        transform: none;
-        top: 0;
-      }
+    @media (max-width: 1024px) {
+      transform: none;
+      top: 0; // تطبيق تنسيقات مختلفة للشاشات الصغيرة
     }
   }
 }
 
 .navbar-brand {
-  @apply items-center flex my-2 lg:my-0;
+  @apply items-center flex my-2 lg:my-0; // تطبيق تنسيقات العلامة التجارية في شريط التنقل
 
   img {
-    @apply w-auto max-h-12 max-w-[100px] xs:max-w-[170px];
+    @apply w-auto max-h-12 max-w-[100px] xs:max-w-[170px]; // تحديد تنسيقات صورة العلامة التجارية
   }
 }
 
-// Mainnav cart icon
-.header-btn{
-  @apply border-none outline-none transition-opacity hover:opacity-80;
+/* أزرار حديثة للعربة والمستخدم */
+.header-btn {
+  background-color: #f6f8f7;
+  color: #0f0101;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px; // زيادة حجم الأزرار لجعلها أكثر وضوحًا
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.3s ease; // تطبيق تأثيرات الانتقال للأزرار
 
-  &__icon{
-    @apply text-xl w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700;
-    &.icon{
-      @apply mr-[9px] rtl:ml-[9px] rtl:mr-[unset];
+  &__icon {
+    font-size: 22px;
+  }
+
+  &:hover {
+    background-color: #eef1f1;
+    transform: scale(1.1); // تطبيق تأثير التحويل عند التمرير
+  }
+}
+
+/* عربة التسوق */
+.salla-cart-summary {
+  position: relative;
+
+  .header-btn__icon {
+    font-size: 20px;
+    color: #fff;
+    transition: color 0.3s ease; // تطبيق تأثير الانتقال للون الأيقونة
+  }
+
+  &:hover .header-btn__icon {
+    color: #641507; // تغيير لون الأيقونة عند التمرير
+  }
+
+  .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ff6347;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 15px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); // تطبيق تأثير الظل للشارة
+  }
+}
+
+/* زر المستخدم */
+.salla-user-menu {
+  @apply shrink-0; // منع التقلص لقائمة المستخدم
+
+  .header-btn {
+    background-color: #010e0d;
+    color: #fff;
+
+    &:hover {
+      background-color: #030f0f; // تغيير لون الخلفية عند التمرير
+    }
+
+    &__icon {
+      font-size: 22px;
     }
   }
 }
 
-salla-user-menu{
-  @apply shrink-0;
+/* تحسين تجربة البحث */
+.header-search .s-search-results {
+  @apply z-10;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); // تطبيق تأثير الظل لنتائج البحث
+  border-radius: 8px; // تطبيق الزوايا المستديرة
+  overflow: hidden;
 }
 
-// cart summary
-.s-cart-summary-total{
-  @apply text-black font-[600];
-}
+/* شريط التنقل الموحد */
+.unified-navbar {
+  @apply flex py-2 min-h-[68px] items-center bg-white shadow-default; // تطبيق تنسيقات flex، padding، والارتفاع الأدنى، ولون الخلفية والظل
 
-.s-cart-summary-count{
-  @apply -top-0.5 ltr:-left-1.5 rtl:-right-1.5;
-}
-
-#nav-cart{
-  @apply flex items-center rtl:mr-4 ltr:ml-4 relative whitespace-nowrap;
-
-  .icon{
-    @apply rtl:ml-2 ltr:mr-2;
+  @screen lg {
+    @apply py-1.5; // تطبيق padding مختلف للشاشات الكبيرة
   }
 
-  span{
-    @apply absolute top-1 rtl:-right-2 ltr:-left-2;
+  .navbar-brand {
+    @apply flex items-center; // تنسيق الشعار
+    img {
+      @apply w-auto max-h-20; // تكبير صورة الشعار
+    }
   }
-}
 
-// Search
-.header-search{
-  .s-search-results{
-    @apply z-10;
+  .main-nav-container {
+    @apply flex-1 mx-4; // تنسيق شريط التنقل الرئيسي
+    background-color: transparent; // إزالة الخلفية
   }
-}
 
-header {
-  background-color: #333;
-  padding: 10px 0;
-}
+  .main-menu {
+    @apply flex items-center justify-center; // تنسيق قائمة القوائم الرئيسية
+  }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
+  .header-search {
+    @apply flex-1 mx-4 hidden; // تنسيق شريط البحث وإخفاؤه افتراضيًا
+  }
 
-nav ul li {
-  margin: 0 15px;
-}
+  .header-btn {
+    @apply border-none outline-none transition-opacity hover:opacity-80; // تنسيق الأزرار
+    &__icon {
+      @apply text-xl w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700; // تنسيق أيقونات الأزرار
+    }
+  }
 
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s ease;
-}
+  .salla-cart-summary {
+    @apply ml-4 rtl:ml-[unset] rtl:mr-4; // تنسيق ملخص العربة
+  }
 
-nav ul li a:hover {
-  color: #ff6347;
-}
+  .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+  }
 
-nav ul li a i {
-  margin-right: 8px;
-  transition: transform 0.3s ease;
-}
-
-nav ul li a:hover i {
-  transform: scale(1.2);
-}
-
-/* New Styles for Modern Buttons */
-.header-btn {
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.header-btn:hover {
-  background-color: #0056b3;
-  transform: scale(1.1);
-}
-
-.header-btn__icon {
-  font-size: 20px;
-}
-
-.salla-cart-summary {
-  position: relative;
-}
-
-.salla-cart-summary .header-btn__icon {
-  font-size: 20px;
-  color: #fff;
-  transition: color 0.3s ease;
-}
-
-.salla-cart-summary:hover .header-btn__icon {
-  color: #ff6347;
+  .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+  }
 }

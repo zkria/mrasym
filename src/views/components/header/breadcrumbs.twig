@@ -2,18 +2,31 @@
 {#
 | Variable            | Type               | Description                           |
 |---------------------|--------------------|---------------------------------------|
-| breadcrumbs         | object[]           | A list of breadcrumb for current page |
-| breadcrumbs[].title | string             | A title of breadcrumb                 |
-| breadcrumbs[].url   | string             | A url of breadcrumb                   |
+| breadcrumbs         | object[]           | قائمة من الروابط التوضيحية للصفحة الحالية |
+| breadcrumbs[].title | string             | عنوان الرابط التوضيحي                |
+| breadcrumbs[].url   | string             | رابط الرابط التوضيحي                 |
 #}
 
+<!-- قائمة الروابط التوضيحية -->
 <ol class="flex items-center flex-wrap text-sm">
+    <!-- تكرار عبر الروابط التوضيحية -->
     {% for breadcrumb in breadcrumbs %}
+        <!-- إذا لم يكن العنصر الأخير في القائمة -->
         {% if not loop.last %}
-            <li class="whitespace-nowrap"><a href="{{ breadcrumb.url }}" class="fix-align text-primary">{{ breadcrumb.title }}</a></li>
-            <li><i class="sicon-keyboard_arrow_left arrow mx-2"></i></li>
+            <!-- عنصر رابط توضيحي -->
+            <li class="whitespace-nowrap">
+                <a href="{{ breadcrumb.url }}" class="fix-align text-primary">{{ breadcrumb.title }}</a>
+            </li>
+            <!-- أيقونة السهم بين الروابط -->
+            <li>
+                <i class="sicon-keyboard_arrow_left arrow mx-2"></i>
+            </li>
+        <!-- إذا كان العنصر الأخير في القائمة -->
         {% else %}
-            <li><span class="fix-align">{{ breadcrumb.title|raw }}</span></li>
+            <!-- عنصر نص توضيحي بدون رابط -->
+            <li>
+                <span class="fix-align">{{ breadcrumb.title|raw }}</span>
+            </li>
         {% endif %}
     {% endfor %}
 </ol>

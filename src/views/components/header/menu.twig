@@ -1,23 +1,30 @@
 {#
 | Variable             | Type                   | Description                                        |
 |----------------------|------------------------|----------------------------------------------------|
-| menus                | Menu[] *Collection     | List of menus                                      |
-| menus[].has_children | Bool                   |                                                    |
-| menus[].url          | string                 |                                                    |
-| menus[].title        | string                 |                                                    |
-| menus[].attrs        | string                 | Menu dom attributes ex: ` id="offers"`             |
-| menus[].link_attrs   | string                 | Menu link dom attributes ex: `class="offers-link"` |
-| menus[].children     | Menu[] *Collection     |                                                    |
-| menus[].products     | ?Product[] *Collection | List of selected products or null                  |
+| menus                | Menu[] *Collection     | قائمة القوائم                                      |
+| menus[].has_children | Bool                   | هل تحتوي القائمة على عناصر فرعية                  |
+| menus[].url          | string                 | رابط القائمة                                       |
+| menus[].title        | string                 | عنوان القائمة                                      |
+| menus[].attrs        | string                 | سمات DOM للقائمة مثل ` id="offers"`                |
+| menus[].link_attrs   | string                 | سمات رابط DOM للقائمة مثل `class="offers-link"`    |
+| menus[].children     | Menu[] *Collection     | قائمة العناصر الفرعية                              |
+| menus[].products     | ?Product[] *Collection | قائمة المنتجات المختارة أو null                    |
 #}
 
+<!-- عنصر التنقل الرئيسي -->
 <nav id="mobile-menu" class="mobile-menu">
+    <!-- قائمة القوائم الرئيسية -->
     <ul class="main-menu">
+        <!-- تكرار عبر القوائم -->
         {% for menu_id, menu in menus %}
+            <!-- تضمين مكون _menu-item مع تمرير القائمة الحالية وحالة الجذر -->
             {% include 'components.header._menu-item' with {menu: menu, is_root_menu: true} %}
         {% endfor %}
     </ul>
+    <!-- زر إغلاق القائمة على الأجهزة المحمولة -->
     <button class="btn--close close-mobile-menu sicon-cancel lg:hidden"></button>
 </nav>
+<!-- زر إغلاق صغير للقائمة على الأجهزة المحمولة -->
 <button class="btn--close-sm close-mobile-menu sicon-cancel hidden"></button>
+<!-- تضمين مكتبة Font Awesome للأيقونات -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

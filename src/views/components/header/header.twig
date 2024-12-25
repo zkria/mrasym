@@ -1,22 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="path/to/header.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <!-- Include your header component here -->
-    {% include 'components/header/header.twig' %}
-
-    <!-- Other content -->
-
-    <script src="path/to/header.js"></script>
-</body>
-</html>
-
 {#
 | Variable         | Type    | Description                     |
 |------------------|---------|---------------------------------|
@@ -55,13 +36,9 @@
                 {% endif %}
 
                 {# Search Component #}
-                {# <button onclick="salla.event.dispatch('search::open')" class="btn--circle-gray search-btn">
-                <span class="sicon-search"></span>
-                <span class="sm:hidden px-2 opacity-50">{{ trans('blocks.header.searchProducts') }}</span>
-              </button> #}
-              <div class="header-search flex-1">
-                <salla-search inline oval height="36"></salla-search>
-              </div>
+                <div class="header-search flex-1">
+                    <salla-search inline oval height="36"></salla-search>
+                </div>
             </div>
 
             {% component 'footer.contacts' with {is_header:true} %}
@@ -75,7 +52,7 @@
                 <div class="flex items-stretch justify-between relative">
                     <div class="flex items-center">
                         <a class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
-                          <i class="sicon-menu text-primary text-2xl"></i>
+                          <i class="fas fa-bars text-primary text-2xl"></i>
                         </a>
                         <a class="navbar-brand" href="{{ store.url }}">
                             <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo }}" alt="{{ store.name }} logo">
@@ -92,11 +69,11 @@
                           <salla-user-menu avatar-only show-header></salla-user-menu>
                         {% else %}
                             <button class="header-btn" aria-label="user-icon" onclick="salla.event.dispatch('login::open')">
-                              <i class="header-btn__icon sicon-user-circle"></i>
+                              <i class="fas fa-user-circle header-btn__icon"></i>
                             </button>
                         {% endif %}
                         <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4">
-                          <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
+                          <i slot="icon" class="fas fa-shopping-cart header-btn__icon"></i>
                         </salla-cart-summary>
                     </div>
                 </div>
@@ -107,14 +84,3 @@
 {% if store.scope %}
     <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
 {% endif %}
-<!-- filepath: src/views/components/header/header.twig -->
-<header>
-    <nav>
-        <ul>
-            <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
-            <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
-            <li><a href="#"><i class="fas fa-shopping-cart"></i> Cart</a></li>
-        </ul>
-    </nav>
-</header>

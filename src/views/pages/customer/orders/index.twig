@@ -15,18 +15,10 @@
             <table class="s-table">
                 <thead>
                   <tr>
-                      <th scope="col">
-                          {{ trans('pages.thank_you.order_id') }}
-                      </th>
-                      <th scope="col">
-                          {{ trans('pages.orders.total') }}
-                      </th>
-                      <th scope="col">
-                          {{ trans('pages.orders.date') }}
-                      </th>
-                      <th scope="col">
-                          {{ trans('pages.orders.status') }}
-                      </th>
+                      <th scope="col">{{ trans('pages.thank_you.order_id') }}</th>
+                      <th scope="col">{{ trans('pages.orders.total') }}</th>
+                      <th scope="col">{{ trans('pages.orders.date') }}</th>
+                      <th scope="col">{{ trans('pages.orders.status') }}</th>
                   </tr>
                 </thead>
                 <tbody class="list-container">
@@ -71,12 +63,11 @@
                         <td>
                           <div>
                             <span class="mobile-title">{{ trans('pages.orders.status') }}:</span>
-                            <span class="rtl:mr-auto ltr:ml-auto md:mx-0"
-                                  style="color: {{ order.status.color }}">
+                            <span class="rtl:mr-auto ltr:ml-auto md:mx-0" style="color: {{ order.status.color }}">
                               <i class="mt-1 {{ order.status.icon }}"></i>
                               <span>{{ order.status.name }}</span>
                             </span>
-                            <i class="sicon-star2 text-lg rtl:mr-4 ltr:ml-4 {{ order.is_rated?'text-amber-400':'text-gray-200' }}"></i>
+                            <i class="sicon-star2 text-lg rtl:mr-4 ltr:ml-4 {{ order.is_rated ? 'text-amber-400' : 'text-gray-200' }}"></i>
                             <a href="{{ order.url }}"></a>
                           </div>
                         </td>

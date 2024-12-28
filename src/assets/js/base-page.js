@@ -1,39 +1,43 @@
 class BasePage {
-  constructor() {
-  }
+  constructor() {}
 
   onReady() {
-    //
+    // يمكن تجاوز هذه الدالة في الصفحات الفرعية
   }
 
   registerEvents() {
-    //
+    // يمكن تجاوز هذه الدالة في الصفحات الفرعية
   }
 
   /**
-   * To avoid loading unwanted classes, unless it's wanted page
+   * لتجنب تحميل الفئات غير المرغوب فيها، إلا إذا كانت الصفحة المطلوبة
    * @param {null|string[]} allowedPages
-   * @return {*}
+   * @return {void}
    */
   initiate(allowedPages) {
-    if (allowedPages && !allowedPages.includes(salla.config.get('page.slug'))) {
+    const currentPage = salla.config.get('page.slug');
+    if (allowedPages && !allowedPages.includes(currentPage)) {
       return app.log(`The Class For (${allowedPages.join(',')}) Skipped.`);
     }
 
     this.onReady();
     this.registerEvents();
     app.log(`The Class For (${allowedPages?.join(',') || '*'}) Loaded🎉`);
-  };
-}
+  }
 
-/**
- * Because we merged multi classes into one file, there is no need to initiate all of them
- */
-BasePage.initiateWhenReady = function (allowedPages = null) {
-  if (window.app?.status === 'ready') {
-    (new this).initiate(allowedPages);
-  } else {
-    document.addEventListener('theme::ready', () => (new this).initiate(allowedPages))
+  /**
+   * لأننا دمجنا عدة فئات في ملف واحد، لا حاجة لبدء جميعها
+   * @param {null|string[]} allowedPages
+   * @return {void}
+   */
+  static initiateWhenReady(allowedPages = null) {
+    const initiateClass = () => (new this()).initiate(allowedPages);
+
+    if (window.app?.status === 'ready') {
+      initiateClass();
+    } else {
+      document.addEventListener('theme::ready', initiateClass);
+    }
   }
 }
 

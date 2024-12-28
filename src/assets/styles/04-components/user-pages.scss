@@ -1,4 +1,4 @@
-/* User Notifcations page */
+/* User Notifications page */
 .notification-item {
   @apply transition bg-white p-5 rounded-md flex items-center justify-between rtl:space-x-reverse space-x-4 hover:shadow-default hover:text-gray-600;
 
@@ -15,9 +15,8 @@
   }
 }
 
-
 /* Orders */
-.s-table{
+.s-table {
   @apply min-w-full border-separate;
 
   @media (min-width: 768px) {
@@ -25,42 +24,42 @@
     border-spacing: 0 20px;
   }
 
-  thead{
+  thead {
     @apply bg-gray-50 mb-5 hidden md:table-header-group;
 
-    th{
+    th {
       @apply px-6 text-start text-sm font-medium uppercase tracking-wider last:text-end;
     }
   }
 
-  tbody tr{
+  tbody tr {
     @apply relative hover:shadow-default transition-shadow duration-500 border-b-8 border-t-8 border-gray-50 bg-white overflow-hidden flex md:table-row flex-row md:flex-row flex-wrap md:flex-nowrap p-2 md:p-0;
 
-    td{
+    td {
       @apply w-full md:w-auto md:h-20 whitespace-nowrap text-sm first:font-bold rtl:md:first:rounded-r-md ltr:md:first:rounded-l-md md:last:text-end;
 
-      > div{
+      > div {
         @apply flex justify-between items-center relative px-2 md:px-6 py-1 md:py-6; 
       }
     }
 
-    .mobile-title{
+    .mobile-title {
       @apply md:hidden w-32 inline-block font-normal text-gray-400;
     }
 
-    a{
+    a {
       @apply w-full block absolute top-0 bottom-0 rtl:right-0 ltr:left-0;
     }
   }
 }
 
-.single-order-header-item{
+.single-order-header-item {
   @media (max-width: 768px) {
     @apply flex justify-between items-center;
   }
 }
 
-/* tags */
+/* Tags */
 .tag {
   @apply px-3 pt-0.5 pb-1 inline-block text-sm rounded-2xl border border-gray-200;
 
@@ -92,46 +91,47 @@
   }
 }
 
-
 .rating-header {
   @apply relative from-primary to-primary-d p-5 text-primary-reverse rounded-md;
 }
 
 /* Profile additional fields */
-.form--user-profile{
-  .s-file-upload-wrapper{
+.form--user-profile {
+  .s-file-upload-wrapper {
     min-height: 120px;
-    .filepond--list-scroller{
+
+    .filepond--list-scroller {
       overflow-y: inherit !important;
     }
+
     .filepond--drop-label {
       min-height: 120px !important;
       @apply bg-white cursor-pointer border-dashed rounded-md border border-gray-200;
     }
-    .profile-filepond-placholder{
+
+    .profile-filepond-placeholder {
       @apply flex flex-col justify-center items-center;
+
       &-icon {
         @apply mb-1;
+
         i {
           color: #7c8082;
           @apply text-xl;
         }
       }
     }
-
   }
 }
 
-/* 
-* thank you page 
-*/
-.thankyou-block{
+/* Thank you page */
+.thankyou-block {
   @apply duration-500 hover:shadow-default flex-1 bg-white p-8 rounded-md mb-6 md:mb-8 flex flex-col items-center justify-center;
 
-  &.sent{
+  &.sent {
     @apply text-green-500 font-bold;
 
-    &:before{
+    &:before {
       @apply w-16 h-16 bg-green-100 text-green-500 flex items-center justify-center text-2xl rounded-full mb-2;
       content: "\ea9d";
       font-family: 'sallaicons';

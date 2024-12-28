@@ -59,7 +59,6 @@
     </section>
 {% endif %}
 
-
 {% if product.can_add_note or product.can_upload_file %}
     <section class="bg-white p-5 rounded-md mb-5">
         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
@@ -112,11 +111,11 @@
                                         files="{{ product.attachments|json_encode }}"
                                         cart-item-id="{{ product.id }}"
                                     {% endif %}>
-                                <div class="product-option-uploader-placholder">
-                                    <span class="product-option-uploader-placholder-icon">
+                                <div class="product-option-uploader-placeholder">
+                                    <span class="product-option-uploader-placeholder-icon">
                                         <i class="sicon-camera"></i>
                                     </span>
-                                    <p class="profile-filepond-placholder-text">{{ trans('common.uploader.drag_and_drop') }}</p>
+                                    <p class="profile-filepond-placeholder-text">{{ trans('common.uploader.drag_and_drop') }}</p>
                                     <span class="filepond--label-action">{{ trans('common.uploader.browse') }}</span>
                                 </div>
                             </salla-file-upload>

@@ -48,10 +48,10 @@
                 </label>
                 <select class="form-input" name="gender" required>
                     <option placeholder value="">{{ trans('pages.profile.gender_placeholder') }}</option>
-                    <option value="male" {{ user.gender=='male'?'selected':'' }}>
+                    <option value="male" {{ user.gender == 'male' ? 'selected' : '' }}>
                         {{ trans('pages.profile.male') }}
                     </option>
-                    <option value="female" {{ user.gender=='female'?'selected':'' }}>
+                    <option value="female" {{ user.gender == 'female' ? 'selected' : '' }}>
                         {{ trans('pages.profile.female') }}
                     </option>
                 </select>
@@ -70,6 +70,7 @@
                 </label>
                 <salla-tel-input phone="{{ user.mobile }}"></salla-tel-input>
             </div>
+
             {% for field in custom_fields %}
                 <div class="profile-field-item">
                     <label for="{{ field.id }}" class="block text-sm font-bold mb-2 text-gray-700">
@@ -79,14 +80,14 @@
                         <salla-file-upload
                                 instant-upload
                                 value="{{ field.value }}"
-                                url="{{ store.url|trim('/'~user.language_code) }}/upload-image"
+                                url="{{ store.url|trim('/' ~ user.language_code) }}/upload-image"
                                 name="custom_fields[{{ field.id }}]"
                                 payload-name="image"
                                 height="120px"
                         >
-                            <div class="profile-filepond-placholder">
-                                <span class="profile-filepond-placholder-icon"><i class="sicon-camera"></i></span>
-                                <p class="profile-filepond-placholder-text">{{ trans('common.uploader.drag_and_drop') }}</p>
+                            <div class="profile-filepond-placeholder">
+                                <span class="profile-filepond-placeholder-icon"><i class="sicon-camera"></i></span>
+                                <p class="profile-filepond-placeholder-text">{{ trans('common.uploader.drag_and_drop') }}</p>
                                 <span class="filepond--label-action">{{ trans('common.uploader.browse') }}</span>
                             </div>
                         </salla-file-upload>
@@ -96,7 +97,7 @@
                                id="{{ field.id }}"
                                value="{{ field.value }}"
                                name="custom_fields[{{ field.id }}]"
-                               class="form-input" {{ field.required?'required':'' }}/>
+                               class="form-input" {{ field.required ? 'required' : '' }}/>
                     {% endif %}
                 </div>
             {% endfor %}
@@ -116,5 +117,5 @@
 
     <salla-verify></salla-verify>
 
-    <salla-user-settings {{ user.is_notifiable?'is-notifiable':0 }} class="mt-10 block"></salla-user-settings>
+    <salla-user-settings {{ user.is_notifiable ? 'is-notifiable' : 0 }} class="mt-10 block"></salla-user-settings>
 {% endblock %}

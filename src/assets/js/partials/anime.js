@@ -3,108 +3,33 @@ import AnimeJS from 'animejs';
 window.anime = AnimeJS;
 
 class Anime {
-    constructor(selector, options) {
-        this.options = {
-            targets : selector,
-            opacity : [0, 1],
-            delay   : (el, i) => i * 100,
+    constructor(selector, options = {}) {
+        this.defaultOptions = {
+            targets: selector,
+            opacity: [0, 1],
+            delay: (el, i) => i * 100,
             duration: 2000,
+            loop: false,
+            complete: null,
+            start: null,
         };
-        this.setOptions(options);
+        this.options = { ...this.defaultOptions, ...options };
     }
 
     /**
-     * @param options
+     * @param {object} options
      * @return {Anime}
      */
     setOptions(options) {
-        this.options = Object.assign(this.options, options || {});
+        if (options && typeof options === 'object') {
+            this.options = { ...this.options, ...options };
+        }
         return this;
     }
 
     /**
-     * @param duration
-     * @return {Anime}
-     */
-    duration(duration) {
-        return this.set('duration', duration);
-    }
-
-    /**
-     * @param opacity
-     * @return {Anime}
-     */
-    opacity(opacity) {
-        return this.set('opacity', opacity);
-    }
-
-    /**
-     * @param delay
-     * @return {Anime}
-     */
-    delay(delay) {
-        return this.set('delay', delay);
-    }
-
-    /**
-     * @param scale
-     * @return {Anime}
-     */
-    scale(scale) {
-        return this.set('scale', scale);
-    }
-
-    /**
-     * @param translateY
-     * @return {Anime}
-     */
-    translateY(translateY) {
-        return this.set('translateY', translateY);
-    }
-
-    /**
-     * @param translateX
-     * @return {Anime}
-     */
-    translateX(translateX) {
-        return this.set('translateX', translateX);
-    }
-
-    /**
-     * @param height
-     * @return {Anime}
-     */
-    height(height) {
-        return this.set('height', height);
-    }
-
-    /**
-     * @param margin
-     * @return {Anime}
-     */
-    margin(margin) {
-        return this.set('margin', margin);
-    }
-
-    /**
-     * @param easing
-     * @return {Anime}
-     */
-    easing(easing) {
-        return this.set('easing', easing);
-    }
-
-    /**
-     * @param complete
-     * @return {Anime}
-     */
-    complete(complete) {
-        return this.set('complete', complete);
-    }
-
-    /**
-     * @param key
-     * @param value
+     * @param {string} key
+     * @param {*} value
      * @return {Anime}
      */
     set(key, value) {
@@ -113,35 +38,73 @@ class Anime {
     }
 
     /**
-     * @param number
+     * إعادة تعيين الخيارات إلى القيم الافتراضية
      * @return {Anime}
      */
-    stagger(number) {
-        this.delay = AnimeJS.stagger(number);
+    reset() {
+        this.options = { ...this.defaultOptions, targets: this.options.targets };
         return this;
     }
 
     /**
-     * @param padding
+     * @param {number} number
      * @return {Anime}
      */
-    paddingBottom(padding) {
-        return this.set('padding-bottom', padding);
+    stagger(number) {
+        this.set('delay', AnimeJS.stagger(number));
+        return this;
     }
 
     /**
-     * @param padding
-     * @return {Anime}
+     * تشغيل الرسوم المتحركة مع خيارات إضافية
+     * @param {object} additionalOptions
+     * @return {AnimeJS}
      */
-    paddingTop(padding) {
-        return this.set('padding-top', padding);
+    play(additionalOptions = {}) {
+        if (!this.validateTargets()) {
+            console.error('No matching elements found for the selector:', this.options.targets);
+            return;
+        }
+        const combinedOptions = { ...this.options, ...additionalOptions };
+
+        // تنفيذ دالة البدء إذا كانت موجودة
+        if (typeof combinedOptions.start === 'function') {
+            combinedOptions.start();
+        }
+
+        const animation = AnimeJS(combinedOptions);
+        
+        // تنفيذ دالة الإكمال إذا كانت موجودة
+        if (typeof combinedOptions.complete === 'function') {
+            animation.finished.then(combinedOptions.complete);
+        }
+        
+        return animation;
     }
 
     /**
-     * @return {{}}
+     * إيقاف الرسوم المتحركة
+     * @return {void}
      */
-    play() {
-        return AnimeJS(this.options);
+    stop() {
+        AnimeJS.remove(this.options.targets);
+    }
+
+    /**
+     * إيقاف الرسوم المتحركة مؤقتًا
+     * @return {void}
+     */
+    pause() {
+        console.warn('Pause functionality is not directly supported. Use stop() to remove animations.');
+    }
+
+    /**
+     * التحقق من وجود عناصر مطابقة
+     * @return {boolean}
+     */
+    validateTargets() {
+        const targets = document.querySelectorAll(this.options.targets);
+        return targets.length > 0;
     }
 }
 

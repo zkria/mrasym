@@ -18,7 +18,7 @@
 {% block content %}
 <div class="container">
 
-    {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
+    {# إضافة حاوية للخبز في الصفحات لإنشاء مساحة في حالة إيقاف تشغيل الخبز #}
     <nav class="breadcrumbs w-full py-5">
         {% component 'header.breadcrumbs' %}
     </nav>
@@ -27,7 +27,7 @@
         <div class="content content--single-page w-full lg:w-10/12 bg-white rounded p-6 lg:p-8 mt-4 lg:mt-12">
 
             <div class="mb-4 sm:mb-6 flex justify-between items-center">
-                <h1 class="font-bold text-2xl">{{ page . title }}</h1>
+                <h1 class="font-bold text-2xl">{{ page.title }}</h1>
                 <div class="flex items-center">
                     <label class="hidden sm:block rtl:ml-3 ltr:mr-3 whitespace-nowrap"
                         for="testimonials-filter">{{ trans('pages.categories.sorting') }}</label>

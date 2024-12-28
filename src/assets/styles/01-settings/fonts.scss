@@ -1,0 +1,40 @@
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+// Define font families
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'Arial', sans-serif;
+
+// Font sizes
+$font-size-base: 16px;
+$font-size-small: 14px;
+$font-size-large: 18px;
+$font-size-xlarge: 24px;
+
+// Font weights
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+// Mixin for font-face
+@mixin font-face($name, $file, $weight: 400, $style: normal) {
+  @font-face {
+    font-family: $name;
+    src: url('#{$file}.woff2') format('woff2'),
+         url('#{$file}.woff') format('woff');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+// Example usage of font-face mixin
+@include font-face('CustomFont', '/path/to/font/CustomFont', 400, normal);
+@include font-face('CustomFont', '/path/to/font/CustomFont-Bold', 700, normal);
+
+// Apply font families
+body {
+  font-family: $font-primary;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-secondary;
+}

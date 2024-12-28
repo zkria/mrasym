@@ -17,7 +17,7 @@
 | store.settings.auth.email_allowed                  | bool     |                                                                                                          |
 | store.settings.auth.mobile_allowed                 | bool     |                                                                                                          |
 | store.settings.auth.is_email_required              | bool     |                                                                                                          |
-| store.settings.cart.apply_coupon_enabled           | bool     | Does visitor allowed to applay coupon in cart page                                                       |
+| store.settings.cart.apply_coupon_enabled           | bool     | Does visitor allowed to apply coupon in cart page                                                       |
 | store.settings.product.total_sold_enabled          | bool     |                                                                                                          |
 | store.settings.product.fit_type                    | ?string  | null when equal product card size is off, or ['cover', 'contain']                                        |
 | store.settings.category.testimonial_enabled        | bool     | Show random testimonials in category page                                                                |
@@ -27,7 +27,7 @@
 | store.settings.rating_enabled                      | bool     | Is one of: store_enabled or shipping_enabled or products_enabled                                         |
 | store.settings.arabic_numbers_enabled              | bool     | Does the merchant wants the numbers to be shown as Arabic format                                         |
 | store.settings.is_multilingual                     | bool     |                                                                                                          |
-| store.settings.currencies_enabled                  | bool     |     
+| store.settings.currencies_enabled                  | bool     |                                                                                                          |
 | theme                                              | Theme    |                                                                                                          |
 | theme.id                                           | int      |                                                                                                          |
 | theme.name                                         | string   |                                                                                                          |
@@ -88,7 +88,7 @@
     {{ theme.settings.set('placeholder', 'images/placeholder.png') }}
 
     <!-- To eliminate all render blocking CSS & JS and start with the critical css-->
-    <!-- To show loader to the user till the page content are  loaded-->
+    <!-- To show loader to the user till the page content are loaded-->
     <style>
       .loader-init {
           position: fixed;

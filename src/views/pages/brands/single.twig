@@ -15,7 +15,7 @@
 {% extends "layouts.master" %}
 {% block content %}
 
-  {# Brand banner #} 
+  {# لافتة العلامة التجارية #} 
   {% if brand.banner %} 
         <div class="brand-page__banner">
             <img loading="eager" width="1200" height="300" class="w-full max-h-[300px] object-cover rounded-md bg-gray-100" src="{{ brand.banner }}" alt="{{ brand.name }}"/>
@@ -23,13 +23,13 @@
     {% endif %}
 
     <div class="container">
-        {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
+        {# إضافة حاوية للخبز في الصفحات لإنشاء مساحة في حالة إيقاف تشغيل الخبز #}
         <nav class="breadcrumbs w-full py-5">
             {% component 'header.breadcrumbs' %}
         </nav>
         {% hook 'brands:single.details.start' %}
    
-        {# brand header #}
+        {# رأس العلامة التجارية #}
         <header class="flex flex-col md:flex-row items-center md:items-start text-center rtl:md:text-right ltr:md:text-left mt-2 mb-12 md:mb-20">
             <img class="rounded-md w-40 h-24 object-contain shadow-md p-4 bg-white lazy shrink-0" data-src="{{ brand.logo }}" src="{{ 'images/s-empty.png' | asset }}" alt="{{ brand.name }}">
             <div class="px-5 pt-3 rtl:text-right">
@@ -44,13 +44,13 @@
             <div class="main-content w-full">
                 {% if products|length %}
                     {% hook 'brands:single.items.start' %}
-                        <salla-products-list source="{{page.slug}}" source-value="{{page.id}}"></salla-products-list>
+                        <salla-products-list source="{{ page.slug }}" source-value="{{ page.id }}"></salla-products-list>
                     {% hook 'brands:single.items.end' %}
                 {% else %}
                     <div class="no-content-placeholder">
-                            <span class="rounded-icon !w-36 !h-36 bg-gray-100 mb-6">
-                                <i class="sicon-award-ribbon text-6xl block text-gray-400"></i>
-                            </span>
+                        <span class="rounded-icon !w-36 !h-36 bg-gray-100 mb-6">
+                            <i class="sicon-award-ribbon text-6xl block text-gray-400"></i>
+                        </span>
                         <p class="text-sm mb-5 text-center">
                             <span>{{ trans('pages.brands.non_products') }}</span>
                             {{ brand.name }}

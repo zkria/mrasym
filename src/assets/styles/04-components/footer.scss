@@ -25,10 +25,10 @@
     }
   }
 
-  .footer-is-light & {
+  &.footer-is-light {
     @apply bg-gray-50 text-gray-700;
 
-    .store-footer__inner {
+    &__inner {
       @apply bg-gray-100 border-b-gray-200;
     }
 

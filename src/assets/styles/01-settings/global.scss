@@ -1,29 +1,59 @@
-
 // Colors
 $main-color: var(--color-primary);
-$infinte-color: var(--infinte-color);
+$infinite-color: var(--infinite-color);
 $main-text-color: var(--main-text-color);
 
 :root {
-  --infinte-color: #c9c9c9;
+  --infinite-color: #c9c9c9;
   --main-text-color: #231f1e;
   --main-text-color-dark: #2b2d34;
 
-  /* current */
+  /* Primary Colors */
   --color-primary: #5cd5c4;
-  --color-primary: #414042;
-  --color-primary-d: #272628;
-  --color-primary-l: #676668;
+  --color-primary-dark: #272628;
+  --color-primary-light: #676668;
   --color-primary-reverse: #ff6767;
+
+  /* Text Colors */
   --color-text: #7c8082;
+
+  /* Background Colors */
   --bg-gray: #c6c7ce1a;
   --color-grey: #f5f7f9;
   --color-light-grey: #eeeeee;
-  /* font-size */
+
+  /* Font Sizes */
   --font-sm: 0.8685714286rem;
-  /* font-family: ; */
+
+  /* Font Family */
   --font-main: "DINNextLTArabic";
 
-  /* plugins */
+  /* Plugins */
   --mm-ocd-width: calc(100% - 51px);
+}
+
+// Example usage of variables
+body {
+  font-family: var(--font-main);
+  color: var(--main-text-color);
+  background-color: var(--color-grey);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--main-text-color-dark);
+}
+
+a {
+  color: var(--color-primary);
+  &:hover {
+    color: var(--color-primary-dark);
+  }
+}
+
+.button {
+  background-color: var(--color-primary);
+  color: var(--color-primary-reverse);
+  &:hover {
+    background-color: var(--color-primary-dark);
+  }
 }

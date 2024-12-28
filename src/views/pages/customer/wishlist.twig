@@ -16,8 +16,7 @@
               <div class="product-entry product-entry--wishlist">
                   <div class="flex items-center mb-4 sm:mb-0">
 
-                      <a href="{{ product.url }}"
-                        class='product-entry__image'>
+                      <a href="{{ product.url }}" class='product-entry__image'>
                           <img class="h-full w-full object-cover lazy" data-src="{{ product.image.url }}" alt="{{ product.image.alt }}"/>
                       </a>
                       <div class="flex-1 rtl:pr-5 ltr:pl-5">
@@ -37,7 +36,7 @@
                       </div>
                   </div>
                   <div class="flex items-center rtl:space-x-reverse space-x-4">
-                      <salla-add-product-button roduct-status="{{ product.status }}" product-id="{{ product.id }}" product-type="{{ product.type }}" loader-position="center"  fill="outline" class="flex-grow sm:grow-0 w-full md:w-40">
+                      <salla-add-product-button product-status="{{ product.status }}" product-id="{{ product.id }}" product-type="{{ product.type }}" loader-position="center" fill="outline" class="flex-grow sm:grow-0 w-full md:w-40">
                           {{ product.add_to_cart_label }}
                       </salla-add-product-button>
 

@@ -1,468 +1,196 @@
-:root {
-  --primary-color: #641507;
-  --secondary-color: #f6f8f7;
-  --dark-color: #010e0d;
-  --light-gray: #eef1f1;
-  --text-color: #0f0101;
-  --header-height: 84px;
-  --btn-size: 40px;
-  --btn-hover-scale: 1.1;
-}
 
-/* شريط التنقل العلوي */
+/* Top Nav */
 .top-navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  min-height: 48px;
-  background-color: var(--secondary-color);
-  color: var(--text-color);
+  @apply flex py-2 min-h-[48px];
 
   @screen lg {
-    @apply py-1.5; // تطبيق padding مختلف للشاشات الكبيرة
+    @apply py-1.5;
   }
 
   .topnav-has-bg & {
-    @apply bg-[color:var(--topnav-bg)]; // تطبيق لون الخلفية المحدد في المتغير
+    @apply bg-[color:var(--topnav-bg)];
   }
 
   .topnav-has-gradient & {
-    @apply bg-gradient-to-r from-[color:var(--topnav-gradient-from)] to-[color:var(--topnav-gradient-to)]; // تطبيق تدرج الخلفية المحدد في المتغيرين
+    @apply bg-gradient-to-r from-[color:var(--topnav-gradient-from)] to-[color:var(--topnav-gradient-to)];
   }
 
   .topnav-has-text-color & {
-    @apply text-[color:var(--topnav-text-color)]; // تطبيق لون النص المحدد في المتغير
+    @apply text-[color:var(--topnav-text-color)];
   }
 
-  .s-search-input {
-    @apply bg-gray-200/50 hover:bg-gray-200/70 border-none; // تطبيق تنسيقات حقل البحث، بما في ذلك لون الخلفية والتأثير عند التمرير
+  .s-search-input{
+    @apply bg-gray-200/50 hover:bg-gray-200/70 border-none;
   }
 
   @media (max-width: 640px) {
-    .s-search-results {
-      @apply w-screen max-w-[100vw] rtl:-left-2.5 ltr:-right-2.5; // تطبيق تنسيقات نتائج البحث للشاشات الصغيرة
+    .s-search-results{
+      @apply w-screen max-w-[100vw] rtl:-left-2.5 ltr:-right-2.5; 
     }
-  }
+  } 
 
   .topnav-is-dark & {
-    @apply bg-dark text-gray-300; // تطبيق تنسيقات الوضع الداكن
+    @apply bg-dark text-gray-300;
 
     .btn--circle-gray,
     .btn--rounded-gray,
-    .s-search-input {
-      @apply bg-gray-100/10 hover:bg-gray-100/[0.15]; // تطبيق تنسيقات الأزرار وحقل البحث في الوضع الداكن
+    .s-search-input{
+      @apply bg-gray-100/10 hover:bg-gray-100/[0.15]
     }
 
-    .topnav-link-item {
-      @apply border-gray-300/10; // تطبيق تنسيقات حدود عناصر الروابط في الوضع الداكن
+    .topnav-link-item{
+      @apply border-gray-300/10;
     }
 
-    .s-search-input {
-      @apply text-white; // تطبيق لون النص لحقل البحث في الوضع الداكن
-    }
-  }
-
-  .search-btn {
-    @apply grow sm:grow-0 justify-start md:justify-center; // تطبيق تنسيقات زر البحث
-  }
-
-  .navbar-brand {
-    @apply flex items-center; // تنسيق الشعار
-    img {
-      max-height: 50px;
-      width: auto;
-      transition: transform 0.3s ease;
-    }
-    img:hover {
-      transform: scale(1.05);
+    .s-search-input{
+      @apply text-white;
     }
   }
 
-  .header-search {
-    @apply flex-1 mx-4 hidden; // تنسيق شريط البحث وإخفاؤه افتراضيًا
-  }
-
-  .header-btn {
-    @apply border-none outline-none transition-opacity hover:opacity-80; // تنسيق الأزرار
-    &__icon {
-      @apply text-xl w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700; // تنسيق أيقونات الأزرار
-    }
-  }
-
-  .salla-cart-summary {
-    @apply ml-4 rtl:ml-[unset] rtl:mr-4; // تنسيق ملخص العربة
+  .search-btn{
+    @apply grow sm:grow-0 justify-start md:justify-center;
   }
 }
 
-/* عناصر قائمة الروابط */
-.topnav-link-item {
-  @apply inline-block transition duration-300 px-4 rtl:last:pl-0 ltr:last:pr-0 py-px text-sm leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80; // تطبيق تنسيقات عناصر قائمة الروابط
+// contacs menu items - pages menu items
+.topnav-link-item{
+  @apply inline-block transition duration-300 px-4 rtl:last:pl-0 ltr:last:pr-0 py-px text-sm leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80;
 
-  &.right-side {
-    @apply rtl:first:pr-0 ltr:first:pl-0; // تطبيق تنسيقات العناصر الموجودة في الجانب الأيمن من القائمة
+  &.right-side{
+    @apply rtl:first:pr-0 ltr:first:pl-0
   }
 }
 
-/* شريط التنقل الرئيسي */
+/* Main Nav */
 .main-nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: var(--header-height);
-  background-color: white;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-
+  @apply min-h-[68px] lg:min-h-[84px];
+  
+  // Custom background Color
   .has-bg &,
-  .has-bg & .sub-menu {
-    @apply bg-[color:var(--mainnav-bg)]; // تطبيق لون الخلفية المحدد في المتغير
+  .has-bg & .sub-menu{
+    @apply bg-[color:var(--mainnav-bg)];
   }
 
+  // Custom text color
   .has-text-color & {
-    @apply text-[color:var(--mainnav-text-color)]; // تطبيق لون النص المحدد في المتغير
-  }
-
-  .inner {
-    @apply bg-inherit; // تنسيق الخلفية الداخلية
-  }
-
-  .container {
-    @apply flex items-center justify-center; // تنسيق الحاوية
-  }
-
-  .main-menu {
-    display: flex;
-    gap: 15px;
-  }
-
-  .main-menu li {
-    list-style: none;
-  }
-
-  .main-menu a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-size: 1rem;
-    padding: 5px 10px;
-    transition: color 0.3s ease, background-color 0.3s ease;
-  }
-
-  .main-menu a:hover {
-    color: var(--primary-color);
-    background-color: var(--light-gray);
-    border-radius: 5px;
+    @apply text-[color:var(--mainnav-text-color)];
   }
 }
 
 .menu-item {
-  @apply flex items-center px-6 py-2.5 sm:text-sm text-gray-500 transition-colors duration-300 hover:bg-gray-200/30; // تطبيق تنسيقات عناصر القائمة
+  @apply flex items-center px-6 py-2.5 sm:text-sm text-gray-500 transition-colors duration-300 hover:bg-gray-200/30;
 
-  &.logout {
-    @apply text-red-400; // تطبيق لون النص لعناصر القائمة الخاصة بتسجيل الخروج
+  &.logout{
+    @apply text-red-400;
   }
 
-  &.is-active {
-    @apply text-primary bg-gray-200/20; // تطبيق تنسيقات العناصر النشطة في القائمة
+  &.is-active{
+    @apply text-primary bg-gray-200/20;
   }
 }
 
-/* الهيدر الثابت */
+/* Sticky Header */
 .main-nav-container {
-  &.animated .inner {
-    transition: top 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out; // تطبيق تأثيرات الانتقال عند تحريك شريط التنقل الرئيسي
-  }
-
-  &.fixed-pinned .inner {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    z-index: 29;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    transform: translate3d(0, -100%, 0); // تطبيق تنسيقات شريط التنقل الرئيسي عندما يكون مثبتًا في الأعلى
-
-    @media (max-width: 1024px) {
-      transform: none;
-      top: -70px; // تطبيق تنسيقات مختلفة للشاشات الصغيرة
+  &.animated {
+    .inner {
+      transition: top 0.5s, transform 0.5s, -webkit-transform 0.5s, opacity 0.4s;
     }
   }
 
-  &.fixed-header .inner {
-    transform: translate3d(0, 0, 0); // تطبيق تنسيقات شريط التنقل الرئيسي عندما يكون مثبتًا في الأعلى بدون تحويل
+  &.fixed-pinned {
+    .inner {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      width: 100%;
+      z-index: 29;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      transform: translate3d(0, -100%, 0);
 
-    @media (max-width: 1024px) {
-      transform: none;
-      top: 0; // تطبيق تنسيقات مختلفة للشاشات الصغيرة
+      @media (max-width: 1024px){
+        transform: none;
+        top: -70px;
+      }
+    }
+
+    .navbar-brand {
+      img {
+        max-height: 40px;
+      }
+
+      h4 {
+        line-height: 1;
+      }
+    }
+
+    .main-menu > li > a {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  &.fixed-header {
+    .inner {
+      transform: translate3d(0, 0, 0);
+
+      @media (max-width: 1024px){
+        transform: none;
+        top: 0;
+      }
     }
   }
 }
 
 .navbar-brand {
-  @apply items-center flex my-2 lg:my-0; // تطبيق تنسيقات العلامة التجارية في شريط التنقل
+  @apply items-center flex my-2 lg:my-0;
 
   img {
-    @apply w-auto max-h-12 max-w-[100px] xs:max-w-[170px]; // تحديد تنسيقات صورة العلامة التجارية
+    @apply w-auto max-h-12 max-w-[100px] xs:max-w-[170px];
   }
 }
 
-/* أزرار حديثة للعربة والمستخدم */
-.header-btn {
-  width: var(--btn-size);
-  height: var(--btn-size);
-  background-color: var(--secondary-color);
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-color);
-  font-size: 1.2rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+// Mainnav cart icon
+.header-btn{
+  @apply border-none outline-none transition-opacity hover:opacity-80;
 
-  &__icon {
-    font-size: 1.5rem;
-  }
-
-  &:hover {
-    background-color: var(--light-gray);
-    transform: scale(var(--btn-hover-scale));
-  }
-}
-
-/* عربة التسوق */
-.salla-cart-summary {
-  position: relative;
-
-  .header-btn__icon {
-    font-size: 30px;
-    color: #c01010; // اللون الافتراضي للأيقونة
-    transition: color 0.3s ease; // تطبيق تأثير الانتقال للون الأيقونة
-  }
-
-  &:hover .header-btn__icon {
-    color: #641507; // تغيير لون الأيقونة عند التمرير
-  }
-
-  .badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: var(--primary-color);
-    color: #fff;
-    font-size: 0.8rem;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  }
-}
-
-/* زر المستخدم */
-.salla-user-menu {
-  @apply shrink-0; // منع التقلص لقائمة المستخدم
-
-  .header-btn {
-    background-color: #010e0d;
-    color: #fff;
-
-    &:hover {
-      background-color: #030f0f; // تغيير لون الخلفية عند التمرير
-    }
-
-    &__icon {
-      font-size: 22px;
+  &__icon{
+    @apply text-xl w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700;
+    &.icon{
+      @apply mr-[9px] rtl:ml-[9px] rtl:mr-[unset];
     }
   }
 }
 
-/* تحسين تجربة البحث */
-.header-search .s-search-results {
-  @apply z-10;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); // تطبيق تأثير الظل لنتائج البحث
-  border-radius: 8px; // تطبيق الزوايا المستديرة
-  overflow: hidden;
+salla-user-menu{
+  @apply shrink-0;
 }
 
-.header-search {
-  flex-grow: 1;
-  margin: 0 20px;
+// cart summary
+.s-cart-summary-total{
+  @apply text-black font-[600];
 }
 
-.header-search input {
-  width: 100%;
-  padding: 8px 12px;
-  border: 1px solid var(--light-gray);
-  border-radius: 8px;
-  outline: none;
-  transition: border-color 0.3s ease;
+.s-cart-summary-count{
+  @apply -top-0.5 ltr:-left-1.5 rtl:-right-1.5 bg-red-800;
 }
 
-.header-search input:focus {
-  border-color: var(--primary-color);
-}
+#nav-cart{
+  @apply flex items-center rtl:mr-4 ltr:ml-4 relative whitespace-nowrap;
 
-/* شريط التنقل الموحد */
-.unified-navbar {
-  @apply flex py-2 min-h-[68px] items-center bg-white shadow-default; // تطبيق تنسيقات flex، padding، والارتفاع الأدنى، ولون الخلفية والظل
-
-  @screen lg {
-    @apply py-1.5; // تطبيق padding مختلف للشاشات الكبيرة
+  .icon{
+    @apply rtl:ml-2 ltr:mr-2;
   }
 
-  .navbar-brand {
-    @apply flex items-center; // تنسيق الشعار
-    img {
-      @apply w-auto max-h-20; // تكبير صورة الشعار
-    }
-  }
-
-  .main-nav-container {
-    @apply flex-1 flex justify-between items-center mx-4 w-full; // توسيع عرض الحاوية لتشمل عرض الشاشة بالكامل وتنسيق العناصر
-    background-color: transparent; // إزالة الخلفية
-  }
-
-  .main-menu {
-    @apply flex items-center justify-center mx-4; // تنسيق قائمة القوائم الرئيسية
-  }
-
-  .header-search {
-    @apply flex-1 mx-4 hidden; // تنسيق شريط البحث وإخفاؤه افتراضيًا
-  }
-
-  .header-btn {
-    @apply border-none outline-none transition-opacity hover:opacity-80; // تنسيق الأزرار
-    &__icon {
-      @apply text-xl w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700; // تنسيق أيقونات الأزرار
-      background-color: #f6f8f7; // لون خلفية الأيقونة
-      transition: background-color 0.3s ease, transform 0.3s ease; // تأثيرات الانتقال
-    }
-
-    &:hover .header-btn__icon {
-      background-color: #eef1f1; // لون خلفية الأيقونة عند التمرير
-      transform: scale(1.1); // تأثير التحويل عند التمرير
-    }
-  }
-
-  .salla-cart-summary {
-    @apply ml-4 rtl:ml-[unset] rtl:mr-4; // تنسيق ملخص العربة
-    position: relative;
-
-    .header-btn__icon {
-      font-size: 22px; // حجم الأيقونة
-      color: #0f0101; // لون الأيقونة
-      background-color: #ff6347; // لون خلفية الأيقونة
-      transition: background-color 0.3s ease, transform 0.3s ease; // تأثيرات الانتقال
-    }
-
-    &:hover .header-btn__icon {
-      background-color: #ff4500; // تغيير لون الخلفية عند التمرير
-      transform: scale(1.1); // تأثير التحويل عند التمرير
-    }
-
-    .badge {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background-color: #ff6347;
-      color: #fff;
-      font-size: 12px;
-      font-weight: bold;
-      border-radius: 50%;
-      width: 15px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); // تطبيق تأثير الظل للشارة
-    }
-  }
-
-  .salla-user-menu {
-    @apply shrink-0; // منع التقلص لقائمة المستخدم
-
-    .header-btn__icon {
-      font-size: 22px; // حجم الأيقونة
-      color: #fff; // لون الأيقونة
-      background-color: #010e0d; // لون خلفية الأيقونة
-
-      &:hover {
-        background-color: #030f0f; // تغيير لون الخلفية عند التمرير
-      }
-    }
-  }
-
-  .space-x-4 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(1rem * var(--tw-space-x-reverse));
-    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-
-  .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 1;
+  span{
+    @apply absolute top-1 rtl:-right-2 ltr:-left-2;
   }
 }
 
-.store-header {
-    background-color: #e0f7fa; // لون الخلفية
-    padding: 10px 20px; // padding للهيدر
 
-    .top-navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-
-            img {
-                max-height: 50px; // ارتفاع الشعار
-            }
-        }
-
-        .main-menu {
-            display: flex;
-            align-items: center;
-            list-style: none;
-
-            li {
-                margin: 0 15px; // مسافة بين العناصر
-                font-weight: bold; // جعل النص عريض
-                color: #00796b; // لون النص
-            }
-        }
-
-        .header-btn {
-            background-color: transparent; // خلفية شفافة
-            border: none; // إزالة الحدود
-            cursor: pointer; // تغيير المؤشر عند التحويم
-            color: #00796b; // لون الأيقونات
-            font-size: 1.5rem; // حجم الأيقونات
-
-            &:hover {
-                color: #004d40; // لون الأيقونات عند التحويم
-            }
-        }
-
-        .cart-summary {
-            .cart-btn {
-                position: relative;
-
-                .cart-count {
-                    position: absolute;
-                    top: -5px;
-                    right: -10px;
-                    background-color: #ff5252; // لون الخلفية لعدد العناصر
-                    color: white; // لون النص
-                    border-radius: 50%; // شكل دائري
-                    padding: 2px 6px; // padding لتحسين المظهر
-                    font-size: 0.8rem; // حجم الخط
-                }
-            }
-        }
-    }
+// Search
+.header-search{
+  .s-search-results{
+    @apply z-10;
+  }
 }

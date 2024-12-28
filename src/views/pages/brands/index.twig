@@ -10,9 +10,9 @@
 {% block content %}
     <div class="container mb-20">
 
-        {# إضافة حاوية للخبز في الصفحات لإنشاء مساحة في حالة إيقاف تشغيل الخبز #}
+        {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
         <nav class="breadcrumbs w-full py-5">
-            {% component 'header.breadcrumbs' %}
+            <salla-breadcrumb></salla-breadcrumb>
         </nav>
 
         <div class="flex justify-between pt-2 pb-6">
@@ -20,11 +20,11 @@
         </div>
 
         {% if brands|length %}
-            <!-- حاوية تنقل العلامات التجارية -->
+            <!-- brands nav -->
             <div class="brands-nav-wrap">
                 <ul id="brands-nav" class="brands-nav">
                     <li></li>
-                    {% for char, brands_group in brands %}
+                    {% for char,brands_group in brands %}
                         <li>
                             <a class="brands-nav__item"
                                href="#brand-section-{{ loop.index }}"
@@ -35,15 +35,15 @@
                     {% endfor %}
                 </ul>
             </div>
-            <!-- نهاية حاوية تنقل العلامات التجارية -->
+            <!-- end:: brands nav -->
 
             <div class="px-8 xl:px-0">
 
                 {% hook 'brands:index.items.start' %}
 
-                {% for char, brandGroup in brands %}
+                {% for char,brandGroup in brands %}
                     <section id="brand-section-{{ loop.index }}" class="pt-24 first:pt-16 md:first:pt-24">
-                        <!-- فاصل -->
+                        <!-- separator -->
                         <div class="flex items-center mb-10">
                             <span data-id="{{ loop.index }}" class="brand-char">
                               <span class="fix-align">{{ char }}</span>

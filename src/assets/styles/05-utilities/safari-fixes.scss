@@ -1,11 +1,11 @@
-@media not all and (min-resolution: .001dpcm) { 
-  @supports (-webkit-appearance: none) {
-    // Uncomment if needed
-    // [type='checkbox'], [type='radio'] {
+
+@media not all and (min-resolution:.001dpcm){ 
+  @supports (-webkit-appearance:none) {
+    // [type='checkbox'], [type='radio']{
     //   @apply w-5;
     // }
 
-    .full-banner-entry {
+    .full-banner-entry{
       background-attachment: initial;
     }
   }

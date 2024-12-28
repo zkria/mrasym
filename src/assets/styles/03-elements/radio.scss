@@ -13,6 +13,7 @@
         display: inline-block;
         width: 40px;
         height: 40px;
+        // margin: -1px 4px 0 0;
         vertical-align: middle;
         cursor: pointer;
         border-radius: 6px;
@@ -29,8 +30,10 @@
           transform: scale(0.4);
           transition: all 0.3s ease;
           font-family: "sallaicons" !important;
+          // speak: never;
           font-style: normal;
           font-weight: normal;
+          font-variant: normal;
           text-transform: none;
           line-height: 1;
           -webkit-font-smoothing: antialiased;
@@ -48,7 +51,7 @@
     }
 
     &:disabled + label {
-      opacity: 0.45;
+      opacity: .45;
     }
   }
 
@@ -84,6 +87,7 @@
       + label {
         transition: transform 0.2s, color 0.3s;
         filter: grayscale(1);
+
 
         &:hover {
           filter: grayscale(0);

@@ -1,37 +1,6 @@
-// Mixin for flexible box layout
 @mixin flexable($align: center, $justify: center, $direction: row) {
   display: flex;
   align-items: $align;
   justify-content: $justify;
   flex-direction: $direction;
-}
-
-// Mixin for responsive font size
-@mixin responsive-font($min-size, $max-size) {
-  font-size: $min-size;
-
-  @media (min-width: 768px) {
-    font-size: $max-size;
-  }
-}
-
-// Mixin for box shadow
-@mixin box-shadow($color: rgba(0, 0, 0, 0.1), $blur: 10px, $spread: 0) {
-  box-shadow: 0 0 $blur $spread $color;
-}
-
-// Mixin for transition
-@mixin transition($property: all, $duration: 0.3s, $timing: ease-in-out) {
-  transition: $property $duration $timing;
-}
-
-// Example usage of mixins
-.container {
-  @include flexable(center, space-between, column);
-  @include box-shadow(rgba(0, 0, 0, 0.15), 15px);
-  @include transition(opacity, 0.5s);
-}
-
-h1 {
-  @include responsive-font(1.5rem, 2.5rem);
 }

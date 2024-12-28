@@ -1,20 +1,16 @@
 {#
-| Variable            | Type    | Description                            |
-|---------------------|---------|----------------------------------------|
-| advertisement       | object  | كائن الإعلان                          |
+| Variable                    | Type          | Description                                   |
+|-----------------------------|---------------|-----------------------------------------------|
+| advertisement               | Advertisement |                                               |
+| advertisement.id            | int           |                                               |
+| advertisement.icon          | string        | Css class                                     |
+| advertisement.title         | string        |                                               |
+| advertisement.description   | string        |                                               |
+| advertisement.url           | ?string       |                                               |
+| advertisement.close_url     | string        | * Should be client side to avoid cache issues |
+| advertisement.colors        | object        |                                               |
+| advertisement.colors.bg     | string        | Hex Color ex: #23d1b0                         |
+| advertisement.colors.text   | string        | Hex Color ex: #ffffff                         |
+| advertisement.target        | string        | `_self`, `_blank`                             |
 #}
-
-{% if advertisement %}
-    <div class="advertisement" style="background-color: {{ advertisement.background_color }}; color: {{ advertisement.font_color }};">
-        {% if advertisement.icon %}
-            <span class="{{ advertisement.icon }}"></span>
-        {% endif %}
-        {% if advertisement.url %}
-            <a href="{{ advertisement.url }}" {% if advertisement.is_new_window %} target='_blank' {% endif %}>
-                {{ advertisement.description }}
-            </a>
-        {% else %}
-            {{ advertisement.description }}
-        {% endif %}
-    </div>
-{% endif %}
+<salla-advertisement></salla-advertisement>

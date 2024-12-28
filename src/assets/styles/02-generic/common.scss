@@ -7,7 +7,7 @@ html {
   pointer-events: none;
 }
 
-.flip-x {
+.flip-x{
   transform: scaleX(-1);
 }
 
@@ -15,25 +15,15 @@ input[type="file"] {
   display: none;
 }
 
-body {
+body{
   @apply bg-gray-50;
-
-  [type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select {
+  [type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select{
     @apply focus:ring-0;
-  }
-
-  &.fslightbox-open,
-  &.modal-open {
-    #tidio-chat-iframe,
-    .fb_reset,
-    [id^=gb-widget] {
-      display: none !important;
-    }
   }
 }
 
-.text-start {
-  @apply rtl:text-right ltr:text-left;
+.text-start{
+	@apply rtl:text-right ltr:text-left;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -41,6 +31,10 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+[type='submit']{
+  -webkit-appearance: listitem; // safari fix, none: disable css on web component
 }
 
 /* Firefox */
@@ -63,27 +57,22 @@ input[type="number"] {
 
 .hide-scroll {
   /* hide scrollbar but allow scrolling */
-  -ms-overflow-style: none; /* for Internet Explorer, Edge */
-  scrollbar-width: none; /* for Firefox */
+  -ms-overflow-style: none;
+  /* for Internet Explorer, Edge */
+  scrollbar-width: none;
+  /* for Firefox */
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    display: none; /* for Chrome, Safari, and Opera */
-  }
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and Opera */
+    display: none;
+    /* for Chrome, Safari, and Opera */
   }
 }
 
 .remove-item-btn:after {
   content: "\ea47";
   font-family: "sallaicons" !important;
+  // speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -98,6 +87,41 @@ input[type="number"] {
   z-index: 30;
   transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
 }
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+// hide chat tags
+body {
+
+  &.fslightbox-open,
+  &.modal-open {
+
+    #tidio-chat-iframe,
+    .fb_reset,
+    [id^=gb-widget] {
+      display: none !important;
+    }
+  }
+
+  // &.modal-open {
+  //   #tidio-chat-iframe, .fb_reset, [id^=gb-widget] {
+  //     display: none !important;
+  //   }
+  // }
+}
+
 
 // Loading Btn state
 .loader {
@@ -138,6 +162,7 @@ input[type="number"] {
   }
 }
 
+
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 .animated {
   animation-duration: var(--animate-duration);
@@ -148,9 +173,11 @@ input[type="number"] {
   from {
     transform: scale3d(1, 1, 1);
   }
+
   50% {
     transform: scale3d(1.05, 1.05, 1);
   }
+
   to {
     transform: scale3d(1, 1, 1);
   }
@@ -161,6 +188,7 @@ input[type="number"] {
   animation-timing-function: ease-in-out;
 }
 
+
 /*
 ** Single page
 */
@@ -169,23 +197,25 @@ input[type="number"] {
     img {
       margin: 15px 0 25px;
     }
-    ul, li {
+     ul , li{
       list-style: inherit !important;
     }
-    ol {
+     ol{
       list-style: auto !important;
     }
   }
 }
 
-/* Components Init */
+/* Components Init*/
+
 salla-modal {
   &:not(.hydrated) { // hide modal component till it was loaded
     display: none;
   }
 }
 
-/* video aspect ratio */
+
+/* video aspect ratio*/
 .videoWrapper {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
@@ -202,29 +232,30 @@ salla-modal {
 }
 
 // grid trigger
-.grid-trigger {
+.grid-trigger{
   @apply cursor-pointer mx-1 text-xl w-10 h-10 rounded-md flex items-center justify-center text-gray-400;
 }
 
+
 // center classes
-.flex-center {
+.flex-center{
   @apply flex justify-center items-center;
 }
 
-.center-between {
+.center-between{
   @apply flex justify-between items-center;
 }
 
-.grow-0 {
+.grow-0{
   flex-grow: 0 !important;
 }
 
-.basis-0 {
+.basis-0{
   flex-basis: 0;
 }
 
 // Gradient Background
-.gradient-bg {
+.gradient-bg{
   @apply from-primary to-primary-d;
 
   [dir="ltr"] & {
@@ -235,8 +266,8 @@ salla-modal {
     @apply bg-gradient-to-l;
   }
 
-  @media (max-width: 1024px) {
-    &.profile-header {
+  @media (max-width: 1024px){
+    &.profile-header{
       background-image: none;
 
       .breadcrumbs {
@@ -254,13 +285,14 @@ salla-modal {
 .badge {
   @apply p-1 min-w-[20px] h-5 rounded-full inline-flex items-center justify-center text-xs;
 
-  &--red {
+  &--red{
     @apply bg-red-400 text-white;
   }
 }
 
+
 // copy icon
-.copy-icon {
+.copy-icon{
   @apply text-xs;
 }
 
@@ -269,7 +301,7 @@ salla-modal {
 }
 
 // fix rating modal when there is multiple products in mobile
-.s-rating-modal-wrap .s-modal-body {
+.s-rating-modal-wrap .s-modal-body{
   position: relative !important;
 }
 
@@ -277,7 +309,7 @@ salla-modal {
   top: 0.5rem;
   svg {
     max-width: 18px;
-    fill: rgba(107, 114, 128, var(--tw-text-opacity));
+    fill: rgba(107,114,128,var(--tw-text-opacity));
   }
 }
 
@@ -289,7 +321,7 @@ salla-modal {
   left: 0.5rem;
 }
 
-@media (max-width: 639px) {
+@media (max-width: 639px){
   .s-verify-back {
     display: none;
   }
@@ -300,7 +332,7 @@ salla-modal {
     iframe {
       width: 100%;
       height: 30vw;
-      @media (max-width: 639px) {
+      @media (max-width: 639px){
         height: 50vw;
       }
     }
@@ -308,14 +340,57 @@ salla-modal {
 }
 
 // cart submit actions buttons
-.cart-submit-wrap {
+.cart-submit-wrap{
   @apply flex ltr:flex-wrap justify-between items-center -mx-[5px] gap-2.5;
 
-  > * {
-    @apply grow mx-[5px];
+  > *{
+    @apply grow mx-[5px]; 
   }
 }
 
-.s-button-btn, .s-price-range-number-input {
+.s-button-btn, .s-price-range-number-input{
   @apply rounded;
+}
+
+// salla app install banner
+.s-app-install-banner {
+  @apply hidden flex-row items-center fixed left-0 right-0 w-[95%] my-4 mx-auto z-[999] rounded-md p-3 gap-2 drop-shadow-md;
+  background-color:  color-mix(in srgb, var(--color-primary) 15%, white);
+  &[open=false] {
+    @apply hidden;
+  }
+  &[open=true][position=top] {
+    @apply flex transform duration-500;
+  }
+  &[open=true][position=bottom] {
+    @apply flex animate-slideUpFromBottom;
+  }
+  &[position=top] {
+    @apply top-0 relative m-0 w-full rounded-none;
+  }
+  &[position=bottom] {
+    @apply bottom-0;
+  }
+  &[closing][position=bottom] {
+    @apply animate-slideDownFromBottom;
+    animation-fill-mode: forwards;
+  }
+  &-title {
+    @apply text-base font-bold text-primary;
+  }
+  &-sub-title {
+    @apply text-sm font-normal max-w-[95%];
+  }
+  &-cta {
+    @apply text-primary underline;
+  }
+  &-cancel-button {
+    @apply absolute top-2 rtl:left-3 ltr:right-3;
+  }
+}
+
+.blog-category{
+  a{
+    @apply text-primary hover:text-primary-d;
+  }
 }

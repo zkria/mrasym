@@ -12,7 +12,9 @@ class Product extends BasePage {
             startingPriceTitle: '.starting-price-title',
         });
 
-        if (imageZoom) {
+        this.initProductOptionValidations();
+
+        if(imageZoom){
             // call the function when the page is ready
             this.initImagesZooming();
             // listen to screen resizing
@@ -20,54 +22,58 @@ class Product extends BasePage {
         }
     }
 
-    initImagesZooming() {
-        // skip if the screen is not desktop or if glass magnifier
-        // is already created for the image before
-        const imageZoom = document.querySelector('.image-slider .swiper-slide-active .img-magnifier-glass');
-        if (window.innerWidth < 1024 || imageZoom) return;
-        setTimeout(() => {
-            // set delay after the resizing is done, start creating the glass
-            // to create the glass in the proper position
-            const image = document.querySelector('.image-slider .swiper-slide-active img');
-            zoom(image.id, 2);
-        }, 250);
+    initProductOptionValidations() {
+      document.querySelector('.product-form')?.addEventListener('change', function(){
+        this.reportValidity() && salla.product.getPrice(new FormData(this));
+      });
+    }
 
-        document.querySelector('salla-slider.details-slider').addEventListener('slideChange', () => {
-            // set delay till the active class is ready
-            setTimeout(() => {
-                const imageZoom = document.querySelector('.image-slider .swiper-slide-active .img-magnifier-glass');
-                // if the zoom glass is already created skip
-                if (imageZoom) return;
-                const image = document.querySelector('.image-slider .swiper-slide-active img');
-                zoom(image.id, 2);
-            }, 250);
-        });
+    initImagesZooming() {
+      // skip if the screen is not desktop or if glass magnifier
+      // is already crated for the image before
+      const imageZoom = document.querySelector('.image-slider .magnify-wrapper.swiper-slide-active .img-magnifier-glass');
+      if (window.innerWidth  < 1024 || imageZoom) return;
+      setTimeout(() => {
+          // set delay after the resizing is done, start creating the glass
+          // to create the glass in the proper position
+          const image = document.querySelector('.image-slider .swiper-slide-active img');
+          zoom(image?.id, 2);
+      }, 250);
+  
+
+      document.querySelector('salla-slider.details-slider').addEventListener('slideChange', (e) => {
+          // set delay till the active class is ready
+          setTimeout(() => {
+              const imageZoom = document.querySelector('.image-slider .swiper-slide-active .img-magnifier-glass');
+    
+              // if the zoom glass is already created skip
+              if (window.innerWidth  < 1024 || imageZoom) return;
+              const image = document.querySelector('.image-slider .magnify-wrapper.swiper-slide-active img');
+              zoom(image?.id, 2);
+          }, 250)
+      })
     }
 
     registerEvents() {
-        salla.product.event.onPriceUpdated((res) => {
-            app.startingPriceTitle?.classList.add('hidden');
+      salla.product.event.onPriceUpdated((res) => {
+        let data = res.data,
+            is_on_sale = data.has_sale_price && data.regular_price > data.price;
 
-            app.totalPrice.forEach(el => el.innerText = salla.money(res.data.price));
-            app.anime('.total-price', { scale: [0.88, 1] });
+        app.startingPriceTitle?.classList.add('hidden');
 
-            if (res.data.has_sale_price) {
-                app.beforePrice.forEach(el => {
-                    el.style.display = 'inline';
-                    el.innerText = salla.money(res.data.regular_price);
-                });
-                return;
-            }
-            app.beforePrice.forEach(el => el.style.display = 'none');
-        });
+        app.totalPrice.forEach((el) => {el.innerText = salla.money(data.price)});
+        app.beforePrice.forEach((el) => {el.innerText = salla.money(data.regular_price)});
 
-        app.onClick('#btn-show-more', e => {
-            app.all('#more-content', div => {
-                e.target.classList.add('is-expanded');
-                div.style.maxHeight = `${div.scrollHeight}px`;
-            });
-            e.target.remove();
-        });
+        app.toggleClassIf('.price_is_on_sale','showed','hidden', ()=> is_on_sale)
+        app.toggleClassIf('.starting-or-normal-price','hidden','showed', ()=> is_on_sale)
+
+        app.anime('.total-price', { scale: [0.88, 1] });
+      });
+
+      app.onClick('#btn-show-more', e => app.all('#more-content', div => {
+        e.target.classList.add('is-expanded');
+        div.style = `max-height:${div.scrollHeight}px`;
+      }) || e.target.remove());
     }
 }
 

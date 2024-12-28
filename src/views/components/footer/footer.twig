@@ -1,77 +1,69 @@
 <footer class="store-footer">
-  <div class="store-footer__inner" style="background-color: #f8f6f4;">
-    <div class="container flex flex-col">
-      
-      <!-- العودة إلى أعلى -->
-      <div class="to-top flex justify-center overflow-hidden animate__fadeInUp" data-wow-delay="0.5s">
-        <a class="flex-center pb-2 pt-4 gap-2 w-max h-full" href="#" aria-label="Back to Top">
-          <p>العودة إلى أعلى</p>
-          <i class="sicon-arrow-up icon"></i>
-        </a>
-      </div>
+	<div aria-label="footer" class="store-footer__inner">
+		<div class="container grid grid-col-1 lg:grid-cols-6 gap-8 lg:gap-6">
+			<div class="lg:col-span-2 rtl:lg:pl-20 ltr:lg:pr-20">
+				<a href="{{ link('/') }}" class="flex items-center m-0">
+					<h3>{{store.name}}</h3>
+				</a>
+				{% if store.description %}
+					<p class="max-w-sm leading-6 mb-6">
+						{{ store.description|raw }}
+					</p>
+				{% endif %}
 
-      <!-- القسم العلوي للفوتر -->
-      <div class="footer-top flex flex-col md:flex-row justify-center align-center">
-        <div class="footer-social flex flex-col">
-          <!-- مكونات إضافية يمكن إضافتها لاحقًا -->
-        </div>
-      </div>
+				<div class="hidden lg:block">
+					<salla-social class="mb-6"></salla-social>
+				</div>
 
-      <!-- القسم الأوسط للفوتر -->
-      <div class="footer-middle flex flex-col md:flex-row gap-8 py-6">
-        <!-- الشعار والوصف -->
-        <div class="flex flex-col md:max-w-xs text-center md:text-left">
-          <a class="logo-footer mb-3" href="{{ link('/') }}" aria-label="Store Logo">
-            <img src="{{ store.logo }}" alt="{{ store.name }}" style="height: 2.5rem;">
-          </a>
-          {% if store.description %}
-            <p class="leading-6 text-gray-700">
-              {{ store.description|raw }}
-            </p>
+          {# vat #}
+          {% if store.settings.tax.number %}
+            <div class="flex rtl:space-x-reverse space-x-2 items-end">
+              {% if store.settings.tax.certificate %}
+                <a class="load-img-onclick" data-modal-id="modal-value-tax" href="#/" alt="{{ store.settings.tax.number }}">
+                  <img width="100%" height="100%" src="{{ 'images/s-empty.png' | cdn }}" data-src="{{'images/tax.png' | cdn(70,70)}}" class="lazy w-10 rounded-sm hover:opacity-80 transition-opacity" alt="value added tax">
+                </a>
+              {% endif %}
+              <div>
+                <p class="text-sm text-text-grey mb-1">{{ trans('common.elements.tax_number') }}</p>
+                <b class="text-sm">{{ store.settings.tax.number }}</b>
+              </div>
+            </div>
+
+            {% if store.settings.tax.certificate %}
+              <salla-modal sub-title-first sub-title="{{ trans('common.elements.tax_number') }}" modal-title="{{ store.settings.tax.number }}" id="modal-value-tax">
+                <div class="flex justify-center max-w-full">
+                  <img class="w-full" loading="lazy" 
+                  src="{{ 'images/s-empty.png' | cdn }}" 
+                  data-src="{{ store.settings.tax.certificate }}" 
+                  alt="{{ store.settings.tax.number }}"/>
+                </div>
+              </salla-modal>
+            {% endif %}
           {% endif %}
         </div>
 
-        <!-- الروابط الهامة -->
-        <div class="flex flex-col gap-4">
-          <h3 class="text-lg">روابط تهمك</h3>
-          {% component 'footer.menu' %}
-        </div>
+			<div>
+				<h3>{{ trans('blocks.footer.pages_links') }}</h3>
+				<salla-menu source="footer"></salla-menu>
+			</div>
 
-        <!-- خدمة العملاء -->
-        <div class="flex flex-col gap-4">
-          <h3 class="text-lg">خدمة العملاء</h3>
-          {% component 'footer.contacts' %}
-        </div>
+			<div>
+				<salla-contacts></salla-contacts>
 
-        <!-- تطبيق المتجر -->
-        <div class="flex flex-col gap-4">
-          <h3 class="text-lg">تطبيق {{ store.name }}</h3>
-          {% component 'footer.mobile-apps' %}
-        </div>
-      </div>
+				<div class="lg:hidden contact-social">
+					<salla-social></salla-social>
+				</div>
+			</div>
 
-      <!-- القسم السفلي للفوتر -->
-      <div class="footer-bottom flex flex-col lg:flex-row items-center justify-between py-4 gap-6 border-t border-gray-200">
-        <!-- طرق الدفع -->
-        <ul class="flex justify-center items-center flex-wrap gap-4">
-          {% component 'footer.payment-methods' %}
-        </ul>
+			<salla-apps-icons class="lg:col-span-2 rtl:lg:pr-20 ltr:lg:pl-20"></salla-apps-icons>
 
-        <!-- حقوق الملكية -->
-        <span class="text-sm text-gray-500 text-center">
-          © 2024 <a href="{{ link('/') }}" class="hover:text-primary" target="_blank" rel="noreferrer">{{ store.name }}</a>. جميع الحقوق محفوظة.
-        </span>
+		</div>
+	</div>
 
-        <!-- شهادة موثوقية الأعمال -->
-        <div class="sbc-certificate flex items-center gap-4">
-          <div class="sbc-link w-12 h-12 bg-white rounded flex items-center justify-center">
-            <a href="https://eauthenticate.saudibusiness.gov.sa/certificate-details/{{ store.settings.certificate.id }}" target="_blank" rel="noopener">
-              <img class="object-contain max-h-full" src="{{ 'images/sbc.png' | cdn }}" alt="e-commerce certificate">
-            </a>
-          </div>
-          <p class="text-gray-400">موثّق في منصة الأعمال</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+	<div class="md:flex items-center justify-between py-4 container text-center">
+		<span class="text-sm copyright-text">{% hook copyright %}</span>
+		<salla-payments></salla-payments>
+	</div>
+</div>
+
+<span class="hidden bottom-2 rtl:pl-24 ltr:pr-24 md:grid-cols-3"></span></footer>

@@ -9,7 +9,8 @@ class Home extends BasePage {
     }
 
     /**
-     * used in views/components/home/featured-products-style*.twig
+     * تُستخدم في views/components/home/featured-products-style*.twig
+     * تهيئة علامات التبويب المميزة
      */
     initFeaturedTabs() {
         app.all('.tab-trigger', el => {
@@ -19,7 +20,7 @@ class Home extends BasePage {
                 app.toggleClassIf(`#${id} .tabs-wrapper>div`, 'is-active opacity-0 translate-y-3', 'inactive', tab => tab.id == btn.dataset.target)
                     .toggleClassIf(`#${id} .tab-trigger`, 'is-active', 'inactive', tabBtn => tabBtn == btn);
 
-                // fadeIn active tabe
+                // تلاشي علامة التبويب النشطة
                 setTimeout(() => app.toggleClassIf(`#${id} .tabs-wrapper>div`, 'opacity-100 translate-y-0', 'opacity-0 translate-y-3', tab => tab.id == btn.dataset.target), 100);
             })
         });

@@ -1,5 +1,4 @@
-
-/* Top Nav */
+/* إعدادات شريط التنقل العلوي */
 .top-navbar {
   @apply flex py-2 min-h-[48px];
 
@@ -52,7 +51,7 @@
   }
 }
 
-// contacs menu items - pages menu items
+// إعدادات عناصر قائمة الروابط
 .topnav-link-item{
   @apply inline-block transition duration-300 px-4 rtl:last:pl-0 ltr:last:pr-0 py-px text-sm leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80;
 
@@ -61,17 +60,17 @@
   }
 }
 
-/* Main Nav */
+/* إعدادات شريط التنقل الرئيسي */
 .main-nav-container {
   @apply min-h-[68px] lg:min-h-[84px];
   
-  // Custom background Color
+  // لون الخلفية المخصص
   .has-bg &,
   .has-bg & .sub-menu{
     @apply bg-[color:var(--mainnav-bg)];
   }
 
-  // Custom text color
+  // لون النص المخصص
   .has-text-color & {
     @apply text-[color:var(--mainnav-text-color)];
   }
@@ -89,7 +88,7 @@
   }
 }
 
-/* Sticky Header */
+/* إعدادات الرأس الثابت */
 .main-nav-container {
   &.animated {
     .inner {
@@ -150,7 +149,7 @@
   }
 }
 
-// Mainnav cart icon
+// إعدادات أيقونة سلة التسوق
 .header-btn{
   @apply border-none outline-none transition-opacity hover:opacity-80;
 
@@ -166,7 +165,7 @@ salla-user-menu{
   @apply shrink-0;
 }
 
-// cart summary
+// إعدادات ملخص السلة
 .s-cart-summary-total{
   @apply text-black font-[600];
 }
@@ -187,8 +186,7 @@ salla-user-menu{
   }
 }
 
-
-// Search
+// إعدادات البحث
 .header-search{
   .s-search-results{
     @apply z-10;

@@ -1,19 +1,19 @@
 {#
-| Variable                                    | Type                   | Description |
-|---------------------------------------------|------------------------|-------------|
-| offer                                       | Offer                  |             |
-| offer.id                                    | int                    |             |
-| offer.name                                  | string                 |             |
-| offer.description                           | string *HTML           |             |
-| offer.categories                            | Category[] *Collection |             |
-| offer.products                              | Product[] *Collection  |             |
-| offer.discounts_table                       | Discount[]             |             |
-| offer.discounts_table.show_discounted_price | bool                   |             |
-| offer.discounts_table.regular_price         | float                  |             |
-| offer.discounts_table.quantity              | int                    |             |
-| offer.discounts_table.quantity_text         | string                 |             |
-| offer.discounts_table.percent               | string ex: 20%         |             |
-| offer.discounts_table.price                 | float                  |             |
+| المتغير                                    | النوع                   | الوصف                                      |
+|---------------------------------------------|------------------------|--------------------------------------------|
+| offer                                       | Offer                  | كائن العرض                                 |
+| offer.id                                    | int                    | معرف العرض                                 |
+| offer.name                                  | string                 | اسم العرض                                  |
+| offer.description                           | string *HTML           | وصف العرض (يمكن أن يحتوي على HTML)       |
+| offer.categories                            | Category[] *Collection | قائمة الفئات المرتبطة بالعرض              |
+| offer.products                              | Product[] *Collection  | قائمة المنتجات المرتبطة بالعرض            |
+| offer.discounts_table                       | Discount[]             | جدول الخصومات                             |
+| offer.discounts_table.show_discounted_price | bool                   | إظهار السعر المخفض أم لا                   |
+| offer.discounts_table.regular_price         | float                  | السعر العادي                               |
+| offer.discounts_table.quantity              | int                    | الكمية المطلوبة                            |
+| offer.discounts_table.quantity_text         | string                 | نص يصف الكمية المطلوبة                    |
+| offer.discounts_table.percent               | string ex: 20%         | نسبة الخصم                                 |
+| offer.discounts_table.price                 | float                  | السعر بعد الخصم                           |
 #}
 
 <section class="offer-slider relative lg:overflow-hidden mb-8 md:mb-16 rounded p-2.5 sm:p-5 bg-white">
@@ -37,7 +37,7 @@
             {% elseif offer.products|length %}
                 {% for product in offer.products %}
                     <div class="h-auto slide--one-fourth">
-                        <custom-salla-product-card shadow-on-hover product="{{product}}"></custom-salla-product-card>
+                        <custom-salla-product-card shadow-on-hover product="{{ product }}"></custom-salla-product-card>
                     </div>
                 {% endfor %}
             {% elseif offer.discounts_table|length %}
@@ -46,11 +46,11 @@
                     <div class="slide--one-fourth">
                         <div class="slide--offer-entry">
                             <div class="p-3 flex-grow flex flex-col justify-center w-full">
-                                <p class="mb-1">{{ trans('pages.offer.buy_quantity', {quantity:discount.quantity_text})|number }}</p>
+                                <p class="mb-1">{{ trans('pages.offer.buy_quantity', {quantity: discount.quantity_text})|number }}</p>
                                 {% if discount.show_discounted_price %}
                                     <div class="text-sm text-gray-400">
-                                        <span>{{ trans('pages.offer.with_price', {price:''}) }}</span>
-                                        <span class="font-extrabold text-red-400 text-3xl">{{ discount.price|number({'.':'٫'}) }}</span> {{ user.currency.symbol }}
+                                        <span>{{ trans('pages.offer.with_price', {price: ''}) }}</span>
+                                        <span class="font-extrabold text-red-400 text-3xl">{{ discount.price|number({'.': '٫'}) }}</span> {{ user.currency.symbol }}
                                     </div>
                                 {% endif %}
                             </div>
@@ -63,21 +63,20 @@
         </div>
     </salla-slider>
 
-    {# Offer Discount Table #}
+    {# جدول الخصومات #}
     {% if offer.discounts_table|length and not is_displayed %}
       <div class="discount-list space-y-2.5 mt-5">
         {% for discount in offer.discounts_table %}
             <div class="discount-list__item flex justify-between border-t pt-2.5">
               <div>
-                <span>{{ trans('pages.offer.buy_quantity', {quantity:discount.quantity_text})|number }}</span>
+                <span>{{ trans('pages.offer.buy_quantity', {quantity: discount.quantity_text})|number }}</span>
                 {% if discount.show_discounted_price %}
-                  <span>{{ trans('pages.offer.with_price', {price:''}) }}</span>
-                  <span class="font-bold text-red-400">{{ discount.price|number({'.':'٫'}) }}</span> {{ user.currency.symbol }}
+                  <span>{{ trans('pages.offer.with_price', {price: ''}) }}</span>
+                  <span class="font-bold text-red-400">{{ discount.price|number({'.': '٫'}) }}</span> {{ user.currency.symbol }}
                 {% endif %}
               </div>
               <p class="text-sm">{{ trans('pages.products.with_a_discount') }}
-                (<span class="font-bold">{{ discount.percent|number }}</span>)
-              </p>
+                (<span class="font-bold">{{ discount.percent|number }}</span>)</p>
             </div> 
         {% endfor %}
       </div>

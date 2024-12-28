@@ -1,94 +1,84 @@
+// إعدادات الجسم العامة
 body {
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 26px;
-  color: var(--main-text-color);
-  position: relative;
+  font-size: 15px; // تعيين حجم الخط
+  font-weight: 400; // تعيين وزن الخط
+  line-height: 26px; // تعيين ارتفاع السطر
+  color: var(--main-text-color); // تعيين لون النص الرئيسي
+  position: relative; // تعيين الموضع إلى نسبي
 }
 
-// p {
-//   font-size: 16px;
-// }
-
+// إعدادات HTML
 html {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  width: 100%; // تعيين العرض إلى 100%
+  height: 100%; // تعيين الارتفاع إلى 100%
+  position: relative; // تعيين الموضع إلى نسبي
+  -webkit-font-smoothing: antialiased; // تحسين عرض الخط في WebKit
+  text-rendering: optimizeLegibility; // تحسين وضوح النص
 }
 
+// إعدادات الجسم
 body {
-  border: 0;
-  margin: 0;
-  padding: 0;
+  border: 0; // إزالة الحدود
+  margin: 0; // إزالة الهوامش
+  padding: 0; // إزالة الحشوات
 }
 
+// إعدادات العناوين
 h1, .h1,
 h2, .h2,
 h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-  font-weight: 600;
-  margin-bottom: 0px;
+  font-weight: 600; // تعيين وزن الخط للعناوين
+  margin-bottom: 0px; // إزالة الهوامش السفلية
 }
 
+// إعدادات الروابط
 a {
-  text-decoration: none;
-  transition: color 0.2s;
+  text-decoration: none; // إزالة تزيين النص
+  transition: color 0.2s; // تعيين تأثير الانتقال للون
 }
 
+// إعدادات الصور
 img {
-  max-width: 100%;
+  max-width: 100%; // تعيين الحد الأقصى للعرض إلى 100%
 }
 
+// إعدادات التركيز على الروابط
 a:focus {
-  outline: none;
-  text-decoration: none;
+  outline: none; // إزالة الإطار عند التركيز
+  text-decoration: none; // إزالة تزيين النص
 }
 
+// إعدادات القوائم
 ul,
 li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  margin: 0; // إزالة الهوامش
+  padding: 0; // إزالة الحشوات
+  list-style: none; // إزالة نمط القائمة
 }
 
-
+// إعدادات العناوين
 h1 {
-  @apply text-3xl;
+  @apply text-3xl; // تعيين حجم الخط
 }
 
 h2 {
-  @apply text-xl;
+  @apply text-xl; // تعيين حجم الخط
 }
 
 h3 {
-  @apply text-xl;
-  line-height: 38px;
+  @apply text-xl; // تعيين حجم الخط
+  line-height: 38px; // تعيين ارتفاع السطر
 }
 
-// h4 {
-//   font-size: 22px;
-//   line-height: 32px;
-// }
-
-// h5 {
-//   font-size: 16px;
-//   line-height: 24px;
-// }
-
-// h6 {
-//   font-size: 14px;
-//   line-height: 26px;
-// }
-
+// إعدادات العناوين الفرعية
 .f-color {
-  color: #FF6767;
+  color: #FF6767; // تعيين لون خاص
 }
 
 h5.subtitle {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 16px; // تعيين حجم الخط
+  font-weight: 400; // تعيين وزن الخط
 }

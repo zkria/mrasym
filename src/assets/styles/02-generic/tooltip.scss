@@ -1,41 +1,44 @@
-.tooltip{
-  &-content{
-    position: absolute;
-    transform: translate(82px, -120px);
-    background: #fff;
-    padding: 15px 15px 15px 36px;
-    text-align: right;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.3s;
+// إعدادات أداة التلميح
+.tooltip {
+  &-content {
+    position: absolute; // تعيين الموضع إلى مطلق
+    transform: translate(82px, -120px); // تحريك أداة التلميح
+    background: #fff; // تعيين لون الخلفية إلى الأبيض
+    padding: 15px 15px 15px 36px; // إضافة حشوة داخلية
+    text-align: right; // محاذاة النص إلى اليمين
+    visibility: hidden; // إخفاء أداة التلميح
+    opacity: 0; // تعيين الشفافية إلى 0
+    transition: all 0.3s; // تعيين تأثير الانتقال
 
-  &:after {
-      content: '';
-      display: block;  
-      position: absolute;
-      z-index: 1;
-      left: auto;
-      background: #fff;
-      width: 20px;
-      height: 20px;
-      transform: rotate(45deg);
-      border-radius: 2px;
-     @apply shadow-md;
-      left: 43%;
-      bottom: -7px;
-  }
+    &:after {
+      content: ''; // محتوى فارغ
+      display: block; // تعيين العرض إلى كتلة
+      position: absolute; // تعيين الموضع إلى مطلق
+      z-index: 1; // تعيين مستوى الز-index
+      left: auto; // تعيين الموضع الأيسر إلى تلقائي
+      background: #fff; // تعيين لون الخلفية إلى الأبيض
+      width: 20px; // تعيين العرض
+      height: 20px; // تعيين الارتفاع
+      transform: rotate(45deg); // تدوير العنصر بزاوية 45 درجة
+      border-radius: 2px; // تعيين الزوايا إلى دائرية
+      @apply shadow-md; // إضافة ظل متوسط
+      left: 43%; // تعيين الموضع الأيسر
+      bottom: -7px; // تعيين الموضع السفلي
+    }
 
-    .visible &{
-      visibility: visible;
-      opacity: 1;
-      transform: translate(82px, -110px);
+    // عند ظهور أداة التلميح
+    .visible & {
+      visibility: visible; // جعل أداة التلميح مرئية
+      opacity: 1; // تعيين الشفافية إلى 1
+      transform: translate(82px, -110px); // تحريك أداة التلميح
     }
   }
 }
 
-.close-tooltip{
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 9px 7px !important;
+// إعدادات زر إغلاق أداة التلميح
+.close-tooltip {
+  position: absolute; // تعيين الموضع إلى مطلق
+  top: 0; // تعيين الموضع العلوي
+  left: 0; // تعيين الموضع الأيسر
+  padding: 9px 7px !important; // إضافة حشوة داخلية
 }

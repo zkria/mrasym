@@ -1,17 +1,17 @@
 {#
-| Variable     | Type                  | Description |
-|--------------|-----------------------|-------------|
-| page         | Page                  |             |
-| page.title   | string                |             |
-| page.content | string                |             |
-| page.url     | string                |             |
-| page.slug    | string                |             |
+| المتغير     | النوع                  | الوصف         |
+|--------------|-----------------------|---------------|
+| page         | Page                  | كائن الصفحة   |
+| page.title   | string                | عنوان الصفحة  |
+| page.content | string                | محتوى الصفحة  |
+| page.url     | string                | رابط الصفحة   |
+| page.slug    | string                | رابط مختصر    |
 #}
 {% extends "layouts.master" %}
 {% block content %}
     <div class="container">
 
-        {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
+        {# إضافة حاوية فتات الخبز في الصفحات لإنشاء مساحة في حالة إيقاف تشغيل فتات الخبز #}
         <nav class="breadcrumbs w-full py-5">
             <salla-breadcrumb></salla-breadcrumb>
         </nav>
@@ -22,7 +22,7 @@
                 <div class="content-entry">
                     {{ page.content|raw }}
                 </div>
-                <salla-comments item-id="{{page.id}}" type="page"></salla-comments>
+                <salla-comments item-id="{{ page.id }}" type="page"></salla-comments>
             </div>
         </div>
     </div>

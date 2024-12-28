@@ -1,62 +1,73 @@
 .virtooal {
-  margin: 15px 0;
-  border-radius: 10px;
-  border: 1px solid rgb(229, 229, 229);
-  background: white;
+  margin: 15px 0; // تعيين الهوامش العلوية والسفلية
+  border-radius: 10px; // تعيين الزوايا
+  border: 1px solid rgb(229, 229, 229); // تعيين لون الحدود
+  background: white; // تعيين لون الخلفية
+
   @media screen and (min-width: 992px) {
-    padding: 18px;
+    padding: 18px; // تعيين الحشوة في الشاشات الكبيرة
   }
+
   &--content {
-  @include flexable(center, space-between, row);
-}
-  &--details{
-    @include flexable(flex-start, center, column);
+    @include flexable(center, space-between, row); // تعيين أنماط المحتوى
+  }
+
+  &--details {
+    @include flexable(flex-start, center, column); // تعيين أنماط التفاصيل
     @include desktop {
-      display: none;
+      display: none; // إخفاء التفاصيل في الشاشات الكبيرة
     }
-    &--title{
-        font-size: 16px;
-        font-weight: 700;
-        color: #1F2937;
+
+    &--title {
+      font-size: 16px; // تعيين حجم خط العنوان
+      font-weight: 700; // تعيين وزن الخط
+      color: #1F2937; // تعيين لون النص
     }
-    &--desc{
-        font-size: 13px;
-        color: #7C8082;
-        font-weight: 400;
-    ;
+
+    &--desc {
+      font-size: 13px; // تعيين حجم خط الوصف
+      color: #7C8082; // تعيين لون النص
+      font-weight: 400; // تعيين وزن الخط
     }
   }
+
   &--action {
     @include desktop {
-      width:100%;
+      width: 100%; // تعيين العرض في الشاشات الكبيرة
     }
-    & button{
-      @include flexable(center, center, row);
-      border: 1px solid var(--color-primary);
-      font-weight: 700;
-      font-size:14px;
-      padding: 8px 30px;
-      font-size:0.875rem;
-      padding: 0.5rem 1.5rem 0.625rem 1.5rem;
-      line-height: 1.25rem;
-      background: var(--color-primary);
-      color: var(--color-primary-reverse);
-      border-radius: 5px;
-      &:hover{
-        background: var(--color-primary-dark);
-        opacity: 0.8 !important;
+
+    & button {
+      @include flexable(center, center, row); // تعيين أنماط الزر
+      border: 1px solid var(--color-primary); // تعيين لون الحدود
+      font-weight: 700; // تعيين وزن الخط
+      font-size: 14px; // تعيين حجم الخط
+      padding: 8px 30px; // تعيين الحشوة
+      font-size: 0.875rem; // تعيين حجم الخط
+      padding: 0.5rem 1.5rem 0.625rem 1.5rem; // تعيين الحشوة
+      line-height: 1.25rem; // تعيين ارتفاع السطر
+      background: var(--color-primary); // تعيين لون الخلفية
+      color: var(--color-primary-reverse); // تعيين لون النص
+      border-radius: 5px; // تعيين الزوايا
+
+      &:hover {
+        background: var(--color-primary-dark); // تعيين لون الخلفية عند التحويم
+        opacity: 0.8 !important; // تعيين الشفافية عند التحويم
       }
+
       @include desktop {
-        width:100%;
+        width: 100%; // تعيين العرض في الشاشات الكبيرة
       }
-      & .icon{
-        width: 14px;
-        height: 14px;
+
+      & .icon {
+        width: 14px; // تعيين عرض الأيقونة
+        height: 14px; // تعيين ارتفاع الأيقونة
+
         [dir="rtl"] & {
-          margin-left: 0.75rem;
+          margin-left: 0.75rem; // تعيين الهوامش اليسرى في الاتجاه من اليمين لليسار
         }
+
         [dir="ltr"] & {
-          margin-right: 0.75rem;
+          margin-right: 0.75rem; // تعيين الهوامش اليمنى في الاتجاه من اليسار لليمين
         }
       }
     }

@@ -1,0 +1,25 @@
+{#
+| المتغير            | النوع                   | الوصف                                            |
+|---------------------|------------------------|--------------------------------------------------|
+| menus               | Menu[] *Collection     | قائمة القوائم                                    |
+#}
+
+<nav id="mobile-menu" class="mobile-menu"> <!-- قائمة التنقل المحمولة -->
+    <ul class="main-menu">
+        {% for menu in menus %}
+            <li {{ menu.attrs }}> <!-- عنصر القائمة -->
+                <a {{ menu.link_attrs }} href="{{ menu.url }}">{{ menu.title }}</a> <!-- رابط العنصر -->
+                {% if menu.has_children %}
+                    <ul> <!-- قائمة فرعية -->
+                        {% for submenu in menu.children %}
+                            <li {{ submenu.attrs }}> <!-- عنصر القائمة الفرعية -->
+                                <a {{ submenu.link_attrs }} href="{{ submenu.url }}">{{ submenu.title }}</a> <!-- رابط العنصر الفرعي -->
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <button class="btn--close close-mobile-menu sicon-cancel lg:hidden"></button> <!-- زر إغلاق القائمة المحمولة -->
+</nav>

@@ -1,0 +1,16 @@
+{#
+| المتغير            | النوع                   | الوصف                                            |
+|---------------------|------------------------|--------------------------------------------------|
+| menu                | Menu                   | عنصر القائمة                                    |
+#}
+
+<li {{ menu.attrs }}>
+    <a {{ menu.link_attrs }} href="{{ menu.url }}">{{ menu.title }}</a>
+    {% if menu.has_children %}
+        <ul>
+            {% for submenu in menu.children %}
+                {% include 'components.header.menu-item' with {menu: submenu} %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>

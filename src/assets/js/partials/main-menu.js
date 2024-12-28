@@ -6,62 +6,61 @@ class NavigationMenu extends HTMLElement {
                 this.menus = [];
                 this.displayAllText = salla.lang.get('blocks.home.display_all');
                 /**
-                * Avoid saving the menu to localStorage (default) when in the development environment
-                * or when modifying the theme in the dashboard
+                * تجنب حفظ القائمة في localStorage (افتراضي) عند وجود بيئة تطوير
+                * أو عند تعديل الثيم في لوحة التحكم
                 */
-                const isPreview = salla.config.isDebug()
-                const cacheKey = `menus_${salla.lang.locale}`
-                const cachedMenus = salla.storage.getWithTTL(cacheKey, [])
+                const isPreview = salla.config.isDebug();
+                const cacheKey = `menus_${salla.lang.locale}`;
+                const cachedMenus = salla.storage.getWithTTL(cacheKey, []);
 
                 if (cachedMenus.length > 0 && !isPreview) {
-                    this.menus = cachedMenus
-                    return this.render()
+                    this.menus = cachedMenus;
+                    return this.render();
                 }
 
                 return salla.api.component.getMenus()
                 .then(({ data }) => {
                     this.menus = data;
-                    !isPreview && salla.storage.setWithTTL(cacheKey, this.menus)
-                    return this.render()
-
+                    !isPreview && salla.storage.setWithTTL(cacheKey, this.menus);
+                    return this.render();
                 }).catch((error) => salla.logger.error('salla-menu::Error fetching menus', error));
             });
     }
 
     /** 
-    * Check if the menu has children
-    * @param {Object} menu
-    * @returns {Boolean}
+    * التحقق مما إذا كانت القائمة تحتوي على عناصر فرعية
+    * @param {Object} menu - كائن القائمة
+    * @returns {Boolean} - إذا كانت القائمة تحتوي على عناصر فرعية
     */
     hasChildren(menu) {
         return menu?.children?.length > 0;
     }
 
     /**
-    * Check if the menu has products
-    * @param {Object} menu
-    * @returns {Boolean}
+    * التحقق مما إذا كانت القائمة تحتوي على منتجات
+    * @param {Object} menu - كائن القائمة
+    * @returns {Boolean} - إذا كانت القائمة تحتوي على منتجات
     */
     hasProducts(menu) {
         return menu?.products?.length > 0;
     }
 
     /**
-    * Get the classes for desktop menu
-    * @param {Object} menu
-    * @param {Boolean} isRootMenu
-    * @returns {String}
+    * الحصول على الفئات لقائمة سطح المكتب
+    * @param {Object} menu - كائن القائمة
+    * @param {Boolean} isRootMenu - إذا كانت القائمة هي القائمة الجذرية
+    * @returns {String} - الفئات المناسبة لقائمة سطح المكتب
     */
     getDesktopClasses(menu, isRootMenu) {
         return `!hidden lg:!block ${isRootMenu ? 'root-level lg:!inline-block' : 'relative'} ${menu.products ? ' mega-menu' : ''}
-        ${this.hasChildren(menu) ? ' has-children' : ''}`
+        ${this.hasChildren(menu) ? ' has-children' : ''}`;
     }
 
     /**
-    * Get the mobile menu
-    * @param {Object} menu
-    * @param {String} displayAllText
-    * @returns {String}
+    * الحصول على قائمة الجوال
+    * @param {Object} menu - كائن القائمة
+    * @param {String} displayAllText - نص عرض جميع العناصر
+    * @returns {String} - كود HTML لقائمة الجوال
     */
     getMobileMenu(menu, displayAllText) {
         const menuImage = menu.image ? `<img src="${menu.image}" class="rounded-full" width="48" height="48" alt="${menu.title}" />` : '';
@@ -89,10 +88,10 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Get the desktop menu
-    * @param {Object} menu
-    * @param {Boolean} isRootMenu
-    * @returns {String}
+    * الحصول على قائمة سطح المكتب
+    * @param {Object} menu - كائن القائمة
+    * @param {Boolean} isRootMenu - إذا كانت القائمة هي القائمة الجذرية
+    * @returns {String} - كود HTML لقائمة سطح المكتب
     */
     getDesktopMenu(menu, isRootMenu) {
         return `
@@ -115,8 +114,8 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Get the menus
-    * @returns {String}
+    * الحصول على القوائم
+    * @returns {String} - كود HTML لجميع القوائم
     */
     getMenus() {
         return this.menus.map((menu) => `
@@ -126,7 +125,7 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Render the header menu
+    * عرض قائمة الرأس
     */
     render() {
         this.innerHTML =  `

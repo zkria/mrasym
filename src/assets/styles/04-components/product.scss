@@ -1,381 +1,402 @@
-// إدخال منتج قائمة الرغبات
+  
+// Wishlist Product entry
 .product-entry {
-  @apply h-full transition-shadow duration-300 bg-white hover:shadow-default rounded-lg justify-between flex relative; // تعيين أنماط إدخال المنتج
+  @apply h-full transition-shadow duration-300 bg-white hover:shadow-default rounded-lg justify-between flex relative;
 
   &--wishlist {
-    @apply justify-between p-4 flex-col sm:flex-row; // تعيين أنماط إدخال المنتج في قائمة الرغبات
+    @apply justify-between p-4 flex-col sm:flex-row;
 
     .product-entry__image {
-      @apply overflow-hidden w-16 h-12 md:w-20 md:h-16 rounded-md; // تعيين أنماط صورة المنتج
+      @apply overflow-hidden w-16 h-12 md:w-20 md:h-16 rounded-md;
     }
 
-    salla-button {
-      @apply flex; // تعيين أنماط زر السلة
+    salla-button{
+      @apply flex;
     }
   }
 }
 
 .s-comments {
   &-page {
-    @apply pt-16; // تعيين الحشوة العلوية لصفحة التعليقات
+    @apply pt-16;
   }
 
   &-product {
-    @apply bg-gray-100 mb-4 md:mb-14 py-4 md:py-14; // تعيين أنماط منتج التعليقات
+    @apply bg-gray-100 mb-4 md:mb-14 py-4 md:py-14;
 
     .s-comments-container {
-      @apply container; // تعيين أنماط حاوية التعليقات
+      @apply container;
     }
   }
 }
 
-// قائمة المشاركة
-.share-btns-list {
-  @apply absolute z-10 overflow-hidden opacity-0 top-12 bg-white flex items-center flex-col shadow-huge rounded-3xl; // تعيين أنماط قائمة أزرار المشاركة
+// share list
+.share-btns-list{
+  @apply absolute z-10 overflow-hidden opacity-0 top-12 bg-white flex items-center flex-col shadow-huge rounded-3xl;
 
-  a {
-    @apply block p-3 hover:text-primary; // تعيين أنماط الروابط في قائمة المشاركة
+  a{
+    @apply block p-3 hover:text-primary;
   }
 }
 
-// سلة التسوق
-.cart-item {
-  salla-conditional-fields > section {
-    @apply px-0 pt-0 last:mb-0 last:pb-0; // تعيين أنماط عناصر سلة التسوق
+
+// cart
+.cart-item{
+  salla-conditional-fields > section{
+    @apply px-0 pt-0 last:mb-0 last:pb-0;
   }
 }
 
-// تقييم رقمي (SVG)---------------------------
-.s-product-card-content-pie-svg-base { 
-  transition: stroke-dashoffset 1s linear; // تعيين تأثير الانتقال
-  stroke: #E8EDF2; // تعيين لون الخط
-  stroke-width: 2px; // تعيين عرض الخط
-  stroke-linecap: round; // تعيين شكل نهاية الخط
-  fill: none; // عدم تعبئة الشكل
+// Digital Rating(SVG)---------------------------
+.s-product-card-content-pie-svg-base{ 
+  transition: stroke-dashoffset 1s linear;
+  stroke: #E8EDF2;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  fill: none;
 }
 
-.s-product-card-content-pie-svg-bar {
-  fill: none; // عدم تعبئة الشكل
-  stroke: var(--color-primary); // تعيين لون الخط
-  stroke-dasharray: 100 100; // تعيين نمط الخط
-  stroke-dashoffset: 100; // تعيين إزاحة الخط
+.s-product-card-content-pie-svg-bar{
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-dasharray: 100 100;
+  stroke-dashoffset: 100;
 }
+
+.s-product-card{
+    &-content-sub{
+      @apply justify-start gap-3;
+    }
+
+    &-starting-price{
+      @apply w-auto;
+  } 
+  }
 
 .pie-wrapper {
-  @apply w-[72px] h-[72px] absolute top-2.5 rtl:left-5 ltr:right-5 text-primary flex items-center justify-center; // تعيين أنماط حاوية الدائرة
+  @apply w-[72px] h-[72px] absolute top-2.5 rtl:left-5 ltr:right-5 text-primary flex items-center justify-center;
 
   .pie-svg {
     circle {
-      transition: stroke-dashoffset 1s linear; // تعيين تأثير الانتقال
-      stroke: #E8EDF2; // تعيين لون الخط
-      stroke-width: 2px; // تعيين عرض الخط
-      stroke-linecap: round; // تعيين شكل نهاية الخط
-      fill: none; // عدم تعبئة الشكل
+      transition: stroke-dashoffset 1s linear;
+      stroke: #E8EDF2;
+      stroke-width: 2px;
+      stroke-linecap: round;
+      fill: none;
 
       &.circle_bar {
-        stroke: var(--color-primary); // تعيين لون الخط للدائرة
-        stroke-dasharray: 100 100; // تعيين نمط الخط للدائرة
-        stroke-dashoffset: 100; // تعيين إزاحة الخط للدائرة
+        stroke: var(--color-primary);
+        stroke-dasharray: 100 100;
+        stroke-dashoffset: 100;
       }
     }
   }
 
   span {
-    display: block; // تعيين العرض ككتلة
-    font-size: var(--font-xsm); // تعيين حجم الخط
-    color: var(--color-text); // تعيين لون النص
-    text-align: center; // تعيين محاذاة النص
-    position: absolute; // تعيين الموضع كنسبي
-    top: 50%; // تعيين الموضع العلوي
-    left: 50%; // تعيين الموضع الأيسر
-    transform: translate(-50%, -50%); // تعيين التحويل
-    line-height: 1; // تعيين ارتفاع السطر
-    font-size: var(--font-xsm); // تعيين حجم الخط
+      display: block;
+      font-size: var(--font-xsm);
+      color: var(--color-text);
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      line-height: 1;
+      font-size: var(--font-xsm);
 
-    b {
-      font-size: var(--font-md) !important; // تعيين حجم الخط للنص الغامق
-      margin-bottom: 3px; // تعيين الهوامش السفلية
-      color: var(--color-primary); // تعيين لون النص الغامق
-    }
+      b {
+          font-size: var(--font-md) !important;
+          margin-bottom: 3px;
+          color: var(--color-primary);
+      }
   }
+
 }
 
-/* شريط ثابت لإضافة إلى السلة */
+/* Add to cart sticky bar */
 @media (max-width: 640px) {
-  .is-sticky-product-bar {
-    &.product-single {
-      @apply pb-28; // تعيين الحشوة السفلية
+  .is-sticky-product-bar{
+    &.product-single{
+      @apply pb-28;
     }
 
-    .sticky-product-bar {
-      @apply flex flex-wrap flex-col gap-2.5 sm:gap-4 fixed z-[2] bottom-0 left-0 p-3 w-full justify-between items-center shadow-[-1px_-2px_9px_0_rgba(0,0,0,0.05)] transition duration-700 delay-500 translate-y-100 opacity-0 ease-elastic; // تعيين أنماط شريط المنتج الثابت
+    .sticky-product-bar{
+      @apply flex flex-wrap flex-col gap-2.5 sm:gap-4 fixed z-[2] bottom-0 left-0 p-3 w-full justify-between items-center shadow-[-1px_-2px_9px_0_rgba(0,0,0,0.05)] transition duration-700 delay-500 translate-y-100 opacity-0 ease-elastic;
 
       &__quantity,
-      salla-add-product-button {
-        @apply translate-y-5 opacity-0 transition duration-700 ease-elastic w-full; // تعيين أنماط الكمية وزر إضافة المنتج
+      salla-add-product-button{
+        @apply translate-y-5 opacity-0 transition duration-700 ease-elastic w-full;
       }
 
       &__price,
-      .form-label {
-        @apply hidden; // إخفاء السعر
+      .form-label{
+        @apply hidden;
       }
 
-      &__quantity {
-        salla-quantity-input {
-          @apply w-full; // تعيين عرض حقل الكمية
-          .s-quantity-input-container {
-            @apply w-full; // تعيين عرض حاوية حقل الكمية
+      &__quantity{
+        salla-quantity-input{
+          @apply w-full;
+          .s-quantity-input-container{
+            @apply w-full;
           }
-          .s-quantity-input-input {
-            @apply w-[80%]; // تعيين عرض حقل إدخال الكمية
+          .s-quantity-input-input{
+            @apply w-[80%]
           }
         }
-        @apply m-0 delay-[900ms]; // تعيين الهوامش والتأخير
+        @apply m-0 delay-[900ms];
       }
 
-      salla-add-product-button {
-        @apply w-auto m-0 flex-1 delay-1000; // تعيين عرض زر إضافة المنتج
+      salla-add-product-button{
+        @apply w-auto m-0 flex-1 delay-1000;
       }
 
-      .hydrated & {
+      .hydrated &{
         &,
         &__quantity,
-        salla-add-product-button {
-          @apply translate-y-0 opacity-100; // تعيين التحويل والشكل عند التحميل
+        salla-add-product-button{
+          @apply translate-y-0 opacity-100;
         }
       }
     }
   }
 }
 
-// إصلاح علامات التبويب
+// Tabs fix
 .s-tabs-header * {
-  pointer-events: auto !important; // تعيين تفاعلية العناصر
+  pointer-events: auto !important;
 }
-
 .product__description {
   ul,
-  li {
-    list-style: inherit !important; // تعيين نمط القائمة
+  li{
+    list-style: inherit !important;
   }
 
   ul,
   ol {
-    @apply px-6; // تعيين الحشوة للقوائم
+    @apply px-6;
   }
 
-  ol {
-    list-style: auto !important; // تعيين نمط القائمة المرتبة
+  ol{
+    list-style: auto !important;
   }
 
-  a {
-    @apply text-blue-700; // تعيين لون الروابط
+  a{
+    @apply text-blue-700;
   }
 }
 
-// عارض الصور ثلاثية الأبعاد ------------------------------
+
+
+// 3d Image Viewer ------------------------------
 .model-viewer-wrapper {
-  @apply relative mb-4 md:mb-0 w-full; // تعيين أنماط حاوية عارض الصور
+  @apply relative mb-4 md:mb-0 w-full;
 }
 
 .switcher-3d-view {
-  @apply absolute top-5 rtl:left-4 ltr:right-4; // تعيين موضع مفتاح العرض ثلاثي الأبعاد
+  @apply absolute top-5 rtl:left-4 ltr:right-4;
+
+  // .has-calories-badge &{
+  //   @apply top-auto bottom-5;
+  // }
 }
 
 .model-viewer {
-  @apply w-full h-full; // تعيين عرض وارتفاع عارض الصور
+  @apply w-full h-full;
 
   &__poster {
-    @apply absolute inset-0 bg-contain bg-no-repeat bg-center; // تعيين أنماط ملصق العارض
+    @apply absolute inset-0 bg-contain bg-no-repeat bg-center;
   }
 }
 
 .s-toggle .s-toggle-switcher-has-text:before {
-  @apply content-[attr(data-switcher-text)] font-bold text-center text-gray-400 text-xs leading-[22px]; // تعيين أنماط مفتاح التبديل
-  font-family: arial, serif; // تعيين عائلة الخط
+  @apply content-[attr(data-switcher-text)] font-bold text-center text-gray-400 text-xs leading-[22px];
+  font-family: arial, serif;
 }
 
-.s-toggle .s-toggle-input:checked + div.s-toggle-switcher-bg-white:before {
-  @apply text-gray-600 border-white bg-white; // تعيين أنماط مفتاح التبديل عند التحقق
+.s-toggle .s-toggle-input:checked+div.s-toggle-switcher-bg-white:before {
+  @apply text-gray-600 border-white bg-white;
 }
 
-// مكون تحميل خيارات المنتج
-.product-option-uploader {
-  .s-file-upload-wrapper {
-    min-height: 120px; // تعيين الحد الأدنى للارتفاع
-    .filepond--list-scroller {
-      overflow-y: inherit !important; // تعيين التمرير العمودي
+// product options file upload component
+.product-option-uploader{
+  .s-file-upload-wrapper{
+    min-height: 120px;
+    .filepond--list-scroller{
+      overflow-y: inherit !important;
     }
     .filepond--drop-label {
-      min-height: 120px !important; // تعيين الحد الأدنى للارتفاع
-      @apply bg-white cursor-pointer border-dashed rounded-md border border-gray-200; // تعيين أنماط حقل السحب والإفلات
+      min-height: 120px !important;
+      @apply bg-white cursor-pointer border-dashed rounded-md border border-gray-200;
     }
-    .product-option-uploader-placholder {
-      @apply flex flex-col justify-center items-center; // تعيين أنماط عنصر التحميل
+    .product-option-uploader-placholder{
+      @apply flex flex-col justify-center items-center;
       &-icon {
-        @apply mb-1; // تعيين الهوامش السفلية
+        @apply mb-1;
         i {
-          color: #7c8082; // تعيين لون الأيقونة
-          @apply text-xl; // تعيين حجم الأيقونة
+          color: #7c8082;
+          @apply text-xl;
         }
       }
     }
+
   }
 }
 
-// إصلاح عرض النافذة المنبثقة
+// centered offer modal width fix
 @media (max-width: 640px) {
   .s-offer-modal-slider-centered .s-offer-modal-slider-item {
-    max-width: 46% !important; // تعيين الحد الأقصى للعرض
+    max-width: 46% !important;
   }
 }
 
-.s-product {
-  &-card {
-    &-full-image salla-add-product-button {
-      @apply bg-white rounded; // تعيين أنماط زر إضافة المنتج
+.s-product{
+    &-card{
+      &-full-image salla-add-product-button {
+        @apply bg-white rounded;
+      }
+    
+      &-wishlist-added i {
+        @apply text-red-500
+      }
+      &-fit-height.s-product-card-vertical .s-product-card-image {
+        @apply flex-none sm:flex-1;
+      }
     }
-  
-    &-wishlist-added i {
-      @apply text-red-500; // تعيين لون الأيقونة عند إضافتها إلى قائمة الرغبات
+    
+    &-options-colors-wrapper{
+      @apply flex flex-wrap gap-4;
+      
+      .s-product-options-colors-item{
+        @apply m-0 rtl:m-0 ltr:m-0 w-auto;
     }
-    &-fit-height.s-product-card-vertical .s-product-card-image {
-      @apply flex-none sm:flex-1; // تعيين أنماط صورة المنتج
-    }
-  }
-  
-  &-options-colors-wrapper {
-    @apply flex flex-wrap gap-4; // تعيين أنماط حاوية خيارات الألوان
-  }
-
-  .s-product-options-colors-item {
-    @apply m-0 rtl:m-0 ltr:m-0 w-auto; // تعيين أنماط عنصر خيارات الألوان
   }
 }
 
-// بطاقة بسيطة
-.s-product-card-minimal .s-product-card-image {
-  @apply rtl:rounded-r ltr:rounded-l; // تعيين الزوايا
+// Minimal card
+.s-product-card-minimal .s-product-card-image{
+  @apply rtl:rounded-r ltr:rounded-l;
 }
 
-.s-product-card-starting-price {
-  @apply justify-start gap-2.5; // تعيين أنماط سعر البدء
+.s-product-card-starting-price{
+  @apply justify-start gap-2.5;
 }
 
-.s-product-card-minimal salla-button.s-product-card-wishlist-btn {
-  @apply rtl:left-2.5 ltr:right-2.5 top-2.5; // تعيين موضع زر قائمة الرغبات
+.s-product-card-minimal salla-button.s-product-card-wishlist-btn{
+  @apply rtl:left-2.5 ltr:right-2.5 top-2.5;
 }
 
-// تكبير الصورة
+// image zooming
 .magnify-wrapper {
-  .img-magnifier-glass {
-    @apply hidden sm:block; // إخفاء الزجاج المكبر في الشاشات الصغيرة
-    position: absolute; // تعيين الموضع كنسبي
-    z-index: 3; // تعيين مستوى z-index
-    border-radius: 50%; // تعيين الزوايا
-    cursor: none; // إزالة المؤشر
-    width: 300px; // تعيين عرض الزجاج المكبر
-    height: 300px; // تعيين ارتفاع الزجاج المكبر
-    opacity: 0; // تعيين الشفافية
-    pointer-events: none; // عدم تفاعل الزجاج المكبر
-    transform: scale(0); // تعيين التحويل
-    transition: transform .5s ease; // تعيين تأثير الانتقال
-    box-shadow: inset 0px 0px 30px #949494; // تعيين الظل
-  }
-  &:hover {
-    .img-magnifier-glass {
-      opacity: 1; // تعيين الشفافية
-      pointer-events: initial; // تفعيل التفاعل
-      transform: scale(1); // إعادة تعيين التحويل
-      transition-delay: 0.3s; // تعيين تأخير الانتقال
-    }
-  } 
+	.img-magnifier-glass {
+	  @apply hidden sm:block;
+	  position: absolute;
+	  z-index: 3;
+	  border-radius: 50%;
+	  cursor: none;
+	  /*Set the size of the magnifier glass:*/
+	  width: 300px;
+	  height: 300px;
+	  opacity:0;
+	  pointer-events:none;
+	  transform: scale(0);
+	  transition: transform .5s ease;
+	  box-shadow: inset 0px 0px 30px #949494;
+	}
+	&:hover{
+	  .img-magnifier-glass{
+		opacity:1;
+		pointer-events:initial;
+		transform: scale(1);
+		transition-delay: 0.3s;
+	  }
+	} 
 }
 
-// بطاقة أفقية
-.s-product-card-horizontal {
-  .s-product-card-content {
-    @apply mb-0; // إزالة الهوامش السفلية
+
+// Horizontal card
+.s-product-card-horizontal{
+  .s-product-card-content{
+    @apply mb-0;
   }
 
-  @media(max-width: 480px) {
-    salla-button.s-product-card-wishlist-btn {
-      @apply absolute bottom-2.5 rtl:-right-12 ltr:-left-12; // تعيين موضع زر قائمة الرغبات
+  @media(max-width: 480px){
+    salla-button.s-product-card-wishlist-btn{
+      @apply absolute bottom-2.5 rtl:-right-12 ltr:-left-12
     }
   }
 
-  salla-progress-bar {
-    @apply flex flex-col grow; // تعيين أنماط شريط التقدم
+  salla-progress-bar{
+    @apply flex flex-col grow;
   }
 }
 
 .s-rating-stars-reviews {
-  @apply text-gray-500; // تعيين لون تقييم النجوم
+	@apply text-gray-500
 }
 
-.s-product-card-promotion-title {
-  @apply bg-red-800 text-white; // تعيين أنماط عنوان الترويج
+.s-product-card-promotion-title{
+  @apply bg-red-800 text-white;
 }
 
 .s-product-card-sale-price {
-  h4 {
-    @apply text-red-800 #{!important}; // تعيين لون سعر البيع
+  h4{
+    @apply text-red-800 #{!important};
   }
 
-  span {
-    @apply text-inherit; // تعيين لون النص
+  span{
+    @apply text-inherit;
   }
 }
 
-// الفلاتر
-@media (max-width: 1024px) {
-  salla-filters {
+// filters
+@media (max-width: 1024px){
+  salla-filters{
     &,
-    > * {
-      @apply px-5 #{!important}; // تعيين الحشوة
+    > *{
+      @apply px-5 #{!important};
     }
   }
 }
 
-// شارة عرض البنك
-#offer-corner-badge {
-  @apply float-left absolute bg-red-600 text-white transform rtl:-rotate-45 ltr:rotate-45 px-12 py-1 h-auto w-auto border-0 m-0 z-1 rtl:top-3 ltr:top-5 rtl:-left-12 ltr:-right-14; // تعيين أنماط شارة عرض البنك
+// bank offer corner badge
+#offer-corner-badge{
+  @apply float-left absolute bg-red-600 text-white transform rtl:-rotate-45 ltr:rotate-45 px-12 py-1 h-auto w-auto border-0 m-0 z-1 rtl:top-3 ltr:top-5 rtl:-left-12 ltr:-right-14;
 }
 
-// خيارات السلة
+// cart options
 .cart-options {
-  @apply bg-white border-dashed border border-gray-400 rounded-md; // تعيين أنماط خيارات السلة
+  @apply bg-white border-dashed border border-gray-400 rounded-md;
   salla-product-options {
-    @apply mb-0 pt-0; // تعيين الهوامش
-
-    .s-product-options-option {
-      @apply block #{!important}; // تعيين أنماط خيارات المنتج
-
+    @apply mb-0 pt-0;
+  
+    .s-product-options-option:not(div.s-product-options-option-booking) {
+      @apply block #{!important};
+    }
       &-label {
-        @apply mb-3; // تعيين الهوامش السفلية
+        @apply mb-3;
       }
 
       .s-form-control {
-        @apply rounded-md border-gray-200; // تعيين أنماط حقل النموذج
+        @apply rounded-md border-gray-200
       }
 
       .s-datetime-picker-input {
-        @apply rounded-md border-gray-200; // تعيين أنماط حقل اختيار التاريخ
+        @apply rounded-md border-gray-200
       }
 
       .s-product-options-multiple-options-wrapper {
-        @apply block #{!important}; // تعيين أنماط خيارات متعددة
-      }
+        @apply block #{!important};
+      
     }
   }
 }
 
-salla-quantity-input[max='1'] {
+salla-quantity-input[max='1']{
   input {
-    @apply pointer-events-none opacity-50; // تعيين أنماط حقل الكمية
+    @apply pointer-events-none opacity-50;
   }
 
   .s-quantity-input-button {
-    @apply cursor-not-allowed; // تعيين المؤشر
+    @apply cursor-not-allowed
   }
 }

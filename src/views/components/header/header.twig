@@ -1,22 +1,22 @@
 {#
-| المتغير          | النوع    | الوصف                                   |
-|-------------------|---------|-----------------------------------------|
-| cart              | object  | كائن السلة                             |
-| cart.items_count  | int     | عدد العناصر في السلة                   |
-| cart.total        | string  | المجموع المنسق مثل: "١٠٠ ر.س"         |
+| Variable         | Type    | Description                     |
+|------------------|---------|---------------------------------|
+| cart             | object  |                                 |
+| cart.items_count | int     |                                 |
+| cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
 #}
 {% set important_links = theme.settings.get('important_links') %}
 <header class="store-header">
-  {# شريط التنقل العلوي #}
+  {# Top Nav #}
   <div class="top-navbar">
     <div class="container flex justify-between">
       <div class="flex-1 flex items-center gap-2">
-          {# قائمة الروابط الهامة في الفوتر #}
+          {# Footer Menu #}
           {% if important_links %}
             <salla-menu source="footer" topnav></salla-menu>
           {% endif %}
 
-          {# مكون اللغة والعملات #}
+          {# Language & Currency Component #}
           <div class="header-buttons">
               {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
                   <button type="button" onclick="salla.event.dispatch('localization::open')" class="btn--rounded-gray basis-0">
@@ -27,7 +27,7 @@
               {% endif %}
           </div>
 
-          {# الفروع #}
+          {# Scopes | Branches #}
           {% if store.scope %}
               <button class="btn--rounded-gray"
                       onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})">
@@ -35,7 +35,7 @@
               </button>
           {% endif %}
 
-          {# شريط البحث #}
+          {# Search bar #}
           <div class="header-search flex-1">
             <salla-search inline oval height="36"></salla-search>
           </div>
@@ -45,7 +45,7 @@
     </div>
   </div>
 
-  {# شريط التنقل الرئيسي #}
+  {# Main Nav #}
   <div id="mainnav" class="main-nav-container shadow-default bg-white">
       <div class="inner bg-inherit">
           <div class="container">

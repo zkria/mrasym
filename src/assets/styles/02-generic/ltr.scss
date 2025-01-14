@@ -1,27 +1,23 @@
-// إعدادات الاتجاه من اليسار إلى اليمين
 .sf-dump {
-  direction: ltr; // تعيين اتجاه النص من اليسار إلى اليمين
+  direction: ltr;
 }
 
 [dir="ltr"] {
-  // إعدادات الأيقونات والأسهم عند الاتجاه من اليسار إلى اليمين
   .with-arrow .sicon-keyboard_arrow_left:before,
   nav .sicon-keyboard_arrow_left:before,
   .sub-menu .has-children > a:after {
-    content: "\e96c"; // تعيين محتوى الأيقونة
+      content: "\e96c";
   }
-
-  // إعدادات تقويم Flatpickr
   .flatpickr {
     &-months {
       .numInputWrapper {
         .cur-year {
-          padding: 0 0 0 15px; // إضافة حشوة إلى السنة الحالية
+          padding: 0 0 0 15px;
         }
       }
       [class^="arrow"] {
-        right: unset; // إلغاء تعيين الاتجاه الأيمن
-        left: 0; // تعيين الاتجاه الأيسر
+        right: unset;
+        left: 0;
       }
     }
   }

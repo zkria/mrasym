@@ -1,84 +1,89 @@
-import 'lite-youtube-embed'; // استيراد مكتبة لتضمين فيديوهات يوتيوب
-import BasePage from './base-page'; // استيراد الفئة الأساسية للصفحات
-import Fslightbox from 'fslightbox'; // استيراد مكتبة Fslightbox للعرض التفاعلي
-window.fslightbox = Fslightbox; // تعيين مكتبة Fslightbox في نافذة المتصفح
-import { zoom } from './partials/image-zoom'; // استيراد دالة التكبير من ملف الصورة
+import 'lite-youtube-embed';
+import BasePage from './base-page';
+import Fslightbox from 'fslightbox';
+window.fslightbox = Fslightbox;
+import { zoom } from './partials/image-zoom';
 
 class Product extends BasePage {
     onReady() {
-        // مراقبة العناصر المهمة في الصفحة
         app.watchElements({
-            totalPrice: '.total-price', // عنصر السعر الإجمالي
-            beforePrice: '.before-price', // عنصر السعر السابق
-            startingPriceTitle: '.starting-price-title', // عنوان السعر الابتدائي
+            totalPrice: '.total-price',
+            beforePrice: '.before-price',
+            startingPriceTitle: '.starting-price-title',
         });
 
-        this.initProductOptionValidations(); // تهيئة التحقق من خيارات المنتج
+        this.initProductOptionValidations();
 
         if(imageZoom){
-            // استدعاء الدالة عند جاهزية الصفحة
-            this.initImagesZooming(); // تهيئة التكبير للصور
-            // الاستماع لتغيير حجم الشاشة
-            window.addEventListener('resize', () => this.initImagesZooming()); // إعادة تهيئة التكبير عند تغيير حجم الشاشة
+            // call the function when the page is ready
+            this.initImagesZooming();
+            // listen to screen resizing
+            window.addEventListener('resize', () => this.initImagesZooming());
         }
     }
 
     initProductOptionValidations() {
-      // إضافة حدث عند تغيير خيارات المنتج
       document.querySelector('.product-form')?.addEventListener('change', function(){
-        this.reportValidity() && salla.product.getPrice(new FormData(this)); // التحقق من صحة النموذج والحصول على السعر
+        this.reportValidity() && salla.product.getPrice(new FormData(this));
       });
     }
 
     initImagesZooming() {
-      // تخطي إذا كانت الشاشة ليست بحجم سطح المكتب أو إذا تم إنشاء مكبر الزجاج مسبقًا
+      // skip if the screen is not desktop or if glass magnifier
+      // is already crated for the image before
       const imageZoom = document.querySelector('.image-slider .magnify-wrapper.swiper-slide-active .img-magnifier-glass');
-      if (window.innerWidth < 1024 || imageZoom) return; // إذا كانت الشاشة صغيرة أو تم إنشاء المكبر، لا تفعل شيئًا
+      if (window.innerWidth  < 1024 || imageZoom) return;
       setTimeout(() => {
-          // تعيين تأخير بعد الانتهاء من تغيير الحجم، وبدء إنشاء المكبر
-          const image = document.querySelector('.image-slider .swiper-slide-active img'); // الحصول على الصورة النشطة
-          zoom(image?.id, 2); // استدعاء دالة التكبير
+          // set delay after the resizing is done, start creating the glass
+          // to create the glass in the proper position
+          const image = document.querySelector('.image-slider .swiper-slide-active img');
+          zoom(image?.id, 2);
       }, 250);
   
-      // إضافة حدث لتغيير الشريحة في السلايدر
+
       document.querySelector('salla-slider.details-slider').addEventListener('slideChange', (e) => {
-          // تعيين تأخير حتى تصبح الفئة النشطة جاهزة
+          // set delay till the active class is ready
           setTimeout(() => {
               const imageZoom = document.querySelector('.image-slider .swiper-slide-active .img-magnifier-glass');
     
-              // إذا تم إنشاء مكبر الزجاج مسبقًا، تخطى
-              if (window.innerWidth < 1024 || imageZoom) return; // إذا كانت الشاشة صغيرة أو تم إنشاء المكبر، لا تفعل شيئًا
-              const image = document.querySelector('.image-slider .magnify-wrapper.swiper-slide-active img'); // الحصول على الصورة النشطة
-              zoom(image?.id, 2); // استدعاء دالة التكبير
-          }, 250);
-      });
+              // if the zoom glass is already created skip
+              if (window.innerWidth  < 1024 || imageZoom) return;
+              const image = document.querySelector('.image-slider .magnify-wrapper.swiper-slide-active img');
+              zoom(image?.id, 2);
+          }, 250)
+      })
     }
 
     registerEvents() {
-      // تسجيل حدث عند تحديث السعر
+      salla.event.on('product::price.updated.failed',()=>{
+        app.element('.price-wrapper').classList.add('hidden');
+        app.element('.out-of-stock').classList.remove('hidden')
+        app.anime('.out-of-stock', { scale: [0.88, 1] });
+      })
       salla.product.event.onPriceUpdated((res) => {
+
+        app.element('.out-of-stock').classList.add('hidden')
+        app.element('.price-wrapper').classList.remove('hidden')
+
         let data = res.data,
-            is_on_sale = data.has_sale_price && data.regular_price > data.price; // التحقق مما إذا كان هناك سعر مخفض
+            is_on_sale = data.has_sale_price && data.regular_price > data.price;
 
-        app.startingPriceTitle?.classList.add('hidden'); // إخفاء عنوان السعر الابتدائي
+        app.startingPriceTitle?.classList.add('hidden');
 
-        // تحديث الأسعار في الصفحة
-        app.totalPrice.forEach((el) => {el.innerText = salla.money(data.price)}); // تحديث السعر الإجمالي
-        app.beforePrice.forEach((el) => {el.innerText = salla.money(data.regular_price)}); // تحديث السعر السابق
+        app.totalPrice.forEach((el) => {el.innerText = salla.money(data.price)});
+        app.beforePrice.forEach((el) => {el.innerText = salla.money(data.regular_price)});
 
-        // تبديل حالة عرض السعر المخفض
-        app.toggleClassIf('.price_is_on_sale','showed','hidden', () => is_on_sale);
-        app.toggleClassIf('.starting-or-normal-price','hidden','showed', () => is_on_sale);
+        app.toggleClassIf('.price_is_on_sale','showed','hidden', ()=> is_on_sale)
+        app.toggleClassIf('.starting-or-normal-price','hidden','showed', ()=> is_on_sale)
 
-        app.anime('.total-price', { scale: [0.88, 1] }); // إضافة تأثير الرسوم المتحركة للسعر الإجمالي
+        app.anime('.total-price', { scale: [0.88, 1] });
       });
 
-      // إضافة حدث عند النقر على زر "عرض المزيد"
       app.onClick('#btn-show-more', e => app.all('#more-content', div => {
-        e.target.classList.add('is-expanded'); // إضافة فئة التمديد
-        div.style = `max-height:${div.scrollHeight}px`; // تعيين ارتفاع العنصر
-      }) || e.target.remove()); // إزالة الزر إذا لم يكن هناك محتوى
+        e.target.classList.add('is-expanded');
+        div.style = `max-height:${div.scrollHeight}px`;
+      }) || e.target.remove());
     }
 }
 
-Product.initiateWhenReady(['product.single']); // تهيئة الفئة عند جاهزية الصفحة، مع تحديد الصفحات المسموح بها
+Product.initiateWhenReady(['product.single']);

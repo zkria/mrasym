@@ -1,32 +1,22 @@
 {#
-| المتغير          | النوع   | الوصف                                                               |
-|-------------------|--------|---------------------------------------------------------------------|
-| title             | string | عنوان القسم                                                        |
-| items[]           | array  | قائمة الصور                                                        |
-| items[].url       | string | رابط الصورة                                                        |
-| items[].link_type | string | نوع الرابط (category, product, offers, page, external_link, brand) |
-| items[].image.url | string | رابط صورة العنصر                                                  |
-| items[].image.alt | string | نص بديل للصورة                                                    |
-| items[].text      | string | العنوان المرئي للصورة                                            |
-| position          | int    | رقم ترتيب يبدأ من الصفر                                           |
+| Variable      | Type   | Description                                                      |
+|---------------|--------|------------------------------------------------------------------|
+| items[]       | array  | List of 3 features                                               |
+| items[].icon  | string | SallaIcons css class `sicon-*`                                   |
+| items[].title | string | Title of the feature                                             |
+| items[].text  | string | Subtitle for the feature                                         |
+| position      | Int    | Sorting number start from zero                                   |
 #}
-<section class="s-block s-block--banners container">
-  {% if title %}
-      <div class="s-block__title">
-          <div class="right-side">
-              <h2>{{ title }}</h2> <!-- عنوان القسم -->
-          </div>
-      </div>
-  {% endif %}
-
-  <div class="grid {{ items|length <= 3 ? 'one-row md:grid-cols-' ~ items|length : 'md:grid-cols-3 two-row' }} grid-flow-row gap-3 sm:gap-8">
+<section class="s-block s-block--features container">
+    <div class="grid grid-cols-[repeat(2,minmax(0,1fr))] md:grid-cols-[repeat(3,minmax(0,1fr))] gap-4 sm:gap-6 xl:gap-8">
       {% for item in items %}
-          <a class="banner-entry square-photos {{ item.text ? 'has-overlay with-hover' : '' }}" href="{{ item.url }}" {% if item.link_type == 'external_link' %}target="_blank"{% endif %}>
-              <div class="lazy__bg lazy" data-bg="{{ item.image.url }}"></div> <!-- صورة الخلفية -->
-              {% if item.text %}
-                      <h3 class="text-with-border"><span>{{ item.text }}</span></h3> <!-- عنوان الصورة -->
-              {% endif %}
-          </a>
+          <div class="s-block--features__item">
+            <div class="feature-icon">
+              <i class="{{ item.icon }}"></i>
+            </div>
+            <h2>{{ item.title }}</h2>
+            <p>{{ item.text }}</p>
+          </div>
       {% endfor %}
-  </div>
+    </div>
 </section>

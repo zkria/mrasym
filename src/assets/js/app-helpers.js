@@ -1,24 +1,16 @@
 export default class AppHelpers {
 
   /**
-   * تبديل الفئات بين العناصر بناءً على شرط معين.
-   * @param {string} selector - محدد العناصر
-   * @param {array<string>} classes1 - الفئات الأولى
-   * @param {array<string>} classes2 - الفئات الثانية
-   * @param callback - دالة شرطية تحدد أي الفئات يجب إضافتها
+   * @param {string} selector
+   * @param {array<string>} classes1
+   * @param {array<string>} classes2
+   * @param callback
    */
   toggleClassIf(selector, classes1, classes2, callback) {
     document.querySelectorAll(selector).forEach(element => this.toggleElementClassIf(element, classes1, classes2, callback));
     return this;
   }
 
-  /**
-   * تبديل الفئات لعناصر معينة بناءً على شرط معين.
-   * @param {HTMLElement} element - العنصر المستهدف
-   * @param {array<string>} classes1 - الفئات الأولى
-   * @param {array<string>} classes2 - الفئات الثانية
-   * @param callback - دالة شرطية تحدد أي الفئات يجب إضافتها
-   */
   toggleElementClassIf(element, classes1, classes2, callback) {
     classes1 = Array.isArray(classes1) ? classes1 : classes1.split(' ');
     classes2 = Array.isArray(classes2) ? classes2 : classes2.split(' ');
@@ -29,9 +21,8 @@ export default class AppHelpers {
   }
 
   /**
-   * الحصول على العنصر بناءً على المحدد.
-   * @param {string|HTMLElement} selector - المحدد أو العنصر
-   * @return {null|HTMLElement} - العنصر المستهدف أو null
+   * @param {string|HTMLElement} selector
+   * @return {null|HTMLElement}
    */
   element(selector) {
     if (typeof selector == 'object') {
@@ -44,10 +35,9 @@ export default class AppHelpers {
   }
 
   /**
-   * مراقبة عنصر معين وتخزينه في خاصية.
-   * @param {string} name - اسم الخاصية
-   * @param {string} selector - محدد العنصر
-   * @return {Helpers} - كائن AppHelpers
+   * @param {string} name
+   * @param {string} selector
+   * @return {Helpers}
    */
   watchElement(name, selector) {
     this[name] = this.element(selector);
@@ -55,8 +45,7 @@ export default class AppHelpers {
   }
 
   /**
-   * مراقبة مجموعة من العناصر وتخزينها.
-   * @param {Object.<string, string>} elements - كائن يحتوي على أسماء العناصر ومحدداتها
+   * @param {Object.<string, string>} elements
    */
   watchElements(elements) {
     Object.entries(elements).forEach(element => this.watchElement(element[0], element[1]));
@@ -64,12 +53,11 @@ export default class AppHelpers {
   }
 
   /**
-   * إضافة حدث إلى عنصر معين.
-   * @param {string} action - نوع الحدث (مثل 'click')
-   * @param {string|HTMLElement} element - المحدد أو العنصر
-   * @param {function} callback - دالة رد الفعل عند حدوث الحدث
-   * @param {object|undefined} options - خيارات إضافية للحدث
-   * @return {AppHelpers} - كائن AppHelpers
+   * @param {string} action
+   * @param {string|HTMLElement} element
+   * @param {function} callback
+   * @param {object|undefined} options
+   * @return {AppHelpers}
    */
   on(action, element, callback, options = {}) {
     if (typeof element == 'object') {
@@ -77,36 +65,33 @@ export default class AppHelpers {
       return this;
     }
 
-    // إذا كان المحدد، يتم إضافة الحدث إلى جميع العناصر
+    //if it's selector loop through all of the elements
     document.querySelectorAll(element).forEach(el => el.addEventListener(action, callback, options));
     return this;
   }
 
   /**
-   * إضافة حدث click إلى عنصر معين.
-   * @param {string|HTMLElement} element - المحدد أو العنصر
-   * @param {function} callback - دالة رد الفعل عند حدوث الحدث
-   * @return {AppHelpers} - كائن AppHelpers
+   * @param {string|HTMLElement} element
+   * @param {function} callback
+   * @return {AppHelpers}
    */
   onClick(element, callback) {
     return this.on('click', element, callback);
   }
 
   /**
-   * إضافة حدث keyup إلى عنصر معين.
-   * @param {string|HTMLElement} element - المحدد أو العنصر
-   * @param {function} callback - دالة رد الفعل عند حدوث الحدث
-   * @return {AppHelpers} - كائن AppHelpers
+   * @param {string|HTMLElement} element
+   * @param {function} callback
+   * @return {AppHelpers}
    */
   onKeyUp(element, callback) {
     return this.on('keyup', element, callback);
   }
 
   /**
-   * تنفيذ دالة معينة على جميع العناصر المحددة.
-   * @param {string|HTMLElement} element - المحدد أو العنصر
-   * @param {function} callback - دالة يتم تنفيذها على كل عنصر
-   * @return {AppHelpers} - كائن AppHelpers
+   * @param {string|HTMLElement} element
+   * @param {function} callback
+   * @return {AppHelpers}
    */
   all(element, callback) {
     document.querySelectorAll(element).forEach(callback);
@@ -114,9 +99,8 @@ export default class AppHelpers {
   }
 
   /**
-   * إخفاء عنصر معين.
-   * @param {string|HTMLElement} element - المحدد أو العنصر
-   * @return {AppHelpers} - كائن AppHelpers
+   * @param {string|HTMLElement} element
+   * @return {AppHelpers}
    */
   hideElement(element) {
     this.element(element).style.display = 'none';
@@ -124,10 +108,8 @@ export default class AppHelpers {
   }
 
   /**
-   * إظهار عنصر معين.
-   * @param {string|HTMLElement} element - المحدد أو العنصر
-   * @param {string} display - نوع العرض (افتراضي هو 'block')
-   * @return {AppHelpers} - كائن AppHelpers
+   * @param {string|HTMLElement} element
+   * @return {AppHelpers}
    */
   showElement(element, display = 'block') {
     this.element(element).style.display = display;
@@ -135,10 +117,10 @@ export default class AppHelpers {
   }
 
   /**
-   * 💡 يمكنك تمرير عدة فئات: this.removeClass(element, 'class_1', 'class_2', ...)
-   * @param {string|HTMLElement} element - المحدد أو العنصر
-   * @param {string} className - اسم الفئة
-   * @return {AppHelpers} - كائن AppHelpers
+   * 💡 you can pass multi classes: this.removeClass(element, 'class_1', 'class_2', ...)
+   * @param {string|HTMLElement} element
+   * @param {string} className
+   * @return {AppHelpers}
    */
   removeClass(element, className) {
     this.element(element).classList.remove(...Array.from(arguments).slice(1));
@@ -146,10 +128,10 @@ export default class AppHelpers {
   }
 
   /**
-   * 💡 يمكنك تمرير عدة فئات: this.addClass(element, 'class_1', 'class_2', ...)
-   * @param {string|HTMLElement} element - المحدد أو العنصر
-   * @param {string} className - اسم الفئة
-   * @return {AppHelpers} - كائن AppHelpers
+   * 💡 you can pass multi classes: this.addClass(element, 'class_1', 'class_2', ...)
+   * @param {string|HTMLElement} element
+   * @param {string} className
+   * @return {AppHelpers}
    */
   addClass(element, className) {
     this.element(element).classList.add(...Array.from(arguments).slice(1));

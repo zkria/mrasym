@@ -1,17 +1,22 @@
-import BasePage from './base-page'; // استيراد الفئة الأساسية للصفحات
+import BasePage from './base-page';
 
 class Testimonials extends BasePage {
     onReady() {
-        // فرز الشهادات
-        app.on('change', '#testimonials-filter', event => 
-            window.location.href = salla.helpers.addParamToUrl('sort', event.target.value) // تحديث عنوان URL مع معلمة الفرز
-        );
-        
-        let urlParams = new URLSearchParams(window.location.search); // الحصول على معلمات URL
+        let commentsList = app.element('salla-comments');
+
+
+        let urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('sort')) {
-            app.element('#testimonials-filter').value = urlParams.get('sort'); // تعيين قيمة فلتر الشهادات بناءً على معلمات URL
+            app.element('#testimonials-filter').value = urlParams.get('sort');
         }
+
+        app.on('change', '#testimonials-filter', async (event) => {
+            window.history.replaceState(null, null, salla.helpers.addParamToUrl('sort', event.currentTarget.value));
+            commentsList.sort = event.currentTarget.value;
+            await commentsList.reload();
+            commentsList.setAttribute('sort', event.currentTarget.value)
+        });
     }
 }
 
-Testimonials.initiateWhenReady(['store.testimonials']); // تهيئة الفئة عند جاهزية الصفحة، مع تحديد الصفحات المسموح بها
+Testimonials.initiateWhenReady(['testimonials']);

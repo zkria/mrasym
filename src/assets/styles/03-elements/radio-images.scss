@@ -1,75 +1,75 @@
-// إعدادات صور الراديو
 .radio-images {
-  &__label {
-    @apply inline-block mb-0.5 cursor-pointer rounded-md overflow-hidden h-24 md:h-20 w-full; // تعيين أنماط التسمية
+  &__label{
+    @apply inline-block mb-0.5 cursor-pointer rounded-md overflow-hidden h-24 md:h-20 w-full;
   }
 
-  &__badge {
-    @apply block absolute bottom-10 left-1/2 -translate-x-1/2 rounded-full px-1.5 bg-red-400 text-white whitespace-nowrap; // تعيين أنماط الشارة
+  &__badge{
+    @apply block absolute bottom-10 left-1/2 -translate-x-1/2 rounded-full px-1.5 bg-red-400 text-white whitespace-nowrap;
   }
 
   input[type="radio"] {
-    display: none; // إخفاء حقل الإدخال
+    display: none;
 
     + label {
-      position: relative; // تعيين الموضع إلى نسبي
+      position: relative;
 
       &:after {
-        content: "\ea9d"; // تعيين محتوى الأيقونة
-        font-family: "sallaicons" !important; // تعيين عائلة الخط
-        speak: never; // منع قراءة الأيقونة
-        font-style: normal; // تعيين نمط الخط إلى عادي
-        font-weight: normal; // تعيين وزن الخط إلى عادي
-        font-variant: normal; // تعيين نوع الخط إلى عادي
-        text-transform: none; // عدم تحويل النص
-        line-height: 1; // تعيين ارتفاع السطر
-        -webkit-font-smoothing: antialiased; // تحسين عرض الخط في WebKit
-        -moz-osx-font-smoothing: grayscale; // تحسين عرض الخط في Firefox
-        background: white; // تعيين لون الخلفية إلى الأبيض
-        border-radius: 50%; // تعيين الزوايا إلى دائرية
-        top: 50%; // تعيين الموضع العلوي
-        left: 50%; // تعيين الموضع الأيسر
-        width: 20px; // تعيين العرض
-        height: 20px; // تعيين الارتفاع
-        font-size: 14px; // تعيين حجم الخط
-        display: flex; // تعيين العرض إلى مرن
-        justify-content: center; // محاذاة المحتوى إلى المركز
-        align-items: center; // محاذاة العناصر إلى المركز
-        position: absolute; // تعيين الموضع إلى مطلق
-        opacity: 0; // تعيين الشفافية إلى 0
-        transform: translate(-50%, -50%) scale(.4); // تحريك العنصر وتغيير مقياسه
-        transition: transform .3s; // تعيين تأثير الانتقال
+        content: "\ea9d";
+        font-family: "sallaicons" !important;
+        speak: never;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background: white;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        // color: ;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.4);
+        transition: transform .3s;
       }
 
       &:before {
-        content: ''; // محتوى فارغ
-        background-color: #000; // تعيين لون الخلفية إلى الأسود
-        opacity: 0; // تعيين الشفافية إلى 0
-        position: absolute; // تعيين الموضع إلى مطلق
-        top: 0; // تعيين الموضع العلوي
-        bottom: 0; // تعيين الموضع السفلي
-        left: 0; // تعيين الموضع الأيسر
-        right: 0; // تعيين الموضع الأيمن
-        transition: opacity .3s; // تعيين تأثير الانتقال
+        content: '';
+        background-color: #000;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transition: opacity .3s;
       }
     }
 
     &:checked {
       + label {
         &:after {
-          opacity: 1; // تعيين الشفافية إلى 1 عند التحديد
-          transform: translate(-50%, -50%) scale(1); // إعادة تعيين المقياس
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
         }
 
         &:before {
-          opacity: .3; // تعيين الشفافية إلى 0.3
+          opacity: .3;
         }
       }
     }
 
     &:disabled {
       + label {
-        opacity: .45; // تعيين الشفافية إلى 0.45 عند التعطيل
+        opacity: .45;
       }
     }
   }

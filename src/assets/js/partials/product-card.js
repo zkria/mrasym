@@ -1,48 +1,45 @@
 import BasePage from '../base-page';
 class ProductCard extends HTMLElement {
   constructor(){
-    super();
+    super()
   }
   
   connectedCallback(){
-    // تحليل بيانات المنتج
+    // Parse product data
     this.product = this.product || JSON.parse(this.getAttribute('product')); 
 
     if (window.app?.status === 'ready') {
       this.onReady();
     } else {
-      document.addEventListener('theme::ready', () => this.onReady());
+      document.addEventListener('theme::ready', () => this.onReady() )
     }
   }
 
   onReady(){
-      
       this.fitImageHeight = salla.config.get('store.settings.product.fit_type');
-      salla.wishlist.event.onAdded((event, id) => this.toggleFavoriteIcon(id));
-      salla.wishlist.event.onRemoved((event,id) => this.toggleFavoriteIcon(id, false));
       this.placeholder = salla.url.asset(salla.config.get('theme.settings.placeholder'));
-      this.getProps();
+      this.getProps()
 
-      this.source = salla.config.get("page.slug");
-      // إذا كانت البطاقة في الصفحة الرئيسية، إخفاء زر الإضافة وإظهار الكمية
-      if (this.source == "landing-page") {
-        this.hideAddBtn = true;
-        this.showQuantity = window.showQuantity;
-      }
+	  this.source = salla.config.get("page.slug");
+      // If the card is in the landing page, hide the add button and show the quantity
+	  if (this.source == "landing-page") {
+	  	this.hideAddBtn = true;
+	  	this.showQuantity = window.showQuantity;
+	  }
 
       salla.lang.onLoaded(() => {
-        // تحميل اللغة
+        // Language
         this.remained = salla.lang.get('pages.products.remained');
         this.donationAmount = salla.lang.get('pages.products.donation_amount');
         this.startingPrice = salla.lang.get('pages.products.starting_price');
         this.addToCart = salla.lang.get('pages.cart.add_to_cart');
         this.outOfStock = salla.lang.get('pages.products.out_of_stock');
 
-        // إعادة العرض لتحديث الترجمات
+        // re-render to update translations
         this.render();
-      });
+      })
       
-      this.render();
+      this.render()
   }
 
   initCircleBar() {
@@ -54,13 +51,6 @@ class ProductCard extends HTMLElement {
     bar.style.strokeDashoffset = strokeDashOffsetValue;
   }
 
-  toggleFavoriteIcon(id, isAdded = true) {
-    document.querySelectorAll('.s-product-card-wishlist-btn[data-id="' + id + '"]').forEach(btn => {
-      app.toggleElementClassIf(btn, 's-product-card-wishlist-added', 'not-added', () => isAdded);
-      app.toggleElementClassIf(btn, 'pulse-anime', 'un-favorited', () => isAdded);
-    });
-  }
-
   formatDate(date) {
     let d = new Date(date);
     return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
@@ -68,20 +58,21 @@ class ProductCard extends HTMLElement {
 
   getProductBadge() {
     if (this.product.promotion_title) {
-      return `<div class="s-product-card-promotion-title">${this.product.promotion_title}</div>`;
+      return `<div class="s-product-card-promotion-title">${this.product.promotion_title}</div>`
     }
     if (this.showQuantity && this.product?.quantity) {
-      return `<div class="s-product-card-quantity">${this.remained} ${salla.helpers.number(this.product?.quantity)}</div>`;
+      return `<div
+        class="s-product-card-quantity">${this.remained} ${salla.helpers.number(this.product?.quantity)}</div>`
     }
     if (this.showQuantity && this.product?.is_out_of_stock) {
-      return `<div class="s-product-card-out-badge">${this.outOfStock}</div>`;
+      return `<div class="s-product-card-out-badge">${this.outOfStock}</div>`
     }
     return '';
   }
 
   getPriceFormat(price) {
     if (!price || price == 0) {
-      return salla.config.get('store.settings.product.show_price_as_dash') ? '-' : '';
+      return salla.config.get('store.settings.product.show_price_as_dash')?'-':'';
     }
 
     return salla.money(price);
@@ -99,10 +90,10 @@ class ProductCard extends HTMLElement {
       price = `<div class="s-product-card-starting-price">
                   <p>${this.startingPrice}</p>
                   <h4> ${this.getPriceFormat(this.product?.starting_price)} </h4>
-              </div>`;
+              </div>`
     }
-    else {
-      price = `<h4 class="s-product-card-price">${this.getPriceFormat(this.product?.price)}</h4>`;
+    else{
+      price = `<h4 class="s-product-card-price">${this.getPriceFormat(this.product?.price)}</h4>`
     }
 
     return price;
@@ -121,60 +112,61 @@ class ProductCard extends HTMLElement {
       return salla.lang.get('pages.products.out_of_stock');
     }
 
-    // التبرع
+    // donating
     return salla.lang.get('pages.products.donation_exceed');
   }
 
-  getProps() {
+  getProps(){
+
     /**
-     *  بطاقة أفقية.
+     *  Horizontal card.
      */
     this.horizontal = this.hasAttribute('horizontal');
   
     /**
-     *  دعم الظل عند التحويم.
+     *  Support shadow on hover.
      */
     this.shadowOnHover = this.hasAttribute('shadowOnHover');
   
     /**
-     *  إخفاء زر الإضافة إلى السلة.
+     *  Hide add to cart button.
      */
     this.hideAddBtn = this.hasAttribute('hideAddBtn');
   
     /**
-     *  بطاقة صورة كاملة.
+     *  Full image card.
      */
     this.fullImage = this.hasAttribute('fullImage');
   
     /**
-     *  بطاقة بسيطة.
+     *  Minimal card.
      */
     this.minimal = this.hasAttribute('minimal');
   
     /**
-     *  بطاقة خاصة.
+     *  Special card.
      */
     this.isSpecial = this.hasAttribute('isSpecial');
   
     /**
-     *  إظهار الكمية.
+     *  Show quantity.
      */
     this.showQuantity = this.hasAttribute('showQuantity');
   }
 
-  render() {
+  render(){
     this.classList.add('s-product-card-entry'); 
     this.setAttribute('id', this.product.id);
-    !this.horizontal && !this.fullImage && !this.minimal ? this.classList.add('s-product-card-vertical') : '';
-    this.horizontal && !this.fullImage && !this.minimal ? this.classList.add('s-product-card-horizontal') : '';
-    this.fitImageHeight && !this.isSpecial && !this.fullImage && !this.minimal ? this.classList.add('s-product-card-fit-height') : '';
-    this.isSpecial ? this.classList.add('s-product-card-special') : '';
-    this.fullImage ? this.classList.add('s-product-card-full-image') : '';
-    this.minimal ? this.classList.add('s-product-card-minimal') : '';
-    this.product?.donation ? this.classList.add('s-product-card-donation') : '';
-    this.shadowOnHover ? this.classList.add('s-product-card-shadow') : '';
-    this.product?.is_out_of_stock ? this.classList.add('s-product-card-out-of-stock') : '';
-
+    !this.horizontal && !this.fullImage && !this.minimal? this.classList.add('s-product-card-vertical') : '';
+    this.horizontal && !this.fullImage && !this.minimal? this.classList.add('s-product-card-horizontal') : '';
+    this.fitImageHeight && !this.isSpecial && !this.fullImage && !this.minimal? this.classList.add('s-product-card-fit-height') : '';
+    this.isSpecial? this.classList.add('s-product-card-special') : '';
+    this.fullImage? this.classList.add('s-product-card-full-image') : '';
+    this.minimal? this.classList.add('s-product-card-minimal') : '';
+    this.product?.donation?  this.classList.add('s-product-card-donation') : '';
+    this.shadowOnHover?  this.classList.add('s-product-card-shadow') : '';
+    this.product?.is_out_of_stock?  this.classList.add('s-product-card-out-of-stock') : '';
+    this.isInWishlist = !salla.config.isGuest() && salla.storage.get('salla::wishlist', []).includes(this.product.id);
     this.innerHTML = `
         <div class="${!this.fullImage ? 's-product-card-image' : 's-product-card-image-full'}">
           <a href="${this.product?.url}">
@@ -189,15 +181,15 @@ class ProductCard extends HTMLElement {
             />
             ${!this.fullImage && !this.minimal ? this.getProductBadge() : ''}
           </a>
-          ${this.fullImage ? `<a href="${this.product?.url}" aria-label=${this.product.name} class="s-product-card-overlay"></a>` : ''}
+          ${this.fullImage ? `<a href="${this.product?.url}" aria-label=${this.product.name} class="s-product-card-overlay"></a>`:''}
           ${!this.horizontal && !this.fullImage ?
             `<salla-button
               shape="icon"
               fill="outline"
               color="light"
               name="product-name-${this.product.id}"
-              aria-label="إضافة أو إزالة من قائمة المفضلات"
-              class="s-product-card-wishlist-btn animated "
+              aria-label="Add or remove to wishlist"
+              class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added pulse-anime' : 'not-added un-favorited'}"
               onclick="salla.wishlist.toggle(${this.product.id})"
               data-id="${this.product.id}">
               <i class="sicon-heart"></i>
@@ -247,7 +239,7 @@ class ProductCard extends HTMLElement {
             : ''}
           <div class="s-product-card-content-sub ${this.isSpecial ? 's-product-card-content-extra-padding' : ''}">
             ${this.product?.donation?.can_donate ? '' : this.getProductPrice()}
-            ${this.product?.rating?.stars && !this.minimal ?
+            ${this.product?.rating?.stars ?
               `<div class="s-product-card-rating">
                 <i class="sicon-star2 before:text-orange-300"></i>
                 <span>${this.product.rating.stars}</span>
@@ -259,6 +251,7 @@ class ProductCard extends HTMLElement {
             ? `<salla-count-down date="${this.formatDate(this.product.discount_ends)}" end-of-day=${true} boxed=${true}
               labeled=${true} />`
             : ``}
+
 
           ${!this.hideAddBtn ?
             `<div class="s-product-card-content-footer gap-2">
@@ -278,8 +271,8 @@ class ProductCard extends HTMLElement {
                   fill="outline" 
                   color="light" 
                   id="card-wishlist-btn-${this.product.id}-horizontal"
-                  aria-label="إضافة أو إزالة من قائمة المفضلات"
-                  class="s-product-card-wishlist-btn animated"
+                  aria-label="Add or remove to wishlist"
+                  class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added pulse-anime' : 'not-added un-favorited'}"
                   onclick="salla.wishlist.toggle(${this.product.id})"
                   data-id="${this.product.id}">
                   <i class="sicon-heart"></i> 
@@ -288,21 +281,16 @@ class ProductCard extends HTMLElement {
             </div>`
             : ``}
         </div>
-      `;
+      `
 
-      this.querySelectorAll('[name="donating_amount"]').forEach((element) => {
+      this.querySelectorAll('[name="donating_amount"]').forEach((element)=>{
         element.addEventListener('input', (e) => {
           e.target
             .closest(".s-product-card-content")
             .querySelector("salla-add-product-button")
             .setAttribute("donating-amount", e.target.value); 
         });
-      });
-
-      // إعادة تهيئة أيقونة المفضلة
-      if (!salla.config.isGuest()) {
-        salla.storage.get('salla::wishlist', []).forEach(id => this.toggleFavoriteIcon(id));
-      }
+      })
 
       document.lazyLoadInstance?.update(this.querySelectorAll('.lazy'));
 

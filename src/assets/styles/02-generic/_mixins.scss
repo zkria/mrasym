@@ -1,7 +1,6 @@
-// مزيج لتسهيل استخدام خصائص الفليكس
 @mixin flexable($align: center, $justify: center, $direction: row) {
-  display: flex; // تعيين العرض إلى فليكس
-  align-items: $align; // محاذاة العناصر عموديًا
-  justify-content: $justify; // محاذاة العناصر أفقيًا
-  flex-direction: $direction; // تعيين اتجاه العناصر
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
 }

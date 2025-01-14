@@ -1,35 +1,35 @@
 {#
-| المتغير                             | النوع          | الوصف                                  |
-|--------------------------------------|---------------|----------------------------------------|
-| page                                 | Page          | كائن الصفحة                           |
-| page.title                           | string        | عنوان الصفحة                          |
-| page.slug                            | string        | رابط الصفحة                           |
-| loyalty                              | Loyalty       | كائن الولاء                           |
-| loyalty.name                         | string        | اسم برنامج الولاء                    |
-| loyalty.description                  | string        | وصف برنامج الولاء                    |
-| loyalty.image                        | string        | رابط صورة برنامج الولاء              |
-| loyalty.promotion_title              | string        | عنوان العرض                           |
-| loyalty.promotion_description        | string        | وصف العرض                             |
-| loyalty.points                       | Point[]       | قائمة النقاط                         |
-| loyalty.points[].name                | string        | اسم النقطة                            |
-| loyalty.points[].description         | string        | وصف النقطة                           |
-| loyalty.points[].type                | string        | نوع النقطة: share, rating, order, profile |
-| loyalty.points[].url                 | ?string       | رابط النقطة                          |
-| loyalty.points[].points              | int           | عدد النقاط                           |
-| loyalty.points[].icon                | string        | أيقونة النقطة                        |
-| loyalty.points[].color               | string        | لون النقطة                           |
-| loyalty.prizes[]                     | PrizesGroup[] | مجموعة الجوائز                       |
-| loyalty.prizes[].title               | string        | عنوان الجائزة                        |
-| loyalty.prizes[].type                | string        | نوع الجائزة: free_product, coupon_discount, free_shipping |
-| loyalty.prizes[].items[]             | Prize[]       | قائمة الجوائز                        |
-| loyalty.prizes[].items[].id          | int           | معرف الجائزة                         |
-| loyalty.prizes[].items[].name        | string        | اسم الجائزة                          |
-| loyalty.prizes[].items[].description | string        | وصف الجائزة                          |
-| loyalty.prizes[].items[].image       | string        | رابط صورة الجائزة                   |
-| loyalty.prizes[].items[].url         | ?string       | رابط الجائزة                         |
-| loyalty.prizes[].items[].cost_points | int           | تكلفة النقاط للجائزة                |
-| user.loyalty_points                  | ?int          | عدد نقاط الولاء للمستخدم            |
-| user.is_profile_completed            | bool          | هل تم إكمال ملف المستخدم؟           |
+| Variable                             | Type          | Description                                  |
+|--------------------------------------|---------------|----------------------------------------------|
+| page                                 | Page          |                                              |
+| page.title                           | string        |                                              |
+| page.slug                            | string        |                                              |
+| loyalty                              | Loyalty       |                                              |
+| loyalty.name                         | string        |                                              |
+| loyalty.description                  | string        |                                              |
+| loyalty.image                        | string        |                                              |
+| loyalty.promotion_title              | string        |                                              |
+| loyalty.promotion_description        | string        |                                              |
+| loyalty.points                       | Point[]       |                                              |
+| loyalty.points[].name                | string        |                                              |
+| loyalty.points[].description         | string        |                                              |
+| loyalty.points[].type                | string        | share, rating, order, profile                |
+| loyalty.points[].url                 | ?string       |                                              |
+| loyalty.points[].points              | int           |                                              |
+| loyalty.points[].icon                | string        |                                              |
+| loyalty.points[].color               | string        |                                              |
+| loyalty.prizes[]                     | PrizesGroup[] |                                              |
+| loyalty.prizes[].title               | string        |                                              |
+| loyalty.prizes[].type                | string        | free_product, coupon_discount, free_shipping |
+| loyalty.prizes[].items[]             | Prize[]       |                                              |
+| loyalty.prizes[].items[].id          | int           |                                              |
+| loyalty.prizes[].items[].name        | string        |                                              |
+| loyalty.prizes[].items[].description | string        |                                              |
+| loyalty.prizes[].items[].image       | string        |                                              |
+| loyalty.prizes[].items[].url         | ?string       |                                              |
+| loyalty.prizes[].items[].cost_points | int           |                                              |
+| user.loyalty_points                  | ?int          |                                              |
+| user.is_profile_completed            | bool          |                                              |
 #}
 {% extends "layouts.master" %}
 
@@ -39,10 +39,10 @@
         <div class="overlay h-full w-full bg-black opacity-50 absolute top-0 left-0"></div>
     </div>
     <div class="container space-y-8 lg:space-y-16">
-        {# فتات الخبز #}
+        {# Breadcrumbs #}
         <nav class="breadcrumbs w-full py-5"><salla-breadcrumb></salla-breadcrumb></nav>
 
-        {# لافتة الولاء #}
+        {# loyalty banner #}
         <div class="loyalty__banner">
             <div class="loyalty__banner-inner">
                 <i class="sicon-star2 star-anime text-amber-400 text-7xl"></i>
@@ -66,12 +66,12 @@
                     </salla-loyalty>
                 </div>
             </div>
-            <!-- نجوم كبيرة في الخلفية -->
+            <!-- background big stars -->
             <div class="loyalty-star loyalty-star--first"><i class="sicon-star2"></i></div>
             <div class="loyalty-star loyalty-star--second"><i class="sicon-star2"></i></div>
         </div>
 
-        {# طرق كسب النقاط #}
+        {# ways to get points #}
         <section class="points-ways pt-6">
             <div class="s-block__title">
               <h2>{{ trans("pages.loyalty_program.ways_to_get_points") }}</h2>
@@ -110,7 +110,7 @@
                                             {{ point.url }}
                                         </h3>
                                     </div>
-                                {% elseif user.is_profile_completed and point.type == 'profile' %}
+                                {% elseif customer.is_profile_completed and point.type == 'profile' %}
                                     <div class="text-green-500 text-center border relative border-green-300 rounded-3xl bg-green-50 min-h-[34px] w-full pt-1 px-4">
                                         <i class="sicon-check-circle d-inline-block"></i>
                                         <span class="break-all">{{ trans('pages.loyalty_program.completed') }}</span>
@@ -131,12 +131,12 @@
             </div>
         </section>
 
-        {# جوائز #}
+        {# 2-block:: prizes #}
         {% for prize_group in loyalty.prizes %}
             <div>
               <salla-slider 
                 type="carousel"
-                loop="{{ prize_group.items|length < 4  ? 'false' : 'true' }}"
+                loop="{{prize_group.items|length < 4  ? 'false' : 'true'}}"
                 block-title="{{ prize_group.title }}"
                 id="loyalty-slider-{{ prize_group.type }}">
                   <div slot="items">

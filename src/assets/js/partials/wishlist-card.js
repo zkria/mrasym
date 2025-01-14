@@ -1,9 +1,10 @@
+
 class WishlistCard extends HTMLElement {
 
     connectedCallback() {
 
         if (!this.product) {
-            return salla.logger.warn('custom-wishlist-card:: المنتج غير موجود!');
+            return salla.logger.warn('custom-wishlist-card:: product does not exist!');
         }
         salla.onReady(() => this.render())
 

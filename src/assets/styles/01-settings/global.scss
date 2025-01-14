@@ -1,27 +1,29 @@
-// الألوان
-$main-color: var(--color-primary); // اللون الرئيسي
-$infinte-color: var(--infinte-color); // اللون اللانهائي
-$main-text-color: var(--main-text-color); // لون النص الرئيسي
+
+// Colors
+$main-color: var(--color-primary);
+$infinte-color: var(--infinte-color);
+$main-text-color: var(--main-text-color);
 
 :root {
-  --infinte-color: #c9c9c9; // اللون اللانهائي
-  --main-text-color: #231f1e; // لون النص الرئيسي
-  --main-text-color-dark: #2b2d34; // لون النص الرئيسي الداكن
+  --infinte-color: #c9c9c9;
+  --main-text-color: #231f1e;
+  --main-text-color-dark: #2b2d34;
 
-  /* اللون الحالي */
-  --color-primary: #007b7f; // تغيير اللون الرئيسي إلى اللون الجديد
-  --color-primary-d: #414042; // اللون الرئيسي الداكن
-  --color-primary-l: #676668; // اللون الرئيسي الفاتح
-  --color-primary-reverse: #ff6767; // اللون العكسي الرئيسي
-  --color-text: #7c8082; // لون النص
-  --bg-gray: #c6c7ce1a; // لون الخلفية الرمادية
-  --color-grey: #f5f7f9; // اللون الرمادي
-  --color-light-grey: #eeeeee; // اللون الرمادي الفاتح
-  /* حجم الخط */
-  --font-sm: 0.8685714286rem; // حجم الخط الصغير
-  /* عائلة الخط */
-  --font-main: "DINNextLTArabic"; // تعيين عائلة الخط الرئيسية
+  /* current */
+  --color-primary: #5cd5c4;
+  --color-primary: #414042;
+  --color-primary-d: #272628;
+  --color-primary-l: #676668;
+  --color-primary-reverse: #ff6767;
+  --color-text: #7c8082;
+  --bg-gray: #c6c7ce1a;
+  --color-grey: #f5f7f9;
+  --color-light-grey: #eeeeee;
+  /* font-size */
+  --font-sm: 0.8685714286rem;
+  /* font-family: ; */
+  --font-main: "DINNextLTArabic";
 
-  /* الإضافات */
-  --mm-ocd-width: calc(100% - 51px); // عرض الإضافات
+  /* plugins */
+  --mm-ocd-width: calc(100% - 51px);
 }

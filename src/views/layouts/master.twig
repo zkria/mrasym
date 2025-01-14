@@ -49,6 +49,32 @@
 | theme.settings.set(settingName, value)             | string   | set global var, then get it {{theme.settings.get('my_var','fallback') }}                                 |
 | theme.settings.get(settingName, default=null)      | mixed    | get theme setting ex `theme.settings.get('my_var', 'fallback')`                                          |
 #}
+{% set sharedVariables = {
+    store: {
+        id: store.id,
+        name: store.name,
+        username: store.username,
+        description: store.description,
+        slogan: store.slogan,
+        logo: store.logo,
+        url: store.url,
+        api: store.api,
+        icon: store.icon,
+        contacts: store.contacts,
+        social: store.social,
+        settings: store.settings
+    },
+    theme: {
+        id: theme.id,
+        name: theme.name,
+        mode: theme.mode,
+        is_rtl: theme.is_rtl,
+        translations_hash: theme.translations_hash,
+        color: theme.color,
+        font: theme.font,
+        settings: theme.settings
+    }
+} %}
 <!DOCTYPE html>
 <html lang="{{ user.language.code }}" dir="{{ user.language.dir }}">
 <!-- بسم الله الرحمن الرحيم -->

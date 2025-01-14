@@ -1,34 +1,28 @@
-// إعدادات الاتجاه من اليمين إلى اليسار
 .rtl,
 [dir="rtl"] {
-  // إعدادات شريط التمرير عند الاتجاه من اليمين إلى اليسار
   .rtl-range-slider {
-    transform: rotateY(180deg); // عكس الشريط أفقيًا
+    transform: rotateY(180deg);
   }
 
-  // إعدادات أرقام شريط التمرير
   .rtl-range-numbers {
-    flex-direction: row-reverse; // تغيير اتجاه الأرقام إلى عكسي
+    flex-direction: row-reverse;
   }
 
-  // إعدادات قائمة الاختيار
   .form-select, select {
-    background-position: left 0.5rem center; // تعيين موضع الخلفية
-    padding-right: 12px; // إضافة حشوة إلى اليمين
+    background-position: left 0.5rem center;
+    padding-right: 12px;
   }
 
-  // إعدادات المحاذاة
   .fix-align {
-    transform: translateY(-2px); // تحريك العنصر لأعلى بمقدار 2 بكسل
-    display: inline-block; // تعيين العرض إلى كتلة مضمنة
+    transform: translateY(-2px);
+    display: inline-block;
   }
 
-  // إعدادات تقويم Flatpickr
   .flatpickr {
     &-months {
       .numInputWrapper {
         .cur-year {
-          padding: 0 15px 0 0; // إضافة حشوة إلى السنة الحالية
+          padding: 0 15px 0 0;
         }
       }
     }

@@ -2,7 +2,7 @@
 {% block content %}
     <div class="profile-header gradient-bg">
         <div class="container relative flex justify-between h-full items-center">
-            {# إضافة حاوية فتات الخبز في الصفحات لإنشاء مساحة في حالة إيقاف تشغيل فتات الخبز #}
+            {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
             <nav class="breadcrumbs w-full py-5 self-start">
                 <salla-breadcrumb></salla-breadcrumb>
             </nav>
@@ -40,9 +40,9 @@
 
                 </h1>
                 {#
-                جميع صفحات العملاء لها نفس الرأس، ستقوم هذه التخطيط بلف المحتوى المختلف.
-                استخدمها مثل: `{% extends "layouts.customer" %}` بدلاً من `{% extends "layouts.master" %}`
-                ثم الجسم: `{% block inner_content %}` بدلاً من `{% block content %}`
+                All customer pages have same header, this layout will wrap the different content.
+                Use it like: `{% extends "layouts.customer" %}` instead of `{% extends "layouts.master" %}`
+                Then body: `{% block inner_content %}` instead of `{% block content %}`
                 #}
                 {% block inner_content %}{% endblock %}
             </div>

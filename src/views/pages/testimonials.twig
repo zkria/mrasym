@@ -1,24 +1,24 @@
 {#
-| المتغير              | النوع                         | الوصف                     |
-|-----------------------|------------------------------|---------------------------|
-| items                 | Comment[] *Paginator         | قائمة التعليقات          |
-| items[].id            | int                          | معرف التعليق             |
-| items[].avatar        | string                       | رابط صورة المستخدم       |
-| items[].name          | string                       | اسم المستخدم             |
-| items[].has_order     | bool                         | هل لديه طلب              |
-| items[].created_at    | Date *Carbon                 | تاريخ إنشاء التعليق      |
-| items[].stars         | int                          | عدد النجوم               |
-| items[].content       | string                       | محتوى التعليق            |
-| items[].is_pending    | bool                         | لم يتم الموافقة عليه بعد |
-| items[].replies       | Comment[] *Collection        | قائمة الردود             |
-| items[].type          | string 'admin','customer'    | نوع التعليق              |
+| Variable              | Type                         | Description         |
+|-----------------------|------------------------------|---------------------|
+| items                 | Comment[] *Paginator         |                     |
+| items[].id            | int                          |                     |
+| items[].avatar        | string                       |                     |
+| items[].name          | string                       |                     |
+| items[].has_order     | bool                         |                     |
+| items[].created_at    | Date *Carbon                 |                     |
+| items[].stars         | int                          |                     |
+| items[].content       | string                       |                     |
+| items[].is_pending    | bool                         | Is not approved yet |
+| items[].replies       | Comment[] *Collection        |                     |
+| items[].type          | string 'admin','customer'    |                     |
 #}
 
 {% extends "layouts.master" %}
 {% block content %}
 <div class="container">
 
-    {# إضافة حاوية فتات الخبز في الصفحات لإنشاء مساحة في حالة إيقاف تشغيل فتات الخبز #}
+    {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
     <nav class="breadcrumbs w-full py-5">
         <salla-breadcrumb></salla-breadcrumb>
     </nav>
@@ -27,7 +27,7 @@
         <div class="content content--single-page w-full lg:w-10/12 bg-white rounded p-6 lg:p-8 mt-4 lg:mt-12">
 
             <div class="mb-4 sm:mb-6 flex justify-between items-center">
-                <h1 class="font-bold text-2xl">{{ page.title }}</h1>
+                <h1 class="font-bold text-2xl">{{ page . title }}</h1>
                 <div class="flex items-center">
                     <label class="hidden sm:block rtl:ml-3 ltr:mr-3 whitespace-nowrap"
                         for="testimonials-filter">{{ trans('pages.categories.sorting') }}</label>

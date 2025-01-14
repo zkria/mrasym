@@ -1,45 +1,38 @@
-// إعدادات حقل الإدخال لنوع الراديو
 input[type="radio"] {
   &.sr-only {
     div.absolute {
-      transition: all 0.3s; // تعيين تأثير الانتقال
+      transition: all 0.3s;
     }
 
     &:checked ~ div.absolute {
-      border-color: var(--color-main); // تعيين لون الحدود عند تحديد الراديو
+      border-color: var(--color-main);
     }
   }
 }
 
-// إعدادات حقل الإدخال النصي عند التعطيل
 input[type="text"]:disabled {
-  // background: #f9f9f9; // (تعليق) تعيين لون الخلفية عند التعطيل
-  color: #838383; // تعيين لون النص إلى رمادي
+  //background: #f9f9f9;
+  color: #838383;
 }
 
-// إعدادات تسمية النموذج
 .form-label {
-  @apply block text-sm font-bold text-gray-700 mb-2.5 md:mb-0 sm:mt-px; // تعيين أنماط التسمية
+  @apply block text-sm font-bold text-gray-700 mb-2.5 md:mb-0 sm:mt-px;
 }
 
-// إعدادات حقل الإدخال
 .form-input {
-  @apply w-full h-10 transition-colors duration-300 focus:ring-transparent focus:border-primary dark:focus:border-primary text-sm border-gray-200 dark:bg-gray-600 dark:border-gray-600 rounded-md; // تعيين أنماط حقل الإدخال
-  appearance: none; // إزالة المظهر الافتراضي
-  -webkit-appearance: none; // إزالة المظهر الافتراضي في WebKit
+  @apply w-full h-10 transition-colors duration-300 focus:ring-transparent focus:border-primary dark:focus:border-primary text-sm border-gray-200 dark:bg-gray-600 dark:border-gray-600 rounded-md;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
-// إعدادات حقل الإدخال النصي
 textarea.form-input {
-  @apply h-24; // تعيين ارتفاع حقل الإدخال النصي
+  @apply h-24;
 }
 
-// إعدادات الخطأ
 .has-error {
-  @apply border-red-400 focus:border-red-500; // تعيين أنماط الخطأ
+  @apply border-red-400 focus:border-red-500;
 }
 
-// إعدادات النجاح
 .has-success {
-  @apply border-green-500 focus:border-green-600; // تعيين أنماط النجاح
+  @apply border-green-500 focus:border-green-600;
 }

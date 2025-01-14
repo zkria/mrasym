@@ -1,23 +1,23 @@
 /**\
- * سيتولى نظام سلا الخلفي عملية حقن Twilight في صفحات الثيم الخاصة بك.
- * هذا الملف مخصص فقط لأغراض IDE، ولا ينبغي أن يكون في مخرجات حزمة Webpack.
+ * Salla backend will take care about twilight injecting into your theme pages.
+ * This file just for IDE purpose, and it shouldn't be in webpack bundle output
  *
- * 🚨 تضمين هذا الملف في حزمة Webpack قد يتسبب في مشاكل غير متوقعة.
+ * 🚨 include this file in your bundle could case unexpected issues
  *
- * إذا كنت تستخدم Webpack، تأكد من إضافة قواعد الاستبعاد في webpack.config.js.
+ * If you are using webpack make sure to add it exclude rules in webpack.config.js
  *
  * {
  *     test: /\.js$/,
  *     exclude: [
  *         ....
- *         asset('js/twilight.js') // استبعاد هذا الملف
+ *         asset('js/twilight.js')
  *         ....
  *     ]
  * };
  *
  */
-import {applyPolyfills, defineCustomElements as SallaWebComponents} from '@salla.sa/twilight-components/loader'; // استيراد الدوال اللازمة من مكتبة Twilight
+import {applyPolyfills, defineCustomElements as SallaWebComponents} from '@salla.sa/twilight-components/loader';
 
 applyPolyfills().then(() => {
-    SallaWebComponents(window); // تعريف العناصر المخصصة في نافذة المتصفح
+    SallaWebComponents(window);
 });

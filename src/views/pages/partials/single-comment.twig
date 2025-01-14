@@ -1,7 +1,7 @@
-{% set is_admin = comment.type == 'admin' %}
+{% set is_admin = comment.type=='admin' %}
 {% if not is_admin %}
 <div class="border-b last:border-0 mb-8 pb-8 last:pb-0 border-gray-200 list-block">
-{% endif %}
+    {% endif %}
     <div class="{% if is_admin %} nested-comment reply rtl:pr-8 ltr:pl-8 rtl:md:pr-16 ltr:md:pl-16 mt-8 admin {% else %} comment {% endif %} flex text-sm rtl:space-x-reverse space-x-3 comment_id_{{ comment.id }}">
         {% if is_admin %} <i class="sicon-reply text-lg text-gray-400"></i>{% endif %}
         <div class="flex-none">
@@ -18,7 +18,7 @@
                             {% if comment.has_order %}
                                 <i class="sicon-check rounded-full bg-amber-400 h-5 w-5 flex items-center justify-center text-xs"></i>
                                 <span class="fix-align rtl:mr-1 ltr:ml-1 text-sm text-gray-600 mt-0.5">
-                                  {{ trans('blocks.comments.has_bought') }}{{ comment.stars ? ', ' : '' }}
+                                  {{ trans('blocks.comments.has_bought') }}{{ comment.stars?', ':'' }}
                                 </span>
                             {% endif %}
                             {% if comment.stars %}
@@ -31,7 +31,7 @@
                 {% if comment.stars %}
                     <div class="w-full comment__rating text-xs mb-2.5 rtl:space-x-reverse space-x-1">
                         {% for i in 1..5 %}
-                            <i class="sicon-star2 inline-block {{ comment.stars >= i ? 'text-amber-400' : 'text-gray-400' }}"></i>
+                            <i class="sicon-star2 inline-block {{ comment.stars>=i  ? 'text-amber-400' : 'text-gray-400' }}"></i>
                         {% endfor %}
                     </div>
                 {% endif %}
@@ -51,7 +51,7 @@
     </div>
     {% if not is_admin %}
     {% for replay in comment.replies %}
-        {% include _self with {comment: replay} %}
+        {% include _self with {comment:replay} %}
     {% endfor %}
 </div>
 {% endif %}

@@ -1,4 +1,5 @@
-/* إعدادات شريط التنقل العلوي */
+
+/* Top Nav */
 .top-navbar {
   @apply flex py-2 min-h-[48px];
 
@@ -51,7 +52,7 @@
   }
 }
 
-// إعدادات عناصر قائمة الروابط
+// contacs menu items - pages menu items
 .topnav-link-item{
   @apply inline-block transition duration-300 px-4 rtl:last:pl-0 ltr:last:pr-0 py-px text-sm leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80;
 
@@ -60,17 +61,17 @@
   }
 }
 
-/* إعدادات شريط التنقل الرئيسي */
+/* Main Nav */
 .main-nav-container {
   @apply min-h-[68px] lg:min-h-[84px];
   
-  // لون الخلفية المخصص
+  // Custom background Color
   .has-bg &,
   .has-bg & .sub-menu{
     @apply bg-[color:var(--mainnav-bg)];
   }
 
-  // لون النص المخصص
+  // Custom text color
   .has-text-color & {
     @apply text-[color:var(--mainnav-text-color)];
   }
@@ -88,7 +89,7 @@
   }
 }
 
-/* إعدادات الرأس الثابت */
+/* Sticky Header */
 .main-nav-container {
   &.animated {
     .inner {
@@ -149,7 +150,7 @@
   }
 }
 
-// إعدادات أيقونة سلة التسوق
+// Mainnav cart icon
 .header-btn{
   @apply border-none outline-none transition-opacity hover:opacity-80;
 
@@ -165,7 +166,7 @@ salla-user-menu{
   @apply shrink-0;
 }
 
-// إعدادات ملخص السلة
+// cart summary
 .s-cart-summary-total{
   @apply text-black font-[600];
 }
@@ -186,7 +187,8 @@ salla-user-menu{
   }
 }
 
-// إعدادات البحث
+
+// Search
 .header-search{
   .s-search-results{
     @apply z-10;

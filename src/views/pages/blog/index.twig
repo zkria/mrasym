@@ -1,28 +1,28 @@
 {#
-| المتغير                | النوع          | الوصف                     |
-|-------------------------|---------------|---------------------------|
-| page                    | object        | كائن الصفحة              |
-| page.title              | string        | عنوان الصفحة             |
-| page.slug               | string        | رابط الصفحة              |
+| Variable                | Type          | Description                 |
+|-------------------------|---------------|-----------------------------|
+| page                    | object        |                             |
+| page.title              | string        |                             |
+| page.slug               | string        |                             |
 | slides                  | ?Article[]    | @see pages/blog/single.twig |
-| articles                | Article[]     | قائمة المقالات          |
-| categories              | BlogCategory[] | قائمة الفئات             |
-| category.is_current     | bool          | هل الفئة الحالية         |
-| category.name           | string        | اسم الفئة                |
-| category.url            | string        | رابط الفئة               |
+| articles                | Article[]     |                             |
+| categories              | BlogCategory[]|                             |
+| category.is_current     | bool          |                             |
+| category.name           | string        |                             |
+| category.url            | string        |                             |
 #}
 {% extends "layouts.master" %}
 
 {% block content %}
-    <div class="container mb-8 sm:mb-24">
+    <div class=" container mb-8 sm:mb-24">
       <div class="center-between">
 
-        {# إضافة حاوية فتات الخبز في الصفحات لإنشاء مساحة في حالة إيقاف تشغيل فتات الخبز #}
+        {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
         <nav class="breadcrumbs w-full py-5">
             <salla-breadcrumb></salla-breadcrumb>
         </nav>
 
-        {# قائمة الفئات المنسدلة #}
+        {# Categories filter dropdown #}
         <div class="dropdown-toggler cat-filter lg:hidden">
           <button aria-label="Categories Trigger" type="button" class="dropdown__trigger rtl:space-x-reverse space-x-1.5 flex text-sm text-primary" aria-expanded="true" aria-haspopup="true"> 
             <i class="sicon-filter text-xs pointer-events-none"></i>

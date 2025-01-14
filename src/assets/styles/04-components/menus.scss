@@ -1,22 +1,38 @@
 // Mobile Slide Menu
+.mobile-menu {
+  display: block;
+  @apply overflow-hidden;
+}
+
+.sidebar {
+  display: block;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
 @media only screen and (max-width: 1024px) {
-  .filters-opened{
-    .close-filters{
+  .filters-opened {
+    .close-filters {
       display: block !important;
     }
   } 
-  .menu-opened{
-    .btn--close-sm.close-mobile-menu{
+  .menu-opened {
+    .btn--close-sm.close-mobile-menu {
       display: block !important;
     }
   }
-  .mobile-menu {
-      display: none;
-      @apply lg:hidden overflow-hidden;
-  }
-  .mm-ocd__content{
+
+  .mm-ocd__content {
     overflow-y: auto;
   }
+
   .mm-ocd-opened {
     .mobile-menu {
       display: block;
@@ -38,17 +54,17 @@
   }
 
   .mm-spn {
-    ul.main-menu li:before{
+    ul.main-menu li:before {
       @apply w-2 h-2; 
     }
 
-    &.mm-spn--navbar{
+    &.mm-spn--navbar {
       &:after {
         @apply transition-all duration-300 rtl:pr-12 ltr:pl-12 text-start opacity-90 font-bold;
       }
 
-      &.mm-spn--main{
-        &:after{
+      &.mm-spn--main {
+        &:after {
           @apply rtl:pr-3 ltr:pl-3;
         }
       }
@@ -69,11 +85,11 @@
         @apply flex items-center gap-4;
       }
 
-      img{
+      img {
         @apply w-12 h-12 object-cover bg-[#f5f7f9] pointer-events-none;
       }
 
-      a span{
+      a span {
         padding: 0;
       }
 

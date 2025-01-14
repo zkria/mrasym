@@ -1,21 +1,21 @@
 /**
- * Create a magnifier glass for images zooming.
+ * إنشاء عدسة مكبرة لتكبير الصور.
  *
- * @param imgID the id of the image to be zoomed
- * @param zoom the zoom strength
- * @returns void
+ * @param imgID معرف الصورة التي سيتم تكبيرها
+ * @param zoom قوة التكبير
+ * @returns لا شيء
  */
 export function zoom(imgID, zoom) {
-	/*do not create magnifier glass if no image id is passed:*/
+	/* لا تقم بإنشاء العدسة المكبرة إذا لم يتم تمرير معرف الصورة: */
 	if (!imgID) return;
 	var img, glass, w, h, bw;
 	img = document.getElementById(imgID);
-	/*create magnifier glass:*/
+	/* إنشاء العدسة المكبرة: */
 	glass = document.createElement('DIV');
 	glass.setAttribute('class', 'img-magnifier-glass');
-	/*insert magnifier glass:*/
+	/* إدراج العدسة المكبرة: */
 	img.parentElement.insertBefore(glass, img);
-	/*set background properties for the magnifier glass:*/
+	/* تعيين خصائص الخلفية للعدسة المكبرة: */
 	glass.style.backgroundImage = "url('" + img.src + "')";
 	glass.style.backgroundRepeat = 'no-repeat';
 	glass.style.backgroundSize =
@@ -23,51 +23,43 @@ export function zoom(imgID, zoom) {
 	bw = 3;
 	w = glass.offsetWidth / 2;
 	h = glass.offsetHeight / 2;
-	/*execute a function when someone moves the magnifier glass over the image:*/
+	/* تنفيذ دالة عند تحريك العدسة المكبرة فوق الصورة: */
 	glass.addEventListener('mousemove', moveMagnifier);
 	img.addEventListener('mousemove', moveMagnifier);
-	/*and also for touch screens:*/
+	/* وأيضًا لشاشات اللمس: */
 	glass.addEventListener('touchmove', moveMagnifier);
 	img.addEventListener('touchmove', moveMagnifier);
+	
 	function moveMagnifier(e) {
 		var pos, x, y;
-		/*prevent any other actions that may occur when moving over the image*/
+		/* منع أي إجراءات أخرى قد تحدث عند التحريك فوق الصورة */
 		e.preventDefault();
-		/*get the cursor's x and y positions:*/
+		/* الحصول على مواضع x و y للمؤشر: */
 		pos = getCursorPos(e);
 		x = pos.x;
 		y = pos.y;
-		/*prevent the magnifier glass from being positioned outside the image:*/
-		if (x > img.width - w / zoom) {
-			x = img.width - w / zoom;
-		}
-		if (x < w / zoom) {
-			x = w / zoom;
-		}
-		if (y > img.height - h / zoom) {
-			y = img.height - h / zoom;
-		}
-		if (y < h / zoom) {
-			y = h / zoom;
-		}
-		/*set the position of the magnifier glass:*/
+		/* منع العدسة المكبرة من التمركز خارج الصورة: */
+		x = Math.max(Math.min(x, img.width - w / zoom), w / zoom);
+		y = Math.max(Math.min(y, img.height - h / zoom), h / zoom);
+		/* تعيين موضع العدسة المكبرة: */
 		glass.style.left = x - w + 'px';
 		glass.style.top = y - h + 'px';
-		/*display what the magnifier glass "sees":*/
+		/* عرض ما "ترى" العدسة المكبرة: */
 		glass.style.backgroundPosition =
 			'-' + (x * zoom - w + bw) + 'px -' + (y * zoom - h + bw) + 'px';
 	}
+	
 	function getCursorPos(e) {
 		var a,
 			x = 0,
 			y = 0;
 		e = e || window.event;
-		/*get the x and y positions of the image:*/
+		/* الحصول على مواضع x و y للصورة: */
 		a = img.getBoundingClientRect();
-		/*calculate the cursor's x and y coordinates, relative to the image:*/
+		/* حساب إحداثيات x و y للمؤشر، بالنسبة للصورة: */
 		x = e.pageX - a.left;
 		y = e.pageY - a.top;
-		/*consider any page scrolling:*/
+		/* مراعاة أي تمرير للصفحة: */
 		x = x - window.pageXOffset;
 		y = y - window.pageYOffset;
 		return { x: x, y: y };

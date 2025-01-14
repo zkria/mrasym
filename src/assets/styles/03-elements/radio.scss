@@ -1,106 +1,110 @@
+// إعدادات الراديو المخصص
 .custom-radios {
   div {
-    display: inline-block;
+    display: inline-block; // تعيين العرض إلى كتلة مضمنة
   }
 
   input[type="radio"] {
-    display: none;
+    display: none; // إخفاء حقل الإدخال
 
     + label {
-      cursor: pointer;
+      cursor: pointer; // تغيير شكل المؤشر عند التحويم
 
       span {
-        display: inline-block;
-        width: 40px;
-        height: 40px;
-        // margin: -1px 4px 0 0;
-        vertical-align: middle;
-        cursor: pointer;
-        border-radius: 6px;
-        border: 2px solid #ffffff;
-        background-repeat: no-repeat;
-        background-position: center;
-        text-align: center;
-        line-height: 40px;
-        box-shadow: 0 1px 3px 0 rgba(#000, 0.075);
+        display: inline-block; // تعيين العرض إلى كتلة مضمنة
+        width: 40px; // تعيين العرض
+        height: 40px; // تعيين الارتفاع
+        vertical-align: middle; // محاذاة عمودية في المنتصف
+        cursor: pointer; // تغيير شكل المؤشر عند التحويم
+        border-radius: 6px; // تعيين الزوايا إلى دائرية
+        border: 2px solid #ffffff; // تعيين لون الحدود إلى الأبيض
+        background-repeat: no-repeat; // عدم تكرار الخلفية
+        background-position: center; // تعيين موضع الخلفية إلى المركز
+        text-align: center; // محاذاة النص إلى المركز
+        line-height: 40px; // تعيين ارتفاع السطر
+        box-shadow: 0 1px 3px 0 rgba(#000, 0.075); // إضافة ظل
 
         &::after {
-          opacity: 0;
-          display: inline-block;
-          transform: scale(0.4);
-          transition: all 0.3s ease;
-          font-family: "sallaicons" !important;
-          // speak: never;
-          font-style: normal;
-          font-weight: normal;
-          font-variant: normal;
-          text-transform: none;
-          line-height: 1;
-          -webkit-font-smoothing: antialiased;
-          content: "\ea9d";
-          color: #fff;
-          font-size: 20px;
-          font-weight: bold;
+          opacity: 0; // تعيين الشفافية إلى 0
+          display: inline-block; // تعيين العرض إلى كتلة مضمنة
+          transform: scale(0.4); // تغيير المقياس
+          transition: all 0.3s ease; // تعيين تأثير الانتقال
+          font-family: "sallaicons" !important; // تعيين عائلة الخط
+          font-style: normal; // تعيين نمط الخط إلى عادي
+          font-weight: normal; // تعيين وزن الخط إلى عادي
+          font-variant: normal; // تعيين نوع الخط إلى عادي
+          text-transform: none; // عدم تحويل النص
+          line-height: 1; // تعيين ارتفاع السطر
+          -webkit-font-smoothing: antialiased; // تحسين عرض الخط في WebKit
+          content: "\ea9d"; // تعيين محتوى الأيقونة
+          color: #fff; // تعيين لون الأيقونة إلى الأبيض
+          font-size: 20px; // تعيين حجم الخط
+          font-weight: bold; // تعيين وزن الخط إلى ثقيل
         }
       }
     }
 
+    // عند تحديد الراديو
     &:checked + label span:after {
-      opacity: 1;
-      transform: scale(1);
+      opacity: 1; // تعيين الشفافية إلى 1
+      transform: scale(1); // إعادة تعيين المقياس
     }
 
+    // عند تعطيل الراديو
     &:disabled + label {
-      opacity: .45;
+      opacity: .45; // تعيين الشفافية إلى 0.45
     }
   }
 
+  // إعدادات الراديو المستدير
   &--rounded {
     input[type="radio"] {
       + label {
         span {
-          border-radius: 50%;
-          width: 30px;
-          height: 30px;
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-          background-color: #ddd;
+          border-radius: 50%; // تعيين الزوايا إلى دائرية
+          width: 30px; // تعيين العرض
+          height: 30px; // تعيين الارتفاع
+          display: inline-flex; // تعيين العرض إلى مرن
+          justify-content: center; // محاذاة المحتوى إلى المركز
+          align-items: center; // محاذاة العناصر إلى المركز
+          background-color: #ddd; // تعيين لون الخلفية
 
           &::after {
-            content: "";
-            width: 14px;
-            height: 14px;
-            background-color: #f1f1f1;
-            border-radius: 50%;
+            content: ""; // محتوى فارغ
+            width: 14px; // تعيين العرض
+            height: 14px; // تعيين الارتفاع
+            background-color: #f1f1f1; // تعيين لون الخلفية
+            border-radius: 50%; // تعيين الزوايا إلى دائرية
           }
         }
       }
     }
   }
 
+  // إعدادات الراديو مع الأيقونات
   &--icons {
-    font-size: 40px;
-    line-height: 42px;
+    font-size: 40px; // تعيين حجم الخط
+    line-height: 42px; // تعيين ارتفاع السطر
 
     input[type="radio"] {
       + label {
-        transition: transform 0.2s, color 0.3s;
-        filter: grayscale(1);
+        transition: transform 0.2s, color 0.3s; // تعيين تأثير الانتقال
+        filter: grayscale(1); // تعيين الفلتر إلى تدرج الرمادي
 
-
+        // عند التحويم
         &:hover {
-          filter: grayscale(0);
+          filter: grayscale(0); // إزالة تدرج الرمادي
         }
       }
 
+      // عند تحديد الراديو
       &:checked + label {
-        filter: grayscale(0);
-        transform: scale(1.25) translateY(-3px);
+        filter: grayscale(0); // إزالة تدرج الرمادي
+        transform: scale(1.25) translateY(-3px); // تغيير المقياس وتحريك العنصر لأعلى
 
         .rate-title {
-          font-weight: bold;
-          color: #2b2d34;
+          font-weight: bold; // تعيين وزن الخط إلى ثقيل
+          color: #2b2d34; // تعيين لون النص
         }
       }
     }

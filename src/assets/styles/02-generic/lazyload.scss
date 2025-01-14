@@ -1,18 +1,18 @@
+// تأثير الانتقال للشفافية عند تحميل الشرائح بشكل كسول
+.swiper-lazy {
+  @apply transition-opacity duration-500 opacity-0; // تعيين تأثير الانتقال للشفافية مع مدة 500 مللي ثانية
+  @apply absolute top-0 h-full w-full bg-cover bg-center; // تعيين الخصائص المطلقة لتغطية الخلفية
 
-// sliders lazyloading opacity transition
-.swiper-lazy{
-  @apply transition-opacity duration-500 opacity-0;
-  @apply absolute top-0 h-full w-full bg-cover bg-center;
-
-  &.swiper-lazy-loaded{
-    @apply opacity-100;
+  &.swiper-lazy-loaded {
+    @apply opacity-100; // تعيين الشفافية إلى 100% عند تحميل الصورة
   }
 }
 
-.lazy__bg{
-  @apply absolute top-0 left-0 w-full h-full bg-cover bg-center transition-opacity duration-500 opacity-0;
+// تأثير الخلفية عند التحميل بشكل كسول
+.lazy__bg {
+  @apply absolute top-0 left-0 w-full h-full bg-cover bg-center transition-opacity duration-500 opacity-0; // تعيين الخصائص المطلقة لتغطية الخلفية مع تأثير الانتقال
 
-  &.loaded{
-    @apply opacity-100;
+  &.loaded {
+    @apply opacity-100; // تعيين الشفافية إلى 100% عند تحميل الخلفية
   }
 }

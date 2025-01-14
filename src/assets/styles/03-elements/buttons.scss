@@ -1,5 +1,5 @@
 /*
-* Buttons
+* إعدادات الأزرار
 */
 salla-button {
   &[width="wide"] {
@@ -7,7 +7,7 @@ salla-button {
   }
 
   &.copied {
-    .s-button-text{
+    .s-button-text {
       @apply text-green-600;
     }
 
@@ -72,7 +72,7 @@ salla-button {
   &--wishlist {
     @apply m-0 rtl:mr-0.5 ltr:ml-0.5;
 
-    &:hover{
+    &:hover {
       @apply text-gray-600;
     }
 
@@ -90,7 +90,7 @@ salla-button {
   }
 
   &--icon {
-    @apply flex items-center justify-center transition bg-white text-gray-500 border-gray-200  hover:border-gray-200 hover:text-gray-600 mx-1 border rounded-full w-10 h-10 font-medium flex-shrink-0;
+    @apply flex items-center justify-center transition bg-white text-gray-500 border-gray-200 hover:border-gray-200 hover:text-gray-600 mx-1 border rounded-full w-10 h-10 font-medium flex-shrink-0;
 
     i {
       @apply pointer-events-none;
@@ -117,7 +117,7 @@ salla-button {
     @apply w-full bg-gray-100 py-2.5 rtl:xs:pr-7 ltr:xs:pl-7 rtl:xs:pl-5 ltr:xs:pr-5 rtl:xs:pl-5 ltr:xs:pr-5 rounded-md flex items-center text-gray-700 justify-center text-sm;
   }
 
-  /* Disabled state */
+  /* حالة التعطيل */
   &.btn:disabled {
     @apply text-gray-300 bg-transparent hover:bg-transparent shadow-sm border border-gray-200 cursor-default;
   }
@@ -128,7 +128,7 @@ salla-button {
     }
   }
 
-  /* Button Variants */
+  /* أنواع الأزرار */
   &--danger {
     @apply bg-red-400 text-white hover:opacity-80;
   }
@@ -159,7 +159,7 @@ salla-button {
 }
 
 /*
-* Coupon Button
+* زر القسيمة
 */
 button.btn--coupon {
   @apply absolute top-0 rtl:left-0 ltr:right-0 rtl:rounded-r-none ltr:rounded-l-none shrink-0 h-[40px];
@@ -171,7 +171,7 @@ button.btn--coupon {
 
 salla-button {
   &.has-not-coupon button .icon,
-  &.has-coupon button .coupon-text{
+  &.has-coupon button .coupon-text {
     @apply hidden;
   }
 
@@ -181,7 +181,7 @@ salla-button {
 }
 
 /*
-* Links ---------------------------------------------------
+* الروابط ---------------------------------------------------
 */
 .link {
   &--primary {

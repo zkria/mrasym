@@ -1,25 +1,25 @@
 {#
-| Variable                   | Type        | Description                                                          |
-|----------------------------|-------------|----------------------------------------------------------------------|
-| page                       | object      |                                                                      |
-| page.title                 | string      | *could be html                                                       |
-| page.slug                  | string      | ex: "cat.show"                                                       |
-| category                   | ?Category   |                                                                      |
-| category.name              | string      |                                                                      |
-| category.url               | string      |                                                                      |
-| category.sub_categories    | ?Category[] |                                                                      |
-| category.image             | ?string     |                                                                      |
-| filters                     | bool        | is filters allowed here or not                                        |
-| sort_options[]             | SortList[]  |                                                                      |
+| المتغير                   | النوع        | الوصف                                                          |
+|----------------------------|-------------|----------------------------------------------------------------|
+| page                       | object      | كائن الصفحة                                                  |
+| page.title                 | string      | *يمكن أن يكون HTML                                           |
+| page.slug                  | string      | مثال: "cat.show"                                            |
+| category                   | ?Category   | كائن الفئة                                                  |
+| category.name              | string      | اسم الفئة                                                  |
+| category.url               | string      | رابط الفئة                                                  |
+| category.sub_categories    | ?Category[] | قائمة الفئات الفرعية                                       |
+| category.image             | ?string     | رابط صورة الفئة                                            |
+| filters                     | bool        | هل الفلاتر مسموح بها هنا أم لا                              |
+| sort_options[]             | SortList[]  | قائمة خيارات الترتيب                                       |
 | sort_options[].id          | string      | ourSuggest, bestSell, topRated, priceFromTopToLow, priceFromLowToTop |
-| sort_options[].name        | string      |                                                                      |
-| sort_options[].is_selected | bool        | Is current page sorted by it                                         |
-| search_query               | ?string     |                                                                      |
+| sort_options[].name        | string      | اسم خيار الترتيب                                          |
+| sort_options[].is_selected | bool        | هل الصفحة الحالية مرتبة حسب هذا الخيار                     |
+| search_query               | ?string     | استعلام البحث                                             |
 #}
 {% extends "layouts.master" %}
 {% block content %}
     <div class="container px-2.5 ms:px-5 mb-10">
-        {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
+        {# إضافة حاوية فتات الخبز في الصفحات لإنشاء مساحة في حالة إيقاف تشغيل فتات الخبز #}
         <nav class="breadcrumbs w-full py-5">
             <salla-breadcrumb></salla-breadcrumb>
         </nav>
@@ -45,7 +45,7 @@
                                        for="product-filter">{{ trans('pages.categories.sorting') }}</label>
                                 <select id="product-filter" class="form-input pt-0 pb-1 rtl:md:pl-10 ltr:md:pr-10">
                                     {% for sort in sort_options %}
-                                        <option value="{{ sort.id }}" {{ sort.is_selected?'selected':'' }}>{{ sort.name }}</option>
+                                        <option value="{{ sort.id }}" {{ sort.is_selected ? 'selected' : '' }}>{{ sort.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -59,14 +59,13 @@
                     <salla-products-list class="flex-1 min-w-0 overflow-auto "
                         source="{{ page.slug }}"
                         source-value="{{ page.id }}"
-                        {{ filters ?'filters-Results':'' }}>
-					          </salla-products-list>
+                        {{ filters ? 'filters-Results' : '' }}>
+                    </salla-products-list>
                 </div>
                 {% hook 'product:index.items.end' %}
             </div>
         </div>
     </div>
-
 
     {% if store.settings.category.testimonial_enabled %}
         {% component 'home.testimonials' %}

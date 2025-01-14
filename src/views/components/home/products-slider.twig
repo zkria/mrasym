@@ -1,10 +1,10 @@
 {#
-| Variable        | Type      | Description                                                      |
-|-----------------|-----------|------------------------------------------------------------------|
-| products        | Product[] | List of products                                                 |
-| title           | string    | Section title                                                    |
-| display_all_url | ?string   | If it's existed, mean should show load more link to this url     |
-| position        | Int       | Sorting number start from zero                                   |
+| المتغير        | النوع      | الوصف                                                               |
+|-----------------|-----------|---------------------------------------------------------------------|
+| products        | Product[] | قائمة المنتجات                                                      |
+| title           | string    | عنوان القسم                                                        |
+| display_all_url | ?string   | إذا كان موجودًا، يعني أنه يجب عرض رابط "تحميل المزيد" إلى هذا الرابط |
+| position        | int       | رقم ترتيب يبدأ من الصفر                                           |
 #}
 
 <section id="best-offers-{{ position }}-slider" class="s-block s-block--best-offers container overflow-hidden">
@@ -14,9 +14,9 @@
             limit="{{ limit }}"
             autoplay
             source-value="[{{ products|map((product) => product.id)|join(',') }}]"
-            display-all-url="{{display_all_url}}"
-            block-title="{{ title }}"
-            block-subTitle="{{ sub_title|raw }}"
+            display-all-url="{{ display_all_url }}" <!-- رابط "عرض الكل" -->
+            block-title="{{ title }}" <!-- عنوان القسم -->
+            block-subTitle="{{ sub_title|raw }}" <!-- عنوان فرعي (إذا كان موجودًا) -->
             slider-id="slider-with-bg-{{ position }}"
     ></salla-products-slider>
   {% endif %}

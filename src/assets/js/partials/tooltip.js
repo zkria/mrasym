@@ -2,29 +2,29 @@ export default function tootTip() {
   const tooltipToggle = document.querySelectorAll('.tooltip-toggle--clickable'),
     closeTooltip = document.querySelectorAll('.close-tooltip');
 
-  // Show the tooltip if the type is clickable
+  // إظهار التلميح إذا كان النوع قابل للنقر
   if (tooltipToggle.length) {
     tooltipToggle.forEach(element => {
       element.addEventListener('click', (e) => {
-        e.stopPropagation();
-        element.classList.add('visible')
+        e.stopPropagation(); // منع الحدث من الانتقال إلى العناصر الأب
+        element.classList.add('visible'); // إضافة فئة "مرئي" للتلميح
       });
     });
 
-    // Hide the tooltip
+    // إخفاء التلميح
     closeTooltip.forEach(element => {
       element.addEventListener('click', (e) => {
-        e.stopPropagation();
-        element.parentElement.parentElement.classList.remove('visible')
-      })
+        e.stopPropagation(); // منع الحدث من الانتقال إلى العناصر الأب
+        element.parentElement.parentElement.classList.remove('visible'); // إزالة فئة "مرئي" من التلميح
+      });
     });
 
-    // Hide the tooltip on window click
+    // إخفاء التلميح عند النقر في أي مكان في النافذة
     window.addEventListener('click', () => {
       tooltipToggle.forEach(element => {
-        element.classList.remove('visible')
+        element.classList.remove('visible'); // إزالة فئة "مرئي" من جميع التلميحات
       });
-    })
+    });
   }
 };
 

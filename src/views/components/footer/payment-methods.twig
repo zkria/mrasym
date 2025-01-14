@@ -1,0 +1,30 @@
+{#
+| المتغير            | النوع  | الوصف                                                       |
+|---------------------|-------|------------------------------------------------------------|
+| payment_methods      | array | قائمة طرق الدفع النشطة مثل: [mada, credit_card, bank (تحويل بنكي), cod (الدفع عند الاستلام), ...] |
+#}
+<ul class="flex justify-center items-stretch flex-wrap rtl:space-x-reverse gap-2">
+
+    <!-- شهادة صنع في السعودية -->
+    {% if store.settings.made_in_ksa %}
+        <li class="w-12 h-8 bg-white rounded flex items-center p-1">
+            <img class="lazy object-contain max-h-full" width="100%" height="100%" decoding="async" loading="lazy" src="{{ 'images/made-in-ksa.svg' | cdn }}" alt="شهادة صنع في السعودية">
+        </li>
+    {% endif %}
+
+    <!-- عرض طرق الدفع -->
+    {% for method in payment_methods %}
+        <li class="w-12 h-8 bg-white rounded flex items-center p-1">
+            <img class="lazy object-contain max-h-full" width="100%" height="100%" src="{{ 'images/s-empty.png' | asset }}" data-src="{{ ('images/payment/' ~ method ~ '_mini.png') | cdn }}" alt="{{ method }}">
+        </li>
+    {% endfor %}
+
+    <!-- شهادة الأعمال - SBC -->
+    {% if store.settings.certificate %}
+        <li class="w-12 bg-white rounded p-1 flex-center">
+            <a target="_blank" href="https://eauthenticate.saudibusiness.gov.sa/certificate-details/{{ store.settings.certificate.id }}" alt="{{ store.settings.certificate.id }}">
+                <img width="100%" height="100%" src="{{ 'images/s-empty.png' | asset }}" data-src="{{ 'images/sbc.png' | cdn }}" class="lazy rounded-sm hover:opacity-80 transition-opacity h-6" alt="شهادة الأعمال">
+            </a>
+        </li>
+    {% endif %}
+</ul>

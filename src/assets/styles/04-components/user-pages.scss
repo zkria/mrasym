@@ -1,64 +1,64 @@
 .single-order-header-item{
   @media (max-width: 768px) {
-    @apply flex justify-between items-center;
+    @apply flex justify-between items-center; // تعيين أنماط عنصر رأس الطلب الفردي في الشاشات الصغيرة
   }
 }
 
-/* tags */
+/* العلامات */
 .tag {
-  @apply px-3 pt-0.5 pb-1 inline-block text-sm rounded-2xl border border-gray-200;
+  @apply px-3 pt-0.5 pb-1 inline-block text-sm rounded-2xl border border-gray-200; // تعيين أنماط العلامة
 
   &--primary {
-    @apply text-primary border-primary;
+    @apply text-primary border-primary; // تعيين أنماط العلامة الأساسية
   }
 }
 
-/* Profile Header section */
+/* قسم رأس الملف الشخصي */
 .profile-header {
-  @apply relative lg:h-48 overflow-hidden;
+  @apply relative lg:h-48 overflow-hidden; // تعيين أنماط رأس الملف الشخصي
 
   .breadcrumbs {
     @screen lg {
-      @apply mt-2.5;
+      @apply mt-2.5; // تعيين الهوامش العلوية في الشاشات الكبيرة
     }
 
     a {
-      @apply text-primary-reverse hover:opacity-80;
+      @apply text-primary-reverse hover:opacity-80; // تعيين أنماط الروابط
     }
 
     span {
-      @apply text-primary-reverse opacity-80;
+      @apply text-primary-reverse opacity-80; // تعيين أنماط النص
     }
 
     .arrow {
-      @apply text-primary-reverse opacity-70;
+      @apply text-primary-reverse opacity-70; // تعيين أنماط السهم
     }
   }
 }
 
-
 .rating-header {
-  @apply relative from-primary to-primary-d p-5 text-primary-reverse rounded-md;
+  @apply relative from-primary to-primary-d p-5 text-primary-reverse rounded-md; // تعيين أنماط رأس التقييم
 }
 
-/* Profile additional fields */
+/* حقول إضافية في الملف الشخصي */
 .form--user-profile{
   .s-file-upload-wrapper{
-    min-height: 120px;
+    min-height: 120px; // تعيين الحد الأدنى للارتفاع
+
     .filepond--list-scroller{
-      overflow-y: inherit !important;
+      overflow-y: inherit !important; // تعيين التمرير العمودي
     }
     .filepond--drop-label {
-      min-height: 120px !important;
-      @apply bg-white cursor-pointer border-dashed rounded-md border border-gray-200;
+      min-height: 120px !important; // تعيين الحد الأدنى للارتفاع
+      @apply bg-white cursor-pointer border-dashed rounded-md border border-gray-200; // تعيين أنماط حقل تحميل الملفات
     }
     .profile-filepond-placholder{
-      @apply flex flex-col justify-center items-center;
+      @apply flex flex-col justify-center items-center; // تعيين أنماط عنصر النمط
       &-icon {
-        @apply mb-1;
+        @apply mb-1; // تعيين الهوامش السفلية
         i {
-          color: #7c8082;
-          @apply text-xl;
+          color: #7c8082; // تعيين لون الأيقونة
+          @apply text-xl; // تعيين حجم الأيقونة
         }
       }
     }
@@ -67,18 +67,18 @@
 }
 
 /* 
-* thank you page 
+* صفحة الشكر 
 */
 .thankyou-block{
-  @apply duration-500 hover:shadow-default flex-1 bg-white p-8 rounded-md mb-6 md:mb-8 flex flex-col items-center justify-center;
+  @apply duration-500 hover:shadow-default flex-1 bg-white p-8 rounded-md mb-6 md:mb-8 flex flex-col items-center justify-center; // تعيين أنماط كتلة الشكر
 
   &.sent{
-    @apply text-green-500 font-bold;
+    @apply text-green-500 font-bold; // تعيين أنماط عند الإرسال
 
     &:before{
-      @apply w-16 h-16 bg-green-100 text-green-500 flex items-center justify-center text-2xl rounded-full mb-2;
-      content: "\ea9d";
-      font-family: 'sallaicons';
+      @apply w-16 h-16 bg-green-100 text-green-500 flex items-center justify-center text-2xl rounded-full mb-2; // تعيين أنماط الأيقونة قبل النص
+      content: "\ea9d"; // تعيين محتوى الأيقونة
+      font-family: 'sallaicons'; // تعيين عائلة الخط
     }
   }
 }

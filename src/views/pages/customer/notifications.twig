@@ -1,17 +1,17 @@
 {#
-| Variable                  | Type                      | Description |
-|---------------------------|---------------------------|-------------|
-| page                      | object                    |             |
-| page.title                | string                    |             |
-| page.slug                 | string                    |             |
-| notifications             | Notification[] *Paginator |             |
-| notifications.next_page   | ?string                   |             |
-| notifications.count       | int                       |             |
-| notifications[].is_new    | Bool                      |             |
-| notifications[].url       | string                    |             |
-| notifications[].sub_title | string                    |             |
-| notifications[].title     | string                    |             |
-| notifications[].date      | string                    |             |
+| المتغير                  | النوع                      | الوصف                     |
+|---------------------------|---------------------------|---------------------------|
+| page                      | object                    | كائن الصفحة              |
+| page.title                | string                    | عنوان الصفحة             |
+| page.slug                 | string                    | رابط الصفحة              |
+| notifications             | Notification[] *Paginator | قائمة الإشعارات         |
+| notifications.next_page   | ?string                   | رابط الصفحة التالية      |
+| notifications.count       | int                       | عدد الإشعارات            |
+| notifications[].is_new    | bool                      | هل الإشعار جديد؟        |
+| notifications[].url       | string                    | رابط الإشعار             |
+| notifications[].sub_title | string                    | العنوان الفرعي للإشعار   |
+| notifications[].title     | string                    | عنوان الإشعار            |
+| notifications[].date      | string                    | تاريخ الإشعار            |
 #}
 {% extends "layouts.customer" %}
 {% block inner_content %}

@@ -1,20 +1,20 @@
 {#
-| Variable          | Type   | Description                                                      |
-|-------------------|--------|------------------------------------------------------------------|
-| title             | string | Section title                                                    |
-| items[]           | array  | List of images                                                   |
-| items[].url       | Bool   | Should set overlay on the background or not                      |
-| items[].link_type | string | category,product,offers,page,external_link,brand                 |
-| items[].image.url | string |                                                                  |
-| items[].image.alt | string |                                                                  |
-| items[].text      | string | Visible title for the photo                                      |
-| position          | Int    | Sorting number start from zero                                   |
+| المتغير          | النوع   | الوصف                                                               |
+|-------------------|--------|---------------------------------------------------------------------|
+| title             | string | عنوان القسم                                                        |
+| items[]           | array  | قائمة الصور                                                        |
+| items[].url       | string | رابط الصورة                                                        |
+| items[].link_type | string | نوع الرابط (category, product, offers, page, external_link, brand) |
+| items[].image.url | string | رابط صورة العنصر                                                  |
+| items[].image.alt | string | نص بديل للصورة                                                    |
+| items[].text      | string | العنوان المرئي للصورة                                            |
+| position          | int    | رقم ترتيب يبدأ من الصفر                                           |
 #}
 <section class="s-block s-block--banners container">
     {% if title %}
         <div class="s-block__title">
             <div class="right-side">
-                <h2>{{ title }}</h2>
+                <h2>{{ title }}</h2> <!-- عنوان القسم -->
             </div>
         </div>
     {% endif %}
@@ -22,9 +22,9 @@
     <div class="grid {{ items|length <= 3 ? 'one-row md:grid-cols-' ~ items|length : 'md:grid-cols-3 two-row' }} grid-flow-row gap-3 sm:gap-8">
         {% for item in items %}
             <a class="banner-entry square-photos {{ item.text ? 'has-overlay with-hover' : '' }}" href="{{ item.url }}" {% if item.link_type == 'external_link' %}target="_blank"{% endif %}>
-                <div class="lazy__bg lazy" data-bg="{{ item.image.url }}"></div>
+                <div class="lazy__bg lazy" data-bg="{{ item.image.url }}"></div> <!-- صورة الخلفية -->
                 {% if item.text %}
-                        <h3 class="text-with-border"><span>{{ item.text }}</span></h3> 
+                        <h3 class="text-with-border"><span>{{ item.text }}</span></h3> <!-- عنوان الصورة -->
                 {% endif %}
             </a>
         {% endfor %}

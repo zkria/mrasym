@@ -1,22 +1,22 @@
 @keyframes fadeInDown {
   from {
-    transform: translate3d(0, -15px, 0)
+    transform: translate3d(0, -15px, 0);
   }
 
   to {
     transform: translate3d(0, 0, 0);
-    opacity: 1
+    opacity: 1;
   }
 }
 
 @-webkit-keyframes fadeInDown {
   from {
-    transform: translate3d(0, -15px, 0)
+    transform: translate3d(0, -15px, 0);
   }
 
   to {
     transform: translate3d(0, 0, 0);
-    opacity: 1
+    opacity: 1;
   }
 }
 
@@ -26,7 +26,7 @@
 }
 
 .animatedfadeInDown {
-  opacity: 0
+  opacity: 0;
 }
 
 .fadeInDown {
@@ -35,7 +35,7 @@
   -webkit-animation-name: fadeInDown;
 }
 
-// toRightFromLeft
+// تأثير الحركة من اليمين إلى اليسار
 @keyframes toRightFromLeft {
   49% {
     transform: translate(100%);
@@ -49,7 +49,7 @@
   }
 }
 
-// toRightFromLeft
+// تأثير الحركة من الأسفل إلى الأعلى
 @keyframes toTopFromBottom {
   0% {
     opacity: 0;
@@ -69,7 +69,6 @@
     opacity: 0;
   }
 }
-
 
 @keyframes rubberBand {
   from {

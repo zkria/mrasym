@@ -1,11 +1,11 @@
 {#
-| Variable        | Type       | Description                                                      |
-|-----------------|------------|------------------------------------------------------------------|
-| display_all_url | ?string    | If it's existed, mean should show load more link to this url     |
-| title           | string     |                                                                  |
-| products        | Products[] |                                                                  |
-| position        | Int        | Sorting number start from zero                                   |
-| limit           | Int        | Number of products to be shown
+| المتغير        | النوع       | الوصف                                                               |
+|-----------------|------------|---------------------------------------------------------------------|
+| display_all_url | ?string    | إذا كان موجودًا، يعني أنه يجب عرض رابط "تحميل المزيد" إلى هذا الرابط |
+| title           | string     | عنوان القسم                                                        |
+| products        | Products[] | قائمة المنتجات                                                    |
+| position        | Int        | رقم ترتيب يبدأ من الصفر                                           |
+| limit           | Int        | عدد المنتجات التي سيتم عرضها                                       |
 #}
 {% set is_vertical = theme.settings.get('vertical_fixed_products', true) %}
 <section class="s-block container">
@@ -25,9 +25,8 @@
       source="selected"
       limit="{{ limit }}"
       source-value="[{{ products|map((product) => product.id)|join(',') }}]"
-      class="{{is_vertical ? 'vertical-products' : 'horizontal-products'}}"
-      {{is_vertical ? '' : 'horizontal-cards'}}
-      >
+      class="{{ is_vertical ? 'vertical-products' : 'horizontal-products' }}"
+      {{ is_vertical ? '' : 'horizontal-cards' }}>
     </salla-products-list>
 </section>
 

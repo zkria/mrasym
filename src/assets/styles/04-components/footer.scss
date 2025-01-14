@@ -1,49 +1,50 @@
-
+// إعدادات تذييل المتجر
 .store-footer {
-  @apply relative bg-darker text-white mt-8 sm:mt-16;
+  @apply relative bg-darker text-white mt-8 sm:mt-16; // تعيين أنماط تذييل المتجر
 
-  a{
-    @apply transition-opacity hover:opacity-75;
+  a {
+    @apply transition-opacity hover:opacity-75; // تعيين تأثير الانتقال على الروابط
   }
 
-  &__inner{
-    @apply bg-dark py-8 lg:py-16 border-b border-dashed border-b-white/10;
+  &__inner {
+    @apply bg-dark py-8 lg:py-16 border-b border-dashed border-b-white/10; // تعيين أنماط الجزء الداخلي من التذييل
   }  
 
-  h3{
-    @apply text-lg font-bold mb-3 lg:mb-5;
+  h3 {
+    @apply text-lg font-bold mb-3 lg:mb-5; // تعيين أنماط العناوين
   }
 
   .social-link {
-    @apply border rounded-full w-8 h-8 justify-center flex items-center hover:opacity-75 transition duration-300 text-sm
+    @apply border rounded-full w-8 h-8 justify-center flex items-center hover:opacity-75 transition duration-300 text-sm; // تعيين أنماط روابط الشبكات الاجتماعية
   }
 
-  .contact-social{
-    @apply mt-5 pt-5 border-t border-white/10;
+  .contact-social {
+    @apply mt-5 pt-5 border-t border-white/10; // تعيين أنماط قسم التواصل الاجتماعي
 
     ul {
-      @apply mb-0;
+      @apply mb-0; // إزالة الهوامش السفلية للقائمة
     }
   }
 
+  // إعدادات الوضع الفاتح
   .footer-is-light & {
-    @apply bg-gray-50 text-gray-700;
+    @apply bg-gray-50 text-gray-700; // تعيين أنماط الوضع الفاتح
 
     .store-footer__inner {
-      @apply bg-gray-100 border-b-gray-200;
+      @apply bg-gray-100 border-b-gray-200; // تعيين أنماط الجزء الداخلي في الوضع الفاتح
     }
 
     .social-link {
-      @apply border-gray-300;
+      @apply border-gray-300; // تعيين لون الحدود لروابط الشبكات الاجتماعية
     }
 
-    .contact-social{
-      @apply border-gray-100;
+    .contact-social {
+      @apply border-gray-100; // تعيين لون الحدود لقسم التواصل الاجتماعي
     }
   }
 }
 
-
-.copyright-text p{
-  @apply text-gray-700;
+// إعدادات نص حقوق النشر
+.copyright-text p {
+  @apply text-gray-700; // تعيين لون النص لحقوق النشر
 }

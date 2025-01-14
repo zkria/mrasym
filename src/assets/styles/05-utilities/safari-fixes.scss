@@ -1,12 +1,11 @@
-
-@media not all and (min-resolution:.001dpcm){ 
-  @supports (-webkit-appearance:none) {
-    // [type='checkbox'], [type='radio']{
-    //   @apply w-5;
+@media not all and (min-resolution: .001dpcm) { 
+  @supports (-webkit-appearance: none) {
+    // [type='checkbox'], [type='radio'] {
+    //   @apply w-5; // تعيين عرض عناصر الاختيار
     // }
 
-    .full-banner-entry{
-      background-attachment: initial;
+    .full-banner-entry {
+      background-attachment: initial; // تعيين خاصية الخلفية للعنصر
     }
   }
 }

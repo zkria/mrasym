@@ -83,52 +83,51 @@ Theme Raed will be installed as the default theme when you install Twilight. We'
 ```shell
 +---scr
     +---assets
-    |   +---images      
-    |   +---js      
-    |   +---styles         
+    |   +---images      // يحتوي على الصور المستخدمة في الثيم
+    |   +---js         // يحتوي على ملفات JavaScript
+    |   +---styles      // يحتوي على ملفات CSS
     +---locales
-    |       ar.json
-    |       en.json
+    |       ar.json     // ملفات الترجمة للغة العربية
+    |       en.json     // ملفات الترجمة للغة الإنجليزية
     +---views
-        +---components
-        |   +---footer
-        |   +---header
-        |   +---home
-        |   +---product
-        |   comments.twig
-        +---layouts
-        |       master.twig
-        +---pages
-            |   cart.twig
-            |   index.twig
-            |   loyalty.twig
-            |   page-single.twig
-            |   thank-you.twig
+        +---components   // مكونات واجهة المستخدم القابلة لإعادة الاستخدام
+        |   +---footer   // مكون الفوتر
+        |   +---header   // مكون الهيدر
+        |   +---home     // مكونات الصفحة الرئيسية
+        |   +---product   // مكونات المنتجات
+        |   comments.twig // مكون التعليقات
+        +---layouts      // تخطيطات الصفحات
+        |       master.twig // التخطيط الرئيسي
+        +---pages        // الصفحات المختلفة
+            |   cart.twig          // صفحة السلة
+            |   index.twig         // الصفحة الرئيسية
+            |   loyalty.twig       // صفحة الولاء
+            |   page-single.twig    // صفحة مفردة
+            |   thank-you.twig      // صفحة الشكر
             +---blog
-            |       index.twig
-            |       single.twig 
+            |       index.twig      // صفحة المدونة
+            |       single.twig     // صفحة المدونة المفردة
             +---brands
-            |       index.twig
-            |       single.twig 
+            |       index.twig      // صفحة العلامات التجارية
+            |       single.twig     // صفحة العلامة التجارية المفردة
             +---customer
-               |   notifications.twig
-               |   profile.twig
-               |   wishlist.twig
+               |   notifications.twig // صفحة الإشعارات
+               |   profile.twig      // صفحة الملف الشخصي
+               |   wishlist.twig     // صفحة قائمة الرغبات
                +---orders
-               |      index.twig
-               |      single.twig
+               |      index.twig      // صفحة الطلبات
+               |      single.twig     // صفحة الطلب المفرد
             +---partials
-                |   single-comment.twig
+                |   single-comment.twig // جزء التعليق المفرد
                 +---product
-                  |   card-full-image.twig
-                  |   card-mini.twig
-                  |   card.twig
-                  |   options.twig
-                  |   slider.twig
+                  |   card-full-image.twig // بطاقة المنتج بصورة كاملة
+                  |   card-mini.twig      // بطاقة المنتج المصغرة
+                  |   card.twig           // بطاقة المنتج
+                  |   options.twig        // خيارات المنتج
+                  |   slider.twig         // شريط التمرير للمنتجات
             +---product
-            |       index.twig
-            |       single.twig
-```
+            |       index.twig          // صفحة المنتجات
+            |       single.twig         // صفحة المنتج المفرد
 
 ### Theme Preview  
 Usin [Salla CLI](https://github.com/SallaApp/Salla-CLI), the developer can preview the theme as they are being developed.  The `preview` command helps the developer to get a look at the theme in live mode.

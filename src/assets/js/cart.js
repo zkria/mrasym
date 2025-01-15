@@ -135,8 +135,20 @@ class Cart extends BasePage {
             offerElement.innerText = item.offer.names;
             regularPriceElement.innerText = salla.money(item.product_price);
         }
+
+        // تحسين شكل بطاقة المنتج
+        this.styleCartItem(cartItem, item);
     }
 
+    styleCartItem(cartItem, item) {
+        // إضافة تنسيقات إضافية لبطاقة المنتج
+        cartItem.classList.add('p-4', 'border', 'rounded-lg', 'shadow-md', 'mb-4', 'bg-white');
+        cartItem.querySelector('.item-image').classList.add('w-16', 'h-16', 'rounded-full', 'object-cover', 'mb-2');
+        cartItem.querySelector('.item-title').classList.add('font-bold', 'text-lg', 'mb-1');
+        cartItem.querySelector('.item-price').classList.add('text-green-500', 'font-semibold');
+        cartItem.querySelector('.item-regular-price').classList.add('line-through', 'text-gray-500', 'text-sm');
+        cartItem.querySelector('.offer-name').classList.add('text-red-500', 'font-semibold', 'text-sm');
+    }
 
     //=================== Coupon Method ========================//
     initiateCoupon() {

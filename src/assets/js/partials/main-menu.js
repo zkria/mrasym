@@ -15,7 +15,7 @@ class NavigationMenu extends HTMLElement {
     }
 
     /** 
-    * Check if the menu has children
+    * التحقق مما إذا كانت القائمة تحتوي على عناصر فرعية
     * @param {Object} menu
     * @returns {Boolean}
     */
@@ -24,7 +24,7 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Check if the menu has products
+    * التحقق مما إذا كانت القائمة تحتوي على منتجات
     * @param {Object} menu
     * @returns {Boolean}
     */
@@ -33,18 +33,18 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Get the classes for desktop menu
+    * الحصول على الفئات لقائمة سطح المكتب
     * @param {Object} menu
     * @param {Boolean} isRootMenu
     * @returns {String}
     */
     getDesktopClasses(menu, isRootMenu) {
-        return `!hidden lg:!block ${isRootMenu ? 'root-level lg:!inline-block' : 'relative'} ${menu.products ? ' mega-menu' : ''}
+        return `${isRootMenu ? 'root-level lg:inline-block' : 'relative'} ${menu.products ? ' mega-menu' : ''}
         ${this.hasChildren(menu) ? ' has-children' : ''}`;
     }
 
     /**
-    * Get the mobile menu
+    * الحصول على قائمة الجوال
     * @param {Object} menu
     * @param {String} displayAllText
     * @returns {String}
@@ -53,7 +53,7 @@ class NavigationMenu extends HTMLElement {
         const menuImage = menu.image ? `<img src="${menu.image}" class="rounded-full" width="48" height="48" alt="${menu.title}" />` : '';
 
         return `
-        <li class="text-sm font-bold" ${menu.attrs}>
+        <li class="text-sm font-bold lg:hidden" ${menu.attrs}>
             ${!this.hasChildren(menu) ? `
                 <a href="${menu.url}" aria-label="${menu.title || 'category'}" class="text-gray-500 ${menu.image ? '!py-3' : ''}" ${menu.link_attrs}>
                     ${menuImage}
@@ -75,14 +75,14 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Get the desktop menu
+    * الحصول على قائمة سطح المكتب
     * @param {Object} menu
     * @param {Boolean} isRootMenu
     * @returns {String}
     */
     getDesktopMenu(menu, isRootMenu) {
         return `
-        <li class="${this.getDesktopClasses(menu, isRootMenu)}" ${menu.attrs}>
+        <li class="${this.getDesktopClasses(menu, isRootMenu)} hidden lg:block" ${menu.attrs}>
             <a href="${menu.url}" aria-label="${menu.title || 'category'}" ${menu.link_attrs}>
                 <span>${menu.title}</span>
             </a>
@@ -101,7 +101,7 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Get the menus
+    * الحصول على القوائم
     * @returns {String}
     */
     getMenus() {
@@ -112,12 +112,14 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Render the header menu
+    * عرض قائمة الرأس
     */
     render() {
         this.innerHTML =  `
         <nav id="mobile-menu" class="mobile-menu">
-            <ul class="main-menu">${this.getMenus()}</ul>
+            <ul class="main-menu">
+                ${this.getMenus()}
+            </ul>
             <button class="btn--close close-mobile-menu sicon-cancel lg:hidden"></button>
         </nav>
         <button class="btn--close-sm close-mobile-menu sicon-cancel hidden"></button>`;

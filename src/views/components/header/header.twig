@@ -12,8 +12,7 @@
     <div class="container flex justify-between">
       <div class="flex items-center gap-4">
         {# زر فتح القائمة #}
-        <a class="mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
-          
+        <a class="mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
           <i class="sicon-menu text-primary text-2xl"></i>
         </a>
         {# الفروع #}
@@ -54,20 +53,11 @@
       </div>
     </div>
   </div>
-  
-  {# الشريط الرئيسي (الذي تم تحويله إلى قائمة جانبية) #}
-  <div id="mainnav" class="main-nav-container shadow-default bg-white">
-    <div class="inner bg-inherit">
-      <div class="container">
-        <div class="flex items-stretch justify-between relative">
-          <div class="flex items-center">
-            <custom-main-menu></custom-main-menu>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </header>
+{# القائمة الرئيسية تظهر دائمًا في جميع الشاشات #}
+<nav id="main-menu" class="main-menu flex items-center">
+  <custom-main-menu></custom-main-menu>
+</nav>
 
 {% if store.scope %}
   <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>

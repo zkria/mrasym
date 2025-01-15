@@ -1,7 +1,7 @@
 // Mobile Slide Menu
 .mobile-menu {
   display: block;
-  @apply overflow-hidden;
+  @apply lg:hidden overflow-hidden;
 }
 
 .sidebar {
@@ -27,6 +27,11 @@
     .btn--close-sm.close-mobile-menu {
       display: block !important;
     }
+  }
+
+  .mobile-menu {
+    display: block;
+    @apply lg:hidden overflow-hidden;
   }
 
   .mm-ocd__content {

@@ -632,7 +632,6 @@ select{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/
 .items-end{align-items:flex-end}
 .items-center{align-items:center}
 .items-baseline{align-items:baseline}
-.items-stretch{align-items:stretch}
 .justify-start{justify-content:flex-start}
 .justify-end{justify-content:flex-end}
 .justify-center{justify-content:center}
@@ -691,7 +690,6 @@ select{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/
 .bg-gray-100{--tw-bg-opacity:1;background-color:rgba(243, 244, 246, 1);background-color:rgba(243, 244, 246, var(--tw-bg-opacity, 1))}
 .bg-gray-50{--tw-bg-opacity:1;background-color:rgba(249, 250, 251, 1);background-color:rgba(249, 250, 251, var(--tw-bg-opacity, 1))}
 .bg-green-50{--tw-bg-opacity:1;background-color:rgba(240, 253, 244, 1);background-color:rgba(240, 253, 244, var(--tw-bg-opacity, 1))}
-.bg-inherit{background-color:inherit}
 .bg-primary{background-color:#414042;background-color:var(--color-primary)}
 .bg-white{--tw-bg-opacity:1;background-color:rgba(255, 255, 255, 1);background-color:rgba(255, 255, 255, var(--tw-bg-opacity, 1))}
 .bg-cover{background-size:cover}
@@ -4671,6 +4669,11 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
 .main-nav-container{min-height:68px}
 @media (min-width: 1024px){
 .main-nav-container{min-height:84px}}
+@media (max-width: 640px) {
+  .main-nav-container {
+    display: block;
+  }
+}
 .has-bg .main-nav-container, .has-bg .main-nav-container .sub-menu{background-color:var(--mainnav-bg)}
 .has-text-color .main-nav-container{color:var(--mainnav-text-color)}
 .menu-item{display:flex;align-items:center;padding-left:1.5rem;padding-right:1.5rem;padding-top:0.625rem;padding-bottom:0.625rem;--tw-text-opacity:1;color:rgba(107, 114, 128, 1);color:rgba(107, 114, 128, var(--tw-text-opacity, 1));transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:300ms}
@@ -4773,6 +4776,8 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
   display: block;
   overflow:hidden;
 }
+@media (min-width: 1024px){
+.mobile-menu{display:none}}
 .sidebar {
   display: block;
   width: 250px;
@@ -4792,6 +4797,12 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
   .menu-opened .btn--close-sm.close-mobile-menu {
     display: block !important;
   }
+  .mobile-menu {
+    display: block;
+    overflow:hidden;
+  }
+  @media (min-width: 1024px){
+.mobile-menu{display:none}}
   .mm-ocd__content {
     overflow-y: auto;
   }

@@ -23,7 +23,7 @@ class App extends AppHelpers {
     this.initiateModals();
     this.initiateCollapse();
     this.initAttachWishlistListeners();
-    this.changeMenuDirection()
+    this.changeMenuDirection();
     initTootTip();
     this.loadModalImgOnclick();
 
@@ -39,21 +39,21 @@ class App extends AppHelpers {
     return this;
   }
 
-    // fix Menu Direction at the third level >> The menu at the third level was popping off the page
-    changeMenuDirection(){
-      app.all('.root-level.has-children',item=>{
-        if(item.classList.contains('change-menu-dir')) return;
-        app.on('mouseover',item,()=>{
-          let submenu = item.querySelector('.sub-menu .sub-menu');
-          if(submenu){
-            let rect = submenu.getBoundingClientRect();
-            (rect.left < 10 || rect.right > window.innerWidth - 10) && app.addClass(item,'change-menu-dir')
-          }      
-        })
-      })
-    }
+  // fix Menu Direction at the third level >> The menu at the third level was popping off the page
+  changeMenuDirection() {
+    app.all('.root-level.has-children', item => {
+      if (item.classList.contains('change-menu-dir')) return;
+      app.on('mouseover', item, () => {
+        let submenu = item.querySelector('.sub-menu .sub-menu');
+        if (submenu) {
+          let rect = submenu.getBoundingClientRect();
+          (rect.left < 10 || rect.right > window.innerWidth - 10) && app.addClass(item, 'change-menu-dir');
+        }
+      });
+    });
+  }
 
-  loadModalImgOnclick(){
+  loadModalImgOnclick() {
     document.querySelectorAll('.load-img-onclick').forEach(link => {
       link.addEventListener('click', (event) => {
         event.preventDefault();
@@ -66,8 +66,8 @@ class App extends AppHelpers {
 
         img.src = imgSrc;
         img.classList.add('loaded');
-      })
-    })
+      });
+    });
   }
 
   commonThings() {
@@ -79,28 +79,26 @@ class App extends AppHelpers {
 
     if (articleElements.length) {
       articleElements.forEach(article => {
-        article.innerHTML = article.innerHTML.replace(/\&nbsp;/g, ' ')
-      })
+        article.innerHTML = article.innerHTML.replace(/\&nbsp;/g, ' ');
+      });
     }
   }
 
-isElementLoaded(selector){
-  return new Promise((resolve=>{
-    const interval=setInterval(()=>{
-    if(document.querySelector(selector)){
-      clearInterval(interval)
-      return resolve(document.querySelector(selector))
-    }
-   },160)
-}))
-
-  
-  };
+  isElementLoaded(selector) {
+    return new Promise((resolve) => {
+      const interval = setInterval(() => {
+        if (document.querySelector(selector)) {
+          clearInterval(interval);
+          return resolve(document.querySelector(selector));
+        }
+      }, 160);
+    });
+  }
 
   copyToClipboard(event) {
     event.preventDefault();
     let aux = document.createElement("input"),
-    btn = event.currentTarget;
+      btn = event.currentTarget;
     aux.setAttribute("value", btn.dataset.content);
     document.body.appendChild(aux);
     aux.select();
@@ -108,7 +106,7 @@ isElementLoaded(selector){
     document.body.removeChild(aux);
     this.toggleElementClassIf(btn, 'copied', 'code-to-copy', () => true);
     setTimeout(() => {
-      this.toggleElementClassIf(btn, 'code-to-copy', 'copied', () => true)
+      this.toggleElementClassIf(btn, 'code-to-copy', 'copied', () => true);
     }, 1000);
   }
 
@@ -124,53 +122,54 @@ isElementLoaded(selector){
         showConfirmButton: false,
         timer: 3500,
         didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
         }
       }).fire({
         icon: type,
         title: message,
         showCloseButton: true,
         timerProgressBar: true
-      })
+      });
     });
   }
 
-
   initiateMobileMenu() {
+    this.isElementLoaded('#mobile-menu').then((menu) => {
+      const mobileMenu = new MobileMenu(menu, "(max-width: 1024px)", { slidingSubmenus: false });
 
-  this.isElementLoaded('#mobile-menu').then((menu) => {
+      salla.lang.onLoaded(() => {
+        mobileMenu.navigation({ title: salla.lang.get('blocks.header.main_menu') });
+      });
 
- 
-  const mobileMenu = new MobileMenu(menu, "(max-width: 1024px)", "( slidingSubmenus: false)");
+      const drawer = mobileMenu.offcanvas({ position: salla.config.get('theme.is_rtl') ? "right" : 'left' });
 
-  salla.lang.onLoaded(() => {
-    mobileMenu.navigation({ title: salla.lang.get('blocks.header.main_menu') });
-  });
-  const drawer = mobileMenu.offcanvas({ position: salla.config.get('theme.is_rtl') ? "right" : 'left' });
+      this.onClick("a[href='#mobile-menu']", event => {
+        document.body.classList.add('menu-opened');
+        event.preventDefault();
+        drawer.open();
+      });
 
-  this.onClick("a[href='#mobile-menu']", event => {
-    document.body.classList.add('menu-opened');
-    event.preventDefault() || drawer.close() || drawer.open()
-    
-  });
-  this.onClick(".close-mobile-menu", event => {
-    document.body.classList.remove('menu-opened');
-    event.preventDefault() || drawer.close()
-  });
-  });
+      this.onClick(".close-mobile-menu", event => {
+        document.body.classList.remove('menu-opened');
+        event.preventDefault();
+        drawer.close();
+      });
 
+      document.body.classList.add('menu-opened');
+    });
   }
- initAttachWishlistListeners() {
+
+  initAttachWishlistListeners() {
     let isListenerAttached = false;
-  
+
     function toggleFavoriteIcon(id, isAdded = true) {
       document.querySelectorAll('.s-product-card-wishlist-btn[data-id="' + id + '"]').forEach(btn => {
         app.toggleElementClassIf(btn, 's-product-card-wishlist-added', 'not-added', () => isAdded);
         app.toggleElementClassIf(btn, 'pulse-anime', 'un-favorited', () => isAdded);
       });
     }
-  
+
     if (!isListenerAttached) {
       salla.wishlist.event.onAdded((event, id) => toggleFavoriteIcon(id));
       salla.wishlist.event.onRemoved((event, id) => toggleFavoriteIcon(id, false));
@@ -186,8 +185,8 @@ isElementLoaded(selector){
       return;
     }
 
-    window.addEventListener('load', () => setTimeout(() => this.setHeaderHeight(), 500))
-    window.addEventListener('resize', () => this.setHeaderHeight())
+    window.addEventListener('load', () => setTimeout(() => this.setHeaderHeight(), 500));
+    window.addEventListener('resize', () => this.setHeaderHeight());
 
     window.addEventListener('scroll', () => {
       window.scrollY >= header.offsetTop + height ? header.classList.add('fixed-pinned', 'animated') : header.classList.remove('fixed-pinned');
@@ -269,7 +268,7 @@ isElementLoaded(selector){
     document.querySelectorAll('.btn--collapse')
       .forEach((trigger) => {
         const content = document.querySelector('#' + trigger.dataset.show);
-        const state = { isOpen: false }
+        const state = { isOpen: false };
 
         const onOpen = () => anime({
           targets: content,
@@ -285,21 +284,20 @@ isElementLoaded(selector){
           height: 0,
           opacity: [1, 0],
           easing: 'easeOutQuart',
-        })
+        });
 
         const toggleState = (isOpen) => {
-          state.isOpen = !isOpen
+          state.isOpen = !isOpen;
           this.toggleElementClassIf(content, 'is-closed', 'is-opened', () => isOpen);
-        }
+        };
 
         trigger.addEventListener('click', () => {
-          const { isOpen } = state
-          toggleState(isOpen)
+          const { isOpen } = state;
+          toggleState(isOpen);
           isOpen ? onClose() : onOpen();
-        })
+        });
       });
   }
-
 
   /**
    * Workaround for seeking to simplify & clean, There are three ways to use this method:
@@ -332,3 +330,33 @@ isElementLoaded(selector){
 }
 
 salla.onReady(() => (new App).loadTheApp());
+// مثال على كيفية تحميل البيانات وعرضها في القائمة
+class CustomMainMenu extends HTMLElement {
+  connectedCallback() {
+      this.loadMenuData();
+  }
+
+  loadMenuData() {
+      // استدعاء API أو تحميل البيانات
+      fetch('/api/get-menu-data') // تأكد من استخدام المسار الصحيح
+          .then(response => response.json())
+          .then(data => {
+              this.renderMenu(data);
+          })
+          .catch(error => console.error('Error loading menu data:', error));
+  }
+
+  renderMenu(data) {
+      const menuContainer = this.querySelector('.mm-ocd__content');
+      menuContainer.innerHTML = ''; // مسح المحتوى الحالي
+
+      data.forEach(item => {
+          const menuItem = document.createElement('div');
+          menuItem.className = 'menu-item';
+          menuItem.innerHTML = `<a href="${item.url}">${item.title}</a>`;
+          menuContainer.appendChild(menuItem);
+      });
+  }
+}
+
+customElements.define('custom-main-menu', CustomMainMenu);

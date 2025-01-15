@@ -1,4 +1,3 @@
-
 /* Top Nav */
 .top-navbar {
   @apply flex py-2 min-h-[48px];
@@ -64,7 +63,11 @@
 /* Main Nav */
 .main-nav-container {
   @apply min-h-[68px] lg:min-h-[84px];
-  
+
+  @media (max-width: 640px) {
+    display: block;
+  }
+
   // Custom background Color
   .has-bg &,
   .has-bg & .sub-menu{

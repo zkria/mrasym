@@ -1,53 +1,25 @@
-/* Top Nav */
+/* الشريط العلوي */
 .top-navbar {
-  @apply flex py-2 min-h-[48px];
+  @apply flex items-center justify-between py-2 px-4 bg-white shadow-md;
+  border-bottom: 1px solid #e0e0e0;
+  z-index: 1000;
 
-  @screen lg {
-    @apply py-1.5;
-  }
-
-  .topnav-has-bg & {
-    @apply bg-[color:var(--topnav-bg)];
-  }
-
-  .topnav-has-gradient & {
-    @apply bg-gradient-to-r from-[color:var(--topnav-gradient-from)] to-[color:var(--topnav-gradient-to)];
-  }
-
-  .topnav-has-text-color & {
-    @apply text-[color:var(--topnav-text-color)];
-  }
-
-  .s-search-input{
-    @apply bg-gray-200/50 hover:bg-gray-200/70 border-none;
-  }
-
-  @media (max-width: 640px) {
-    .s-search-results{
-      @apply w-screen max-w-[100vw] rtl:-left-2.5 ltr:-right-2.5; 
-    }
-  } 
-
-  .topnav-is-dark & {
-    @apply bg-dark text-gray-300;
-
-    .btn--circle-gray,
-    .btn--rounded-gray,
-    .s-search-input{
-      @apply bg-gray-100/10 hover:bg-gray-100/[0.15]
-    }
-
-    .topnav-link-item{
-      @apply border-gray-300/10;
-    }
-
-    .s-search-input{
-      @apply text-white;
+  .navbar-brand {
+    @apply flex items-center;
+    img {
+      @apply h-10;
     }
   }
 
-  .search-btn{
-    @apply grow sm:grow-0 justify-start md:justify-center;
+  .header-btn {
+    @apply flex items-center justify-center p-2 rounded hover:bg-gray-100 transition duration-200;
+    i {
+      @apply text-xl;
+    }
+  }
+
+  .menu-opened {
+    @apply hidden lg:flex items-center gap-4;
   }
 }
 

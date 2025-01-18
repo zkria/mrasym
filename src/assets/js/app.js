@@ -14,7 +14,7 @@ class App extends AppHelpers {
     this.commonThings();
     this.initiateNotifier();
     this.initiateMobileMenu();
-    this.initiateSideMenu(); // إضافة هذه السطر
+    this.initiateSideMenu();
     if (header_is_sticky) {
       this.initiateStickyMenu();
     }
@@ -37,7 +37,12 @@ class App extends AppHelpers {
 
   initiateSideMenu() {
     this.onClick("a[href='#mainnav']", event => {
-      document.getElementById('mainnav').classList.toggle('hidden');
+      const mainNav = document.getElementById('mainnav');
+      if (mainNav.classList.contains('hidden')) {
+        mainNav.classList.remove('hidden');
+      } else {
+        mainNav.classList.add('hidden');
+      }
       event.preventDefault();
     });
     this.onClick(".close-main-menu", event => {
@@ -344,3 +349,8 @@ isElementLoaded(selector){
 }
 
 salla.onReady(() => (new App).loadTheApp());
+
+document.querySelector('.mburger').addEventListener('click', function() {
+  const sidebar = document.getElementById('mainnav');
+  sidebar.classList.toggle('fixed');
+});

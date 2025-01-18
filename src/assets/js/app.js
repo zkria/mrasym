@@ -14,6 +14,7 @@ class App extends AppHelpers {
     this.commonThings();
     this.initiateNotifier();
     this.initiateMobileMenu();
+    this.initiateSideMenu(); // إضافة هذه السطر
     if (header_is_sticky) {
       this.initiateStickyMenu();
     }
@@ -32,6 +33,17 @@ class App extends AppHelpers {
     this.status = 'ready';
     document.dispatchEvent(new CustomEvent('theme::ready'));
     this.log('Theme Loaded 🎉');
+  }
+
+  initiateSideMenu() {
+    this.onClick("a[href='#mainnav']", event => {
+      document.getElementById('mainnav').classList.toggle('hidden');
+      event.preventDefault();
+    });
+    this.onClick(".close-main-menu", event => {
+      document.getElementById('mainnav').classList.add('hidden');
+      event.preventDefault();
+    });
   }
 
   log(message) {

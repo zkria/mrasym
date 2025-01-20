@@ -1,10 +1,9 @@
-
 /* Top Nav */
 .top-navbar {
-  @apply flex py-2 min-h-[48px];
+  @apply flex py-1 min-h-[40px];
 
   @screen lg {
-    @apply py-1.5;
+    @apply py-1;
   }
 
   .topnav-has-bg & {
@@ -19,45 +18,44 @@
     @apply text-[color:var(--topnav-text-color)];
   }
 
-  .s-search-input{
+  .s-search-input {
     @apply bg-gray-200/50 hover:bg-gray-200/70 border-none;
   }
 
   @media (max-width: 640px) {
-    .s-search-results{
-      @apply w-screen max-w-[100vw] rtl:-left-2.5 ltr:-right-2.5; 
+    .s-search-results {
+      @apply w-screen max-w-[100vw] rtl:-left-2.5 ltr:-right-2.5;
     }
-  } 
+  }
 
   .topnav-is-dark & {
     @apply bg-dark text-gray-300;
 
     .btn--circle-gray,
     .btn--rounded-gray,
-    .s-search-input{
-      @apply bg-gray-100/10 hover:bg-gray-100/[0.15]
+    .s-search-input {
+      @apply bg-gray-100/10 hover:bg-gray-100/[0.15];
     }
 
-    .topnav-link-item{
+    .topnav-link-item {
       @apply border-gray-300/10;
     }
 
-    .s-search-input{
+    .s-search-input {
       @apply text-white;
     }
   }
 
-  .search-btn{
+  .search-btn {
     @apply grow sm:grow-0 justify-start md:justify-center;
   }
 }
 
-// contacs menu items - pages menu items
-.topnav-link-item{
-  @apply inline-block transition duration-300 px-4 rtl:last:pl-0 ltr:last:pr-0 py-px text-sm leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80;
+// contacts menu items - pages menu items
+.topnav-link-item {
+  @apply inline-block transition duration-300 px-2 rtl:last:pl-0 ltr:last:pr-0 py-0.5 text-xs leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80;
 
-  &.right-side{
-    @apply rtl:first:pr-0 ltr:first:pl-0
+  &.right-side {
+    @apply rtl:first:pr-0 ltr:first:pl-0;
   }
 }
-

@@ -10,14 +10,14 @@
   {# الشريط العلوي #}
   <div class="top-navbar">
     <div class="container flex justify-between">
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2">
         {# زر فتح القائمة #}
-        <a class="mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4 lg:hidden" href="#mobile-menu" aria-label="Open-menu" onclick="document.querySelector('.sidebar-container').classList.toggle('close');">
-          <i class="sicon-menu text-primary text-2xl"></i>
+        <a class="mburger mburger--collapse leading-none rtl:ml-2 ltr:mr-2 lg:hidden" href="#mobile-menu" aria-label="Open-menu" onclick="document.querySelector('.sidebar-container').classList.toggle('close');">
+          <i class="sicon-menu text-primary text-xl"></i>
         </a>
         {# زر فتح القائمة الجانبية للشاشات الكبيرة #}
-        <button class="lg:block hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4 toggle" aria-label="Open-menu" onclick="document.querySelector('.sidebar-container').classList.toggle('close');">
-          <i class="sicon-menu text-primary text-2xl"></i>
+        <button class="lg:block hidden mburger mburger--collapse leading-none rtl:ml-2 ltr:mr-2 toggle" aria-label="Open-menu" onclick="document.querySelector('.sidebar-container').classList.toggle('close');">
+          <i class="sicon-menu text-primary text-xl"></i>
         </button>
         {# الفروع #}
         {% if store.scope %}
@@ -36,7 +36,7 @@
           {% endif %}
         </a>
       </div>
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2">
         {# شريط البحث كأيقونة #}
         <button class="header-btn search-box" aria-label="search-icon">
           <i class="header-btn__icon sicon-search"></i>
@@ -51,7 +51,7 @@
             <i class="header-btn__icon sicon-user-circle"></i>
           </button>
         {% endif %}
-        <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4">
+        <salla-cart-summary class="ml-2 rtl:ml-[unset] rtl:mr-2">
           <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
         </salla-cart-summary>
       </div>
@@ -65,8 +65,8 @@
         <div class="flex items-stretch justify-between relative">
           <div class="flex items-center">
             {# زر فتح القائمة الجانبية للشاشات الصغيرة #}
-            <a class="mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
-              <i class="sicon-menu text-primary text-2xl"></i>
+            <a class="mburger mburger--collapse leading-none rtl:ml-2 ltr:mr-2" href="#mobile-menu" aria-label="Open-menu">
+              <i class="sicon-menu text-primary text-xl"></i>
             </a>
             {# قائمة المنتجات الرئيسية #}
             <custom-main-menu></custom-main-menu>
@@ -81,7 +81,7 @@
               </button>
             {% endif %}
             {# ملخص السلة #}
-            <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4">
+            <salla-cart-summary class="ml-2 rtl:ml-[unset] rtl:mr-2">
               <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
             </salla-cart-summary>
           </div>

@@ -9,7 +9,7 @@
 <header class="store-header">
   {# الشريط العلوي #}
   <div class="top-navbar">
-    <div class="container flex justify-between">
+    <div class="container flex justify-between"> 
       <div class="flex items-center gap-2">
         {# زر فتح القائمة #}
         <a class="mburger mburger--collapse leading-none rtl:ml-2 ltr:mr-2 lg:hidden" href="#mobile-menu" aria-label="Open-menu" onclick="document.querySelector('.sidebar-container').classList.toggle('close');">
@@ -54,38 +54,6 @@
         <salla-cart-summary class="ml-2 rtl:ml-[unset] rtl:mr-2">
           <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
         </salla-cart-summary>
-      </div>
-    </div>
-  </div>
-
-  {# القائمة الجانبية #}
-  <div id="sidebar" class="sidebar-container shadow-default bg-white lg:hidden">
-    <div class="inner bg-inherit">
-      <div class="container">
-        <div class="flex items-stretch justify-between relative">
-          <div class="flex items-center">
-            {# زر فتح القائمة الجانبية للشاشات الصغيرة #}
-            <a class="mburger mburger--collapse leading-none rtl:ml-2 ltr:mr-2" href="#mobile-menu" aria-label="Open-menu">
-              <i class="sicon-menu text-primary text-xl"></i>
-            </a>
-            {# قائمة المنتجات الرئيسية #}
-            <custom-main-menu></custom-main-menu>
-          </div>
-          <div class="flex items-center justify-end">
-            {# قائمة المستخدم #}
-            {% if user.type == 'user' %}
-              <salla-user-menu avatar-only show-header></salla-user-menu>
-            {% else %}
-              <button class="header-btn" aria-label="user-icon" onclick="salla.event.dispatch('login::open')">
-                <i class="header-btn__icon sicon-user-circle"></i>
-              </button>
-            {% endif %}
-            {# ملخص السلة #}
-            <salla-cart-summary class="ml-2 rtl:ml-[unset] rtl:mr-2">
-              <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
-            </salla-cart-summary>
-          </div>
-        </div>
       </div>
     </div>
   </div>

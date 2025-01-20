@@ -14,8 +14,6 @@ class App extends AppHelpers {
     this.commonThings();
     this.initiateNotifier();
     this.initiateMobileMenu();
-    this.initiateSideMenu();
-    this.initiateSidebar();
     if (header_is_sticky) {
       this.initiateStickyMenu();
     }
@@ -24,7 +22,6 @@ class App extends AppHelpers {
     this.initiateDropdowns();
     this.initiateModals();
     this.initiateCollapse();
-    this.initAttachWishlistListeners();
     this.changeMenuDirection()
     initTootTip();
     this.loadModalImgOnclick();
@@ -36,73 +33,24 @@ class App extends AppHelpers {
     this.log('Theme Loaded 🎉');
   }
 
-  initiateSideMenu() {
-    this.onClick("a[href='#mainnav']", event => {
-      const mainNav = document.getElementById('mainnav');
-      mainNav.classList.toggle('open');
-      event.preventDefault();
-    });
-
-    this.onClick(".close-main-menu", event => {
-      document.getElementById('mainnav').classList.remove('open');
-      event.preventDefault();
-    });
-
-    // Close the side menu when clicking outside of it
-    document.addEventListener('click', event => {
-      const mainNav = document.getElementById('mainnav');
-      if (!mainNav.contains(event.target) && !event.target.closest("a[href='#mainnav']")) {
-        mainNav.classList.remove('open');
-      }
-    });
-  }
-
-  initiateSidebar() {
-    const body = document.querySelector("body"),
-          sidebar = body.querySelector("nav.sidebar"),
-          toggle = body.querySelector(".toggle"),
-          searchBtn = body.querySelector(".search-box"),
-          modeSwitch = body.querySelector(".toggle-switch"),
-          modeText = body.querySelector(".mode-text");
-
-    toggle.addEventListener("click", () => {
-      sidebar.classList.toggle("close");
-    });
-
-    searchBtn.addEventListener("click", () => {
-      sidebar.classList.remove("close");
-    });
-
-    modeSwitch.addEventListener("click", () => {
-      body.classList.toggle("dark");
-
-      if (body.classList.contains("dark")) {
-        modeText.innerText = "Light mode";
-      } else {
-        modeText.innerText = "Dark mode";
-      }
-    });
-  }
-
   log(message) {
     salla.log(`ThemeApp(Raed)::${message}`);
     return this;
   }
 
-  changeMenuDirection() {
-    app.all('.root-level.has-children', item => {
-      if (item.classList.contains('change-menu-dir')) return;
-      app.on('mouseover', item, () => {
-        let submenu = item.querySelector('.sub-menu .sub-menu');
-        if (submenu) {
-          let rect = submenu.getBoundingClientRect();
-          (rect.left < 10 || rect.right > window.innerWidth - 10) && app.addClass(item, 'change-menu-dir')
-        }
+    // fix Menu Direction at the third level >> The menu at the third level was popping off the page
+    changeMenuDirection(){
+      app.all('.root-level.has-children',item=>{
+        if(item.classList.contains('change-menu-dir')) return;
+        app.on('mouseover',item,()=>{
+          let submenu = item.querySelector('.sub-menu .sub-menu'),
+              rect = submenu.getBoundingClientRect();
+            (rect.left < 10 || rect.right > window.innerWidth - 10) && app.addClass(item,'change-menu-dir')
+        })
       })
-    })
-  }
+    }
 
-  loadModalImgOnclick() {
+  loadModalImgOnclick(){
     document.querySelectorAll('.load-img-onclick').forEach(link => {
       link.addEventListener('click', (event) => {
         event.preventDefault();
@@ -133,21 +81,23 @@ class App extends AppHelpers {
     }
   }
 
-  isElementLoaded(selector) {
-    return new Promise((resolve => {
-      const interval = setInterval(() => {
-        if (document.querySelector(selector)) {
-          clearInterval(interval)
-          return resolve(document.querySelector(selector))
-        }
-      }, 160)
-    }))
+isElementLoaded(selector){
+  return new Promise((resolve=>{
+    const interval=setInterval(()=>{
+    if(document.querySelector(selector)){
+      clearInterval(interval)
+      return resolve(document.querySelector(selector))
+    }
+   },160)
+}))
+
+  
   };
 
   copyToClipboard(event) {
     event.preventDefault();
     let aux = document.createElement("input"),
-      btn = event.currentTarget;
+    btn = event.currentTarget;
     aux.setAttribute("value", btn.dataset.content);
     document.body.appendChild(aux);
     aux.select();
@@ -183,41 +133,30 @@ class App extends AppHelpers {
     });
   }
 
+
   initiateMobileMenu() {
-    this.isElementLoaded('#mobile-menu').then((menu) => {
-      const mobileMenu = new MobileMenu(menu, "(max-width: 1024px)", "( slidingSubmenus: false)");
 
-      salla.lang.onLoaded(() => {
-        mobileMenu.navigation({ title: salla.lang.get('blocks.header.main_menu') });
-      });
-      const drawer = mobileMenu.offcanvas({ position: salla.config.get('theme.is_rtl') ? "right" : 'left' });
+  this.isElementLoaded('#mobile-menu').then((menu) => {
 
-      this.onClick("a[href='#mobile-menu']", event => {
-        document.body.classList.add('menu-opened');
-        event.preventDefault() || drawer.close() || drawer.open()
-      });
-      this.onClick(".close-mobile-menu", event => {
-        document.body.classList.remove('menu-opened');
-        event.preventDefault() || drawer.close()
-      });
-    });
-  }
+ 
+  const mobileMenu = new MobileMenu(menu, "(max-width: 1024px)", "( slidingSubmenus: false)");
 
-  initAttachWishlistListeners() {
-    let isListenerAttached = false;
+  salla.lang.onLoaded(() => {
+    mobileMenu.navigation({ title: salla.lang.get('blocks.header.main_menu') });
+  });
+  const drawer = mobileMenu.offcanvas({ position: salla.config.get('theme.is_rtl') ? "right" : 'left' });
 
-    function toggleFavoriteIcon(id, isAdded = true) {
-      document.querySelectorAll('.s-product-card-wishlist-btn[data-id="' + id + '"]').forEach(btn => {
-        app.toggleElementClassIf(btn, 's-product-card-wishlist-added', 'not-added', () => isAdded);
-        app.toggleElementClassIf(btn, 'pulse-anime', 'un-favorited', () => isAdded);
-      });
-    }
+  this.onClick("a[href='#mobile-menu']", event => {
+    document.body.classList.add('menu-opened');
+    event.preventDefault() || drawer.close() || drawer.open()
+    
+  });
+  this.onClick(".close-mobile-menu", event => {
+    document.body.classList.remove('menu-opened');
+    event.preventDefault() || drawer.close()
+  });
+  });
 
-    if (!isListenerAttached) {
-      salla.wishlist.event.onAdded((event, id) => toggleFavoriteIcon(id));
-      salla.wishlist.event.onRemoved((event, id) => toggleFavoriteIcon(id, false));
-      isListenerAttached = true; // Mark the listener as attached
-    }
   }
 
   initiateStickyMenu() {
@@ -243,6 +182,10 @@ class App extends AppHelpers {
     header.style.height = height + 'px';
   }
 
+  /**
+   * Because salla caches the response, it's important to keep the alert disabled if the visitor closed it.
+   * by store the status of the ad in local storage `salla.storage.set(...)`
+   */
   initiateAdAlert() {
     let ad = this.element(".salla-advertisement");
 
@@ -338,11 +281,25 @@ class App extends AppHelpers {
       });
   }
 
+
+  /**
+   * Workaround for seeking to simplify & clean, There are three ways to use this method:
+   * 1- direct call: `this.anime('.my-selector')` - will use default values
+   * 2- direct call with overriding defaults: `this.anime('.my-selector', {duration:3000})`
+   * 3- return object to play it letter: `this.anime('.my-selector', false).duration(3000).play()` - will not play animation unless calling play method.
+   * @param {string|HTMLElement} selector
+   * @param {object|undefined|null|null} options - in case there is need to set attributes one by one set it `false`;
+   * @return {Anime|*}
+   */
   anime(selector, options = null) {
     let anime = new Anime(selector, options);
     return options === false ? anime : anime.play();
   }
 
+  /**
+   * These actions are responsible for pressing "add to cart" button,
+   * they can be from any page, especially when mega-menu is enabled
+   */
   initAddToCart() {
     salla.cart.event.onUpdated(summary => {
       document.querySelectorAll('[data-cart-total]').forEach(el => el.innerText = salla.money(summary.total));
@@ -356,8 +313,3 @@ class App extends AppHelpers {
 }
 
 salla.onReady(() => (new App).loadTheApp());
-
-document.querySelector('.mburger').addEventListener('click', function() {
-  const sidebar = document.getElementById('mainnav');
-  sidebar.classList.toggle('fixed');
-});

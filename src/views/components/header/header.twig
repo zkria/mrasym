@@ -1,22 +1,22 @@
 {#
-| Variable         | Type    | Description                     |
+| متغير         | النوع    | الوصف                     |
 |------------------|---------|---------------------------------|
 | cart             | object  |                                 |
 | cart.items_count | int     |                                 |
-| cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
+| cart.total       | string  | الإجمالي المنسق مثل "١٠٠ ر.س"   |
 #}
 {% set important_links = theme.settings.get('important_links') %}
-<header class="store-header" style="--header-height: 48px;">
+<header class="store-header">
   {# الشريط العلوي #}
   <div class="top-navbar">
     <div class="container flex justify-between">
       <div class="flex items-center gap-4">
         {# زر فتح القائمة #}
-        <a class="mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4 lg:hidden" href="#mobile-menu" aria-label="Open-menu" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <a class="mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4 lg:hidden" href="#mobile-menu" aria-label="Open-menu" onclick="document.querySelector('.sidebar-container').classList.toggle('close');">
           <i class="sicon-menu text-primary text-2xl"></i>
         </a>
         {# زر فتح القائمة الجانبية للشاشات الكبيرة #}
-        <button class="lg:block hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" aria-label="Open-menu" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+        <button class="lg:block hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4 toggle" aria-label="Open-menu" onclick="document.querySelector('.sidebar-container').classList.toggle('close');">
           <i class="sicon-menu text-primary text-2xl"></i>
         </button>
         {# الفروع #}
@@ -38,13 +38,13 @@
       </div>
       <div class="flex items-center gap-4">
         {# شريط البحث كأيقونة #}
-        <button class="header-btn" aria-label="search-icon" onclick="document.getElementById('search-bar').classList.toggle('hidden')">
+        <button class="header-btn search-box" aria-label="search-icon">
           <i class="header-btn__icon sicon-search"></i>
         </button>
         <div id="search-bar" class="header-search flex-1 hidden">
           <salla-search inline oval height="36"></salla-search>
         </div>
-        {% if user.type=='user' %}
+        {% if user.type == 'user' %}
           <salla-user-menu avatar-only show-header></salla-user-menu>
         {% else %}
           <button class="header-btn" aria-label="user-icon" onclick="salla.event.dispatch('login::open')">
@@ -57,87 +57,42 @@
       </div>
     </div>
   </div>
-</header>
 
-<nav class="sidebar close">
-  <header>
-    <div class="image-text">
-      <span class="image">
-        <img src="https://drive.google.com/uc?export=view&id=1ETZYgPpWbbBtpJnhi42_IR3vOwSOpR4z" alt="">
-      </span>
-      <div class="text logo-text">
-        <span class="name">{{ store.name }}</span>
-        <span class="profession">Web developer</span>
+  {# القائمة الجانبية #}
+  <div id="sidebar" class="sidebar-container shadow-default bg-white lg:hidden">
+    <div class="inner bg-inherit">
+      <div class="container">
+        <div class="flex items-stretch justify-between relative">
+          <div class="flex items-center">
+            {# زر فتح القائمة الجانبية للشاشات الصغيرة #}
+            <a class="mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
+              <i class="sicon-menu text-primary text-2xl"></i>
+            </a>
+            {# قائمة المنتجات الرئيسية #}
+            <custom-main-menu></custom-main-menu>
+          </div>
+          <div class="flex items-center justify-end">
+            {# قائمة المستخدم #}
+            {% if user.type == 'user' %}
+              <salla-user-menu avatar-only show-header></salla-user-menu>
+            {% else %}
+              <button class="header-btn" aria-label="user-icon" onclick="salla.event.dispatch('login::open')">
+                <i class="header-btn__icon sicon-user-circle"></i>
+              </button>
+            {% endif %}
+            {# ملخص السلة #}
+            <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4">
+              <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
+            </salla-cart-summary>
+          </div>
+        </div>
       </div>
     </div>
-    <i class='bx bx-chevron-right toggle'></i>
-  </header>
-  <div class="menu-bar">
-    <div class="menu">
-      <li class="search-box">
-        <i class='bx bx-search icon'></i>
-        <input type="text" placeholder="Search...">
-      </li>
-      <ul class="menu-links">
-        <li class="nav-link">
-          <a href="#">
-            <i class='bx bx-home-alt icon'></i>
-            <span class="text nav-text">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-link">
-          <a href="#">
-            <i class='bx bx-bar-chart-alt-2 icon'></i>
-            <span class="text nav-text">Revenue</span>
-          </a>
-        </li>
-        <li class="nav-link">
-          <a href="#">
-            <i class='bx bx-bell icon'></i>
-            <span class="text nav-text">Notifications</span>
-          </a>
-        </li>
-        <li class="nav-link">
-          <a href="#">
-            <i class='bx bx-pie-chart-alt icon'></i>
-            <span class="text nav-text">Analytics</span>
-          </a>
-        </li>
-        <li class="nav-link">
-          <a href="#">
-            <i class='bx bx-heart icon'></i>
-            <span class="text nav-text">Likes</span>
-          </a>
-        </li>
-        <li class="nav-link">
-          <a href="#">
-            <i class='bx bx-wallet icon'></i>
-            <span class="text nav-text">Wallets</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="bottom-content">
-      <li class="">
-        <a href="#">
-          <i class='bx bx-log-out icon'></i>
-          <span class="text nav-text">Logout</span>
-        </a>
-      </li>
-      <li class="mode">
-        <div class="sun-moon">
-          <i class='bx bx-moon icon moon'></i>
-          <i class='bx bx-sun icon sun'></i>
-        </div>
-        <span class="mode-text text">Dark mode</span>
-        <div class="toggle-switch">
-          <span class="switch"></span>
-        </div>
-      </li>
-    </div>
   </div>
-</nav>
+</header>
 
 {% if store.scope %}
   <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
 {% endif %}
+
+<script src="src/assets/js/app.js"></script>

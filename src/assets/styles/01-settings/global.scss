@@ -1,4 +1,3 @@
-
 // Colors
 $main-color: var(--color-primary);
 $infinte-color: var(--infinte-color);
@@ -26,4 +25,47 @@ $main-text-color: var(--main-text-color);
 
   /* plugins */
   --mm-ocd-width: calc(100% - 51px);
+
+  /* ===== Colors ===== */
+  --body-color: #e4e9f7;
+  --sidebar-color: #fff;
+  --primary-color: #dc143c;
+  --primary-color-light: #f6f5ff;
+  --toggle-color: #ddd;
+  --text-color: #707070;
+
+  /* ====== Transition ====== */
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.3s ease;
+  --tran-05: all 0.3s ease;
 }
+
+/* الوضع الداكن */
+body.dark {
+  --body-color: #18191a;
+  --sidebar-color: #242526;
+  --primary-color: #3a3b3c;
+  --primary-color-light: #3a3b3c;
+  --toggle-color: #fff;
+  --text-color: #ccc;
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+.sidebar {
+  background: var(--sidebar-color);
+}
+
+.header {
+  background-color: var(--primary-color);
+}
+
+.button {
+  background-color: var(--primary-color-light);
+  color: var(--text-color);
+}
+
+/* ... باقي التنسيقات ... */

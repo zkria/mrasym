@@ -7,19 +7,12 @@
 #}
 {% set important_links = theme.settings.get('important_links') %}
 <header class="store-header">
-  {# الشريط العلوي #}
   <div class="top-navbar">
-    <div class="container flex justify-between"> 
+    <div class="container flex justify-between">
       <div class="flex items-center gap-2">
-        {# زر فتح القائمة #}
-        <a class="mburger mburger--collapse leading-none rtl:ml-2 ltr:mr-2 lg:hidden" href="#mobile-menu" aria-label="Open-menu" onclick="document.querySelector('.sidebar-container').classList.toggle('close');">
+        <a class="mburger mburger--collapse leading-none rtl:ml-2 ltr:mr-2" href="#mobile-menu" aria-label="Open-menu" onclick="document.querySelector('.sidebar-container').classList.toggle('close');">
           <i class="sicon-menu text-primary text-xl"></i>
         </a>
-        {# زر فتح القائمة الجانبية للشاشات الكبيرة #}
-        <button class="lg:block hidden mburger mburger--collapse leading-none rtl:ml-2 ltr:mr-2 toggle" aria-label="Open-menu" onclick="document.querySelector('.sidebar-container').classList.toggle('close');">
-          <i class="sicon-menu text-primary text-xl"></i>
-        </button>
-        {# الفروع #}
         {% if store.scope %}
           <button class="btn--rounded-gray" onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})">
             <i class="sicon-location rtl:ml-1 ltr:mr-1"></i> {{ store.scope.name }}
@@ -37,7 +30,6 @@
         </a>
       </div>
       <div class="flex items-center gap-2">
-        {# شريط البحث كأيقونة #}
         <button class="header-btn search-box" aria-label="search-icon">
           <i class="header-btn__icon sicon-search"></i>
         </button>

@@ -1,4 +1,3 @@
-
 /* Top Nav */
 .top-navbar {
   @apply flex py-2 min-h-[48px];
@@ -193,4 +192,5 @@ salla-user-menu{
   .s-search-results{
     @apply z-10;
   }
+  @apply flex-1 hidden;
 }

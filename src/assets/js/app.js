@@ -22,7 +22,7 @@ class App extends AppHelpers {
     this.initiateDropdowns();
     this.initiateModals();
     this.initiateCollapse();
-    this.changeMenuDirection()
+    this.changeMenuDirection();
     initTootTip();
     this.loadModalImgOnclick();
 
@@ -135,28 +135,14 @@ isElementLoaded(selector){
 
 
   initiateMobileMenu() {
+    const menuButton = document.querySelector('.mburger');
+    const sidebarContainer = document.querySelector('.sidebar-container');
 
-  this.isElementLoaded('#mobile-menu').then((menu) => {
-
- 
-  const mobileMenu = new MobileMenu(menu, "(max-width: 1024px)", "( slidingSubmenus: false)");
-
-  salla.lang.onLoaded(() => {
-    mobileMenu.navigation({ title: salla.lang.get('blocks.header.main_menu') });
-  });
-  const drawer = mobileMenu.offcanvas({ position: salla.config.get('theme.is_rtl') ? "right" : 'left' });
-
-  this.onClick("a[href='#mobile-menu']", event => {
-    document.body.classList.add('menu-opened');
-    event.preventDefault() || drawer.close() || drawer.open()
-    
-  });
-  this.onClick(".close-mobile-menu", event => {
-    document.body.classList.remove('menu-opened');
-    event.preventDefault() || drawer.close()
-  });
-  });
-
+    if (menuButton && sidebarContainer) {
+      menuButton.addEventListener('click', function() {
+        sidebarContainer.classList.toggle('close');
+      });
+    }
   }
 
   initiateStickyMenu() {
